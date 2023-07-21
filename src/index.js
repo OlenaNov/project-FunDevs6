@@ -1,10 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+import App from 'components/App';
+import { theme } from 'theme/theme';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename="/project-FunDevs6">
+      <ThemeProvider  theme={theme}>
+        <App />
+      </ThemeProvider>
+      
+    </BrowserRouter>
   </React.StrictMode>
 );
