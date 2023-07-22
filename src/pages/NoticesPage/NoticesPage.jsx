@@ -15,19 +15,18 @@ import {
 export const NoticesPage = () => {
   return (
     <div>
-      <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
       <NoticesSearch />
-      <NoticeFilterContainer>
-        <NoticesCategoriesNav />
-        <NoticesPageContainerFilterAdd>
-          <NoticesFiltersBtn />
-          <NoticesAddPetBtn />
-        </NoticesPageContainerFilterAdd>
+      <NoticesPageContainer>
+        <NoticeFilterContainer>
+          <NoticesCategoriesNav />
+          <NoticesPageContainerFilterAdd>
+            <NoticesFiltersBtn />
+            <NoticesAddPetBtn />
+          </NoticesPageContainerFilterAdd>
+        </NoticeFilterContainer>
       </NoticesPageContainer>
       <NoticesCategoriesList />
-      </NoticeFilterContainer>
-    </NoticesPageContainer>
     </div>
   );
 };

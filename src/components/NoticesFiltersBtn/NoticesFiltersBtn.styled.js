@@ -26,7 +26,7 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const StyledNavLinkWrapper = styled('div')`
-  min-width: 410px;
+  min-width: 300px;
   display: flex;
   justify-content: right;
 
