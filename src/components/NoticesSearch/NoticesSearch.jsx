@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdClose } from 'react-icons/io';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+// import { useEffect } from 'react';
 
 import { Form, Input, SearchBtn, ClearBtn } from './NoticesSearch.styled';
 
