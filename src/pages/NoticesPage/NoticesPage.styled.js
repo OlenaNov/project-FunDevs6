@@ -22,8 +22,10 @@ export const Title = styled.h2`
 
 export const NoticeFilterContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-start;
+  margin-right: 20px;
+  margin-left: 30px;
 `;
 
 export const NoticesPageContainerFilterAdd = styled('div')`

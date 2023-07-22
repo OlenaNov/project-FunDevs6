@@ -3,15 +3,17 @@ import { theme } from '../../theme/theme';
 
 export const AnimalCard = styled.div`
   position: relative;
-  
   box-shadow: 3px 8px 14px 0 rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
   width: 285px;
   height: 460px;
+  &:focus,
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadows.secondary};
+  }
 
   @media screen and (max-width: 760px) {
     width: 285px;
-    
   }
   @media screen and (min-width: 761px) and (max-width: 1024px) {
     width: 336px;
