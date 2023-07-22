@@ -11,13 +11,7 @@ import {
 } from './NoticeCategoryItem.styled';
 import { animal } from './animal';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import {
-  MdOutlineAccessTime,
-  MdMale,
-  MdFemale,
-  MdFavoriteBorder,
-  MdFavorite,
-} from 'react-icons/md';
+import { MdOutlineAccessTime, MdMale, MdFemale } from 'react-icons/md';
 
 export const NoticeCategoryItem = () => {
   return (
