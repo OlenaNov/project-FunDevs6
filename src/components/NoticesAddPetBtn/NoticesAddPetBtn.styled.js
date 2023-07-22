@@ -24,8 +24,9 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const StyledNavLinkWrapper = styled('div')`
-  max-width: 540px;
-  min-width: 205px;
+  width: 120px;
+  height: 100%;
+
   display: flex;
   justify-content: left;
   flex-wrap: wrap;

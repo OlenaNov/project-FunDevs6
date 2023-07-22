@@ -29,6 +29,10 @@ export const StyledNavLinkWrapper = styled('div')`
   min-width: 410px;
   display: flex;
   justify-content: right;
+
+  @media screen and (min-width: 761px) and (max-width: 1024px) {
+    min-width: 90px;
+  }
 `;
 
 export const IconWrapper = styled('div')`
