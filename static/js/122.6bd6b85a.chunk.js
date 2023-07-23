@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[122],{122:function(e,t,r){r.r(t),r.d(t,{default:function(){return a}});var n=r(184),a=function(){return(0,n.jsx)(n.Fragment,{children:'"AddPetPage"'})}}}]);
-//# sourceMappingURL=122.6bd6b85a.chunk.js.map
