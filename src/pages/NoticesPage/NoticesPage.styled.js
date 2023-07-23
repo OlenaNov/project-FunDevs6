@@ -22,8 +22,21 @@ export const Title = styled.h2`
 
 export const NoticeFilterContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  ${
+    '' /* display: flex;
+  justify-content: space-around;
+  align-items: flex-start; */
+  }
+  margin-right: 20px;
+  margin-left: 30px;
+  @media screen and (max-width: 760px) {
+  }
+  @media screen and (min-width: 761px) {
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-right: 20px;
+    margin-left: 30px;
+  }
 `;
 
 export const NoticesPageContainerFilterAdd = styled('div')`
