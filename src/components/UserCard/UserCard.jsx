@@ -7,6 +7,9 @@ import {
   FormTitle,
   Avatar,
   Label,
+  EditIcon,
+  Icon,
+  IconEdit,
 } from './UserCard.styled';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/theme';
@@ -52,24 +55,29 @@ const UserCard = () => {
             <Avatar />
             <Formik initialValues={initialState} onSubmit={handleSubmit}>
               <StylizedForm autoComplete="off">
+                <EditIcon>
+                  <Icon />
+                  <IconEdit />
+                </EditIcon>
                 <Label htmlFor="name">
-                  Name:
+                  <span>Name:</span>
                   <Field type="text" name="name" />
                 </Label>
+
                 <Label htmlFor="email">
-                  Email:
+                  <span>Email:</span>
                   <Field type="text" name="email" />
                 </Label>
                 <Label htmlFor="birthday">
-                  Birthday:
+                  <span>Birthday:</span>
                   <Field type="text" name="birthday" />
                 </Label>
                 <Label htmlFor="birthday">
-                  Phone:
+                  <span>Phone:</span>
                   <Field type="text" name="phone" />
                 </Label>
                 <Label htmlFor="city">
-                  City:
+                  <span>City:</span>
                   <Field type="text" name="city" />
                 </Label>
               </StylizedForm>

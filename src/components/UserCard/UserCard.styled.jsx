@@ -1,5 +1,8 @@
 import { Form } from 'formik';
 import styled from 'styled-components';
+import { RxCross1 } from 'react-icons/rx';
+import { FiEdit3 } from 'react-icons/fi';
+import { theme } from 'theme/theme';
 
 // export const UserInfo = styled.div`
 //   @media screen and min-width: 480px {
@@ -31,6 +34,8 @@ export const FormTitle = styled.h2`
 `;
 
 export const UserCardWrap = styled.div`
+  position: relative;
+
   padding-top: ${({ theme }) => theme.space[2] * 5 + 'px'};
   padding-right: ${({ theme }) => theme.space[2] * 2 + 'px'};
   padding-bottom: ${({ theme }) => theme.space[2] * 6 + 'px'};
@@ -70,7 +75,9 @@ export const StylizedForm = styled(Form)`
       theme.breakpoints.desktop}) {
     width: 182px;
   }
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
 export const Avatar = styled.img`
@@ -88,14 +95,41 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-  display: flex;
-  align-items: center;
   letter-spacing: 0.04em;
   color: #111111;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: 395px;
-    height: 520px;
-    padding: ${({ theme }) => theme.space[2] * 5 + 'px'};
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  justify-content: space-between;
+  gap: 8px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 18px;
+    line-height: 25px;
   }
+`;
+
+export const LabelField = styled.div`
+  display: flex;
+`;
+
+export const EditIcon = styled.div`
+  display: block;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+`;
+
+export const Icon = styled(RxCross1)`
+  width: 24px;
+  height: 24px;
+  fill: ${theme.colors.blue};
+`;
+
+export const IconEdit = styled(FiEdit3)`
+  width: 24px;
+  height: 24px;
+  fill: ${theme.colors.blue};
+  stroke: ${theme.colors.blue};
 `;
