@@ -1,7 +1,13 @@
 // import { useCallback, useEffect, useState } from 'react';
 
+import UserCard from 'components/UserCard/UserCard';
+
 const UserPage = () => {
-  return <>"UserPage" "Test</>;
+  return (
+    <>
+      <UserCard />
+    </>
+  );
 };
 
 export default UserPage;
