@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { isUserLogin } from '../../redux/auth/auth-selectors';
+
 import {
   AnimalCard,
   AnimalImage,
@@ -8,12 +11,34 @@ import {
   IconWrapper,
   StyledComent,
   LearnMore,
+  StyledCardButtonRight,
+  RightButtonWrapper,
 } from './NoticeCategoryItem.styled';
 import { animal } from './animal';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { MdOutlineAccessTime, MdMale, MdFemale } from 'react-icons/md';
+import {
+  MdOutlineAccessTime,
+  MdMale,
+  MdFemale,
+  MdFavoriteBorder,
+  MdFavorite,
+} from 'react-icons/md';
+import Notiflix from 'notiflix';
 
 export const NoticeCategoryItem = () => {
+  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+  const isUserAuthenticated = useSelector(isUserLogin);
+
+  const handleHeartIconClick = () => {
+    if (isUserAuthenticated) {
+      setIsAddedToFavorites(prevState => !prevState);
+    } else {
+      Notiflix.Notify.warning(
+        'You should be authorized'
+      );
+    }
+  };
+
   return (
     <>
       {animal.map(item => (
@@ -48,6 +73,15 @@ export const NoticeCategoryItem = () => {
           </AnimalInfo>
           <StyledComent>{item.title}</StyledComent>
           <LearnMore>Learn More</LearnMore>
+          <RightButtonWrapper>
+            <StyledCardButtonRight onClick={handleHeartIconClick}>
+              {isAddedToFavorites ? (
+                <MdFavorite size="24" />
+              ) : (
+                <MdFavoriteBorder size="24" />
+              )}
+            </StyledCardButtonRight>
+          </RightButtonWrapper>
         </AnimalCard>
       ))}
     </>
