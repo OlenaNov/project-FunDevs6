@@ -23,6 +23,7 @@ import {
   MdFavoriteBorder,
   MdFavorite,
 } from 'react-icons/md';
+import Notiflix from 'notiflix';
 
 export const NoticeCategoryItem = () => {
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
@@ -32,7 +33,9 @@ export const NoticeCategoryItem = () => {
     if (isUserAuthenticated) {
       setIsAddedToFavorites(prevState => !prevState);
     } else {
-      alert('Пожалуйста, авторизуйтесь для использования данного функционала.');
+      Notiflix.Notify.warning(
+        'You should be authorized'
+      );
     }
   };
 
