@@ -128,3 +128,33 @@ export const LearnMore = styled.button`
     }
   }
 `;
+
+export const StyledCardButtonRight = styled.button`
+  background-color: ${theme.colors.lightBlue};
+  color: ${theme.colors.blue};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    svg {
+      filter: brightness(0) invert(1);
+    }
+  }
+`;
+
+export const RightButtonWrapper = styled.div`
+  top: 12px;
+  right: 12px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;

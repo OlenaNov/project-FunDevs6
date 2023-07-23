@@ -21,6 +21,10 @@ export const StyledNavLink = styled(NavLink)`
     color: ${theme.colors.white};
     background-color: #449ded;
   }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const StyledNavLinkWrapper = styled('div')`
@@ -31,6 +35,11 @@ export const StyledNavLinkWrapper = styled('div')`
   flex-wrap: wrap;
   gap: 12px;
   margin-left: 12px;
+
+  @media screen and (max-width: 767px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 export const IconWrapper = styled('div')`
@@ -38,4 +47,13 @@ export const IconWrapper = styled('div')`
   align-items: center;
   margin-left: 8px;
   color: ${theme.colors.blue};
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+    margin-left: 0px;
+    margin-bottom: 4px;
+  }
+`;
+
+export const IconWrapperMobill = styled('div')`
+  font-size: 12px;
 `;

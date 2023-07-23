@@ -30,8 +30,12 @@ export const StyledNavLinkWrapper = styled('div')`
   display: flex;
   justify-content: right;
 
-  @media screen and (min-width: 761px) and (max-width: 1024px) {
-    min-width: 90px;
+  @media screen and (max-width: 767px) {
+    min-width: 0px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    min-width: 200px;
   }
 `;
 
