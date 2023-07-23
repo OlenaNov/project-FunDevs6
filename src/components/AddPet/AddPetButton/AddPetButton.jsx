@@ -2,7 +2,7 @@ import { toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { BsPlusLg } from 'react-icons/bs';
 import { Btn } from './AddPetButton.styled';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { useNavigate } from 'react-router-dom';
 
 export const AddPetButton = () => {
