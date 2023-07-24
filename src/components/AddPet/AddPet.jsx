@@ -1,9 +1,31 @@
 import React from 'react';
 
+import { ReactComponent as Pawprint } from '../icons/pawprint.svg';
+import { ReactComponent as ArrowLeft } from '../icons/arrow-left.svg';
+
 import * as yup from 'yup';
 import toast from 'react-hot-toast';
 import { Formik, ErrorMessage, Field } from 'formik';
 import { useEffect } from 'react';
+
+import {
+  Forma,
+  FormContainer,
+  Input,
+  Title,
+  InputTitle,
+  ErrBox,
+  Option,
+  Stepper,
+  Step,
+  StepLine,
+  ButtonGroup,
+  CancelButton,
+  PrevStepButton,
+  NextStepButton,
+  ButtonText,
+} from './AddPet.styled';
+
 
 const addPetFormSchema = yup.object().shape({
   title: yup.string().when('category', {
@@ -81,6 +103,8 @@ export const AddPet = () => {
 
   const dispatch = useDispatch();
   
+  // тут мають бути хуки
+
   const status = isPetOption ? petStatus : postStatus;
 const [selectedOption, setSelectedOption] = useState('');
   useEffect(() => {
