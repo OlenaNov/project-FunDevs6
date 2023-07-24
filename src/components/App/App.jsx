@@ -1,9 +1,7 @@
-import { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
-import { NavBar } from '../Header/Header';
+import { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-// import Layout from "components/Layout";
-
+import Layout from 'components/Layout';
 
 const MainPage = lazy(() => import('../../pages/MainPage'));
 const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
@@ -17,7 +15,7 @@ const App = () => {
   return (
     <Suspense>
       <Routes>
-        <Route path="/" element={<NavBar />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="notices" element={<NoticesPage />} />
           <Route path="register" element={<RegisterPage />} />
