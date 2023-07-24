@@ -1,7 +1,14 @@
-import { AddPet } from 'components/AddPet/AddPet';
+import AddPetButton from "components/AddPetButton/AddPetButton";
+
 
 const AddPetPage = () => {
-  return <AddPet />;
+
+return (
+  <>
+    <AddPetButton />
+  </>
+)
+  // return <AddPet />;
 };
 
 export default AddPetPage;

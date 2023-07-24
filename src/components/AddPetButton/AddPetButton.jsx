@@ -5,7 +5,7 @@ import { Btn } from './AddPetButton.styled';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { useNavigate } from 'react-router-dom';
 
-export const AddPetButton = () => {
+const AddPetButton = () => {
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -25,3 +25,5 @@ export const AddPetButton = () => {
     </Btn>
   );
 };
+
+export default AddPetButton;
