@@ -109,7 +109,7 @@ export const AddPet = () => {
         break;
     }
   }, []);
-};
+
 
 
  return (
