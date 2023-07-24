@@ -1,7 +1,8 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import { NavBar } from '../Header/Header';
 
-import Layout from "components/Layout";
+// import Layout from "components/Layout";
 
 
 const MainPage = lazy(() => import('../../pages/MainPage'));
@@ -16,15 +17,15 @@ const App = () => {
   return (
     <Suspense>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<NavBar />}>
           <Route index element={<MainPage />} />
-          <Route path='notices' element={<NoticesPage />} />
-          <Route path='register' element={<RegisterPage />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='user' element={<UserPage />} />
-          <Route path='add-pet' element={<AddPetPage />} />
+          <Route path="notices" element={<NoticesPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="user" element={<UserPage />} />
+          <Route path="add-pet" element={<AddPetPage />} />
         </Route>
-        <Route path='*' element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
