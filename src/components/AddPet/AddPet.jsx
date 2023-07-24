@@ -1,7 +1,13 @@
 import React from 'react';
+<<<<<<< Updated upstream
 
 import toast from 'react-hot-toast';
 
+=======
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import * as yup from 'yup';
+>>>>>>> Stashed changes
 import { useEffect } from 'react';
 
 const addPetFormSchema = yup.object().shape({
@@ -79,8 +85,11 @@ export const AddPet = () => {
   const isPetOption = selectedOption === 'your pet';
 
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
   const navigate = useNavigate();
   const status = isPetOption ? petStatus : postStatus;
+=======
+>>>>>>> Stashed changes
 
   useEffect(() => {
     switch (status) {
@@ -107,5 +116,9 @@ export const AddPet = () => {
       default:
         break;
     }
+<<<<<<< Updated upstream
   }, [status, dispatch, isPetOption, navigate, petError, postError]);
+=======
+  }, []);
+>>>>>>> Stashed changes
 };

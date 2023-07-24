@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { theme } from 'theme/theme';
 
 export const Btn = styled.button`
   position: fixed;
@@ -16,9 +17,15 @@ export const Btn = styled.button`
   border-radius: 50px;
   border: none;
   text-decoration: none;
+  background: #54adff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  font-family: 'Manrope', sans-serif`
+  font-weight: ${fonts.main.semiBold};
+  font-size: ${fontSizes[0]}px;
 
   line-height: 16px;
 
+  color: #FFFFFF;
   cursor: pointer;
 
   svg {
@@ -27,19 +34,22 @@ export const Btn = styled.button`
   }
 
   :hover {
+  background: ${colors.blueGradient};
   }
 
-  @media screen and () {
+  @media screen and (${breakpoints.tablet}) {
     position: static;
     margin-top: 60px;
     margin-left: auto;
     gap: 8px;
     flex-direction: row;
     width: 130px;
-
+    background: ${colors.blue};
     border-radius: 40px;
     height: 40px;
 
+  font-weight: ${fonts.main.bold};
+    font-size: ${fontSizes[2]}px;
     line-height: 22px;
   }
 `;
