@@ -2,6 +2,7 @@ import { Form } from 'formik';
 import styled from 'styled-components';
 import { RxCross1 } from 'react-icons/rx';
 import { FiEdit3 } from 'react-icons/fi';
+import { BsCamera } from 'react-icons/bs';
 import { theme } from 'theme/theme';
 
 // export const UserInfo = styled.div`
@@ -125,6 +126,7 @@ export const Icon = styled(RxCross1)`
   width: 24px;
   height: 24px;
   fill: ${theme.colors.blue};
+  stroke: ${theme.colors.blue};
 `;
 
 export const IconEdit = styled(FiEdit3)`
@@ -133,3 +135,25 @@ export const IconEdit = styled(FiEdit3)`
   fill: ${theme.colors.blue};
   stroke: ${theme.colors.blue};
 `;
+
+export const IconEditPhoto = styled(BsCamera)`
+  width: 24px;
+  height: 24px;
+  fill: ${theme.colors.blue};
+  stroke: ${theme.colors.blue};
+`;
+
+export const EditInpuButton = styled.div`
+  position: absolute;
+  overflow: visible;
+  right: ${({ theme }) => theme.space[2] * 3 + 'px'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.space[0] + 'px'};
+  margin: ${({ theme }) => theme.space[0] + 'px'};
+  background: transparent;
+  border: none;
+`;
+
+export const ButtonSave = styled.button``;

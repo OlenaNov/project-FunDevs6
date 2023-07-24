@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
 import {
   StylizedForm,
   UserInfo,
@@ -10,11 +11,49 @@ import {
   EditIcon,
   Icon,
   IconEdit,
+  IconEditPhoto,
+  EditInpuButton,
+  ButtonSave,
 } from './UserCard.styled';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/theme';
 
 import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
+
+// const validationSchema = Yup.object({
+//   name: Yup.string().required('Required'),
+//   email: Yup.string().email('Invalid email address').required('Required'),
+//   birthday: Yup.string().required('Required'),
+//   phone: Yup.string().required('Required'),
+//   city: Yup.string().required('Required'),
+// });
+
+const emailRegExp =
+  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+
+const phoneRegExp = /^\+\d{2}\d{3}\d{3}\d{2}\d{2}$/;
+
+const validationSchema = Yup.object().shape({
+  avatar: Yup.mixed()
+    .required('Please, add your photo')
+    .test(
+      'fileSize',
+      'Image too large, max 3mb',
+      value => value.size <= 3000000
+    ),
+  name: Yup.string().required('Name is required field'),
+  email: Yup.string()
+    .required('Email  is required field')
+    .matches(emailRegExp, 'Invalid email address'),
+  birthday: Yup.date()
+    .required('Enter a date of birth')
+    .min(new Date(1900, 0, 1))
+    .max(new Date(), "You can't be born in the future!"),
+  phone: Yup.string()
+    .required('Phone is required field')
+    .matches(phoneRegExp, 'Invalid phone number'),
+  city: Yup.string().required('City is required field'),
+});
 
 const initialState = {
   avatar: null,
@@ -27,6 +66,8 @@ const initialState = {
 
 const UserCard = () => {
   // const [state, setState] = useState({ ...initialState });
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const [avatar, setAvatar] = useState('');
   const [name, setName] = useState('');
@@ -46,105 +87,88 @@ const UserCard = () => {
     console.log(actions);
   };
 
+  // const handleActiveClick = name => {
+  //   handleClick(name);
+  // };
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <FormTitle>My information:</FormTitle>
-        <UserCardWrap>
-          <UserInfo>
+      <FormTitle>My information:</FormTitle>
+      <UserCardWrap>
+        <UserInfo>
+          <div>
             <Avatar />
-            <Formik initialValues={initialState} onSubmit={handleSubmit}>
+            <div>
+              <IconEditPhoto /> <span>Edit photo</span>
+            </div>
+          </div>
+          <Formik
+            initialValues={initialState}
+            onSubmit={handleSubmit}
+            validationSchema={validationSchema}
+          >
+            {({ errors, touched, isSubmitting }) => (
               <StylizedForm autoComplete="off">
                 <EditIcon>
-                  <Icon />
-                  <IconEdit />
+                  <EditInpuButton type="button" onClick={toggleEdit}>
+                    <Icon />
+                    <IconEdit />
+                  </EditInpuButton>
                 </EditIcon>
                 <Label htmlFor="name">
                   <span>Name:</span>
-                  <Field type="text" name="name" />
+                  <Field type="text" name="name" disabled={!isEditing} />
+                  {errors.name && touched.name ? (
+                    <div>{errors.name}</div>
+                  ) : null}
                 </Label>
 
                 <Label htmlFor="email">
                   <span>Email:</span>
-                  <Field type="text" name="email" />
+                  <Field type="text" name="email" disabled={!isEditing} />
+                  {errors.email && touched.email ? (
+                    <div>{errors.email}</div>
+                  ) : null}
                 </Label>
                 <Label htmlFor="birthday">
                   <span>Birthday:</span>
-                  <Field type="text" name="birthday" />
+                  <Field type="text" name="birthday" disabled={!isEditing} />
+                  {errors.birthday && touched.birthday ? (
+                    <div>{errors.birthday}</div>
+                  ) : null}
                 </Label>
                 <Label htmlFor="birthday">
                   <span>Phone:</span>
-                  <Field type="text" name="phone" />
+                  <Field type="text" name="phone" disabled={!isEditing} />
+                  {errors.phone && touched.phone ? (
+                    <div>{errors.phone}</div>
+                  ) : null}
                 </Label>
                 <Label htmlFor="city">
                   <span>City:</span>
-                  <Field type="text" name="city" />
+                  <Field type="text" name="city" disabled={!isEditing} />
+                  {errors.city && touched.city ? (
+                    <div>{errors.city}</div>
+                  ) : null}
                 </Label>
+                {isEditing ? (
+                  <ButtonSave type="submit" disabled={isSubmitting}>
+                    Save
+                  </ButtonSave>
+                ) : (
+                  <button>LogOut</button>
+                )}
               </StylizedForm>
-            </Formik>
-          </UserInfo>
-        </UserCardWrap>
-      </ThemeProvider>
+            )}
+          </Formik>
+        </UserInfo>
+      </UserCardWrap>
     </>
   );
 };
 
 export default UserCard;
-
-// <UserInfo>
-//   <Formik initialValues={initialValues}>
-//     {({ setFieldValue }) => (
-//       <StylizedForm>
-//         <label htmlFor="petPhoto">
-//           {!petPhoto && !user.avatarURL && (
-//             <Avatar src={avatarDefault2x} alt="user avatar" />
-//           )}
-//           {!petPhoto && user.avatarURL && (
-//             <Avatar src={user.avatarURL} alt="user avatar" />
-//           )}
-//           {!!petPhoto && (
-//             <Avatar
-//               src={URL.createObjectURL(petPhoto)}
-//               id="image"
-//               alt={petPhoto.username}
-//             />
-//           )}
-//           <Field name="fileInput">
-//             {({ field }) => (
-//               <Field
-//                 type="file"
-//                 id="petPhoto"
-//                 name="petPhoto"
-//                 accept=".png, .jpg, .jpeg, .webp"
-//                 hidden
-//                 value=""
-//                 onChange={handleClickInput}
-//               />
-//             )}
-//           </Field>
-//           <ErrorMessage name="user-avatar" component="div" />
-//         </label>
-//         <ImageControls>
-//           {edit && petPhoto ? (
-//             <ConfirmButtonWrap>
-//               <EditButton type="button" onClick={handleAddAvatar}>
-//                 <Check stroke="#00C3AD" />
-//                 Confirm
-//               </EditButton>
-//               <EditButton type="button" onClick={handleCancelAvatar}>
-//                 <Cross />
-//                 Cancel
-//               </EditButton>
-//             </ConfirmButtonWrap>
-//           ) : (
-//             <EditButton type="button" onClick={handleEditBtn}>
-//               <Camera stroke="#54ADFF" style={{ marginRight: 8 }} />
-//               Edit photo
-//             </EditButton>
-//           )}
-//         </ImageControls>
-//       </StylizedForm>
-//     )}
-//   </Formik>
-//   <UserDataForm onSubmit={handleChangeData} user={user} />
-// </UserInfo>;
