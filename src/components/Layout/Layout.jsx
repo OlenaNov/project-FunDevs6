@@ -1,14 +1,15 @@
-import Header from "components/Header/Header";
-import { Main } from "./Layout.styled";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+
+import { Main } from "./Layout.styled";
 import Loader from "components/Loader";
+import NavBar from "components/NavBar/NavBar";
 
 export const Layout = () => {
  
  return (
   <>
-    <Header />
+    <NavBar />
     <Main>
       <Suspense fallback={<Loader /> } >
         <Outlet />

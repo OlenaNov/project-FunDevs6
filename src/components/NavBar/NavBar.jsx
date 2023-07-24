@@ -1,6 +1,6 @@
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useRef } from 'react';
-import { Header, Logo, CloseBtn, OpenBtn, Nav } from './Header.styled';
+import { Header, Logo, CloseBtn, OpenBtn, Nav } from './NavBar.styled';
 
 export const NavBar = () => {
   const navRef = useRef(null);
