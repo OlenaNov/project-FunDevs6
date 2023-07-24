@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { theme } from 'theme/theme';
+const { fonts, fontSizes, colors, breakpoints } = theme;
+
 
 export const Btn = styled.button`
   position: fixed;
@@ -20,7 +22,7 @@ export const Btn = styled.button`
   background: #54adff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   font-family: 'Manrope', sans-serif`
-  font-weight: ${fonts.main.semiBold};
+  font-weight: 'Manrope-SemiBold';
   font-size: ${fontSizes[0]}px;
 
   line-height: 16px;
@@ -34,7 +36,7 @@ export const Btn = styled.button`
   }
 
   :hover {
-  background: ${colors.blueGradient};
+  background: ${colors.gradientBlue};
   }
 
   @media screen and (${breakpoints.tablet}) {
@@ -44,11 +46,11 @@ export const Btn = styled.button`
     gap: 8px;
     flex-direction: row;
     width: 130px;
-    background: ${colors.blue};
+    background: '#54ADFF';
     border-radius: 40px;
     height: 40px;
 
-  font-weight: ${fonts.main.bold};
+  font-weight: 'Manrope-Bold';
     font-size: ${fontSizes[2]}px;
     line-height: 22px;
   }

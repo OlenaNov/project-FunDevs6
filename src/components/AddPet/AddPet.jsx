@@ -80,9 +80,9 @@ export const AddPet = () => {
   const isPetOption = selectedOption === 'your pet';
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const status = isPetOption ? petStatus : postStatus;
-
+const [selectedOption, setSelectedOption] = useState('');
   useEffect(() => {
     switch (status) {
       case 2:
