@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { theme } from 'theme/theme';
-const { fonts, fontSizes, colors, breakpoints } = theme;
+const { fontSizes, colors, breakpoints } = theme;
 
 
 export const Btn = styled.button`
