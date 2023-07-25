@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from 'components/Layout';
+import NotFound from 'components/NotFound/NotFound';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
@@ -11,7 +12,6 @@ const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
 const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
-const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
             <Route path="add-pet" element={<AddPetPage />} />
           </Route>
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
