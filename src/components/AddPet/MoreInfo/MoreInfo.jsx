@@ -25,30 +25,17 @@ export const MoreInfo = ({ selectedOption }) => {
   };
   const [petImage, SetPetImage] = useState(null);
 
+  //зміна для ширини вікна
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
   //функція яка виконує обробку завантаження зображення на сторінці
   const handleUploadImage = event => {
     const uploadImage = event.currentTarget.files[0];
     setFieldValue('file', uploadImage);
     const image = uploadImage ? URL.createObjectURL(uploadImage) : null;
     SetPetImage(image);
+
     const reader = new FileReader();
-    reader.onload = function () {
-      setFieldValue('avatar', reader.result);
-    };
-    reader.readAsDataURL(uploadImage);
-  };
-
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  //зміна для ширини вікна
-  const screenWidth = window.innerWidth;
-
-  const handleUploadImage = event => {
-    const uploadImage = event.currentTarget.files[0];
-    setFieldValue('file', uploadImage);
-    const image = uploadImage ? URL.createObjectURL(uploadImage) : null;
-    SetPetImage(image);
-
-    var reader = new FileReader();
     reader.onload = function () {
       setFieldValue('avatar', reader.result);
     };
