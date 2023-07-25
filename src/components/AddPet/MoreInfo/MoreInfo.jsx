@@ -12,7 +12,8 @@ import { PlusFileButton, Image, Thumb } from './MoreInfo.styled';
 import { useMediaQuery } from 'react-responsive';
 
 export const MoreInfo = ({ selectedOption }) => {
-  const { errors, touched, setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext();
+  const { errors, touched } = useFormikContext();
   const [selectedSex, setSelectedSex] = useState('');
   const handleSexSelect = sex => {
     setSelectedSex(sex);
@@ -22,7 +23,24 @@ export const MoreInfo = ({ selectedOption }) => {
   const handleFileButtonClick = () => {
     fileInputRef.current.click();
   };
+  const [petImage, SetPetImage] = useState(null);
+
+  //функція яка виконує обробку завантаження зображення на сторінці
+  const handleUploadImage = event => {
+    const uploadImage = event.currentTarget.files[0];
+    setFieldValue('file', uploadImage);
+    const image = uploadImage ? URL.createObjectURL(uploadImage) : null;
+    SetPetImage(image);
+    const reader = new FileReader();
+    reader.onload = function () {
+      setFieldValue('avatar', reader.result);
+    };
+    reader.readAsDataURL(uploadImage);
+  };
+
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  //зміна для ширини вікна
+  const screenWidth = window.innerWidth;
 
   return (
     <>

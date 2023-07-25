@@ -4,7 +4,7 @@ import { ReactComponent as Pawprint } from '../icons/pawprint.svg';
 import { ReactComponent as ArrowLeft } from '../icons/arrow-left.svg';
 
 import * as yup from 'yup';
-import toast from 'react-hot-toast';
+import toast from 'react-toast';
 import { Formik, ErrorMessage, Field } from 'formik';
 import { useEffect } from 'react';
 
@@ -26,6 +26,7 @@ import {
   ButtonText,
 } from './AddPet.styled';
 
+//схема при заповнених полях в формі
 
 const addPetFormSchema = yup.object().shape({
   title: yup.string().when('category', {
