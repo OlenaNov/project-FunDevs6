@@ -57,7 +57,7 @@ export const Forma = styled(Form)`
     min-height: 542px;
     padding: 20px 32px;
     border-radius: 40px;
-    /* margin: 82px auto; */
+   
   }
   @media (min-width: 1280px) {
     width: 458px;
@@ -66,8 +66,7 @@ export const Forma = styled(Form)`
   }
   > div {
     position: relative;
-    //  margin-bottom: 15px;
-  }
+    }
   :last-child {
     font-size: 12px;
   }
@@ -148,7 +147,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const CancelButton = styled(NavLink)`
+export const CancelButton = styled(// посилання має бути на навлінк)`
   display: inline-flex;
   align-items: center;
   padding: 9px 0px;
