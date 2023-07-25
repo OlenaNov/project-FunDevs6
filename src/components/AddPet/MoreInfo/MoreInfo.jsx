@@ -42,6 +42,21 @@ export const MoreInfo = ({ selectedOption }) => {
   //зміна для ширини вікна
   const screenWidth = window.innerWidth;
 
+  const handleUploadImage = event => {
+    const uploadImage = event.currentTarget.files[0];
+    setFieldValue('file', uploadImage);
+    const image = uploadImage ? URL.createObjectURL(uploadImage) : null;
+    SetPetImage(image);
+
+    var reader = new FileReader();
+    reader.onload = function () {
+      setFieldValue('avatar', reader.result);
+    };
+    reader.readAsDataURL(uploadImage);
+  };
+
+  const screenWidth = window.innerWidth;
+
   return (
     <>
       <Thumb
