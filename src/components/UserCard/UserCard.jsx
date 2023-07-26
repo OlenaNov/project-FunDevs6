@@ -19,8 +19,8 @@
 // import { ThemeProvider } from 'styled-components';
 // import { theme } from 'theme/theme';
 
-import Logout from 'components/Logout/Logout';
-import UserData from 'components/UserData/UserData';
+// import Logout from 'components/Logout/Logout';
+// import UserData from 'components/UserData/UserData';
 
 // import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -104,87 +104,87 @@ import UserData from 'components/UserData/UserData';
 //     setIsEditing(!isEditing);
 //   };
 
-  return (
-    <>
-      <FormTitle>My information:</FormTitle>
-      <UserCardWrap>
-        <UserInfo>
-          <div>
-            <Avatar src="avatarDefault2x" />
-            <div>
-              <IconEditPhoto /> <span>Edit photo</span>
-            </div>
-          </div>
-          <Formik
-            initialValues={initialState}
-            onSubmit={handleSubmit}
-            validationSchema={validationSchema}
-          >
-            {({ errors, touched, isSubmitting }) => (
-              <StylizedForm autoComplete="off">
-                <EditIcon>
-                  <EditInpuButton type="button" onClick={toggleEdit}>
-                    <Icon />
-                    <IconEdit />
-                  </EditInpuButton>
-                </EditIcon>
-                <Label htmlFor="name">
-                  <span>Name:</span>
-                  <Field type="text" name="name" disabled={!isEditing} />
-                  {isEditing && errors.name && touched.name ? (
-                    <div>{errors.name}</div>
-                  ) : null}
-                </Label>
+//   return (
+//     <>
+//       <FormTitle>My information:</FormTitle>
+//       <UserCardWrap>
+//         <UserInfo>
+//           <div>
+//             <Avatar src="avatarDefault2x" />
+//             <div>
+//               <IconEditPhoto /> <span>Edit photo</span>
+//             </div>
+//           </div>
+//           <Formik
+//             initialValues={initialState}
+//             onSubmit={handleSubmit}
+//             validationSchema={validationSchema}
+//           >
+//             {({ errors, touched, isSubmitting }) => (
+//               <StylizedForm autoComplete="off">
+//                 <EditIcon>
+//                   <EditInpuButton type="button" onClick={toggleEdit}>
+//                     <Icon />
+//                     <IconEdit />
+//                   </EditInpuButton>
+//                 </EditIcon>
+//                 <Label htmlFor="name">
+//                   <span>Name:</span>
+//                   <Field type="text" name="name" disabled={!isEditing} />
+//                   {isEditing && errors.name && touched.name ? (
+//                     <div>{errors.name}</div>
+//                   ) : null}
+//                 </Label>
 
-                <Label htmlFor="email">
-                  <span>Email:</span>
-                  <Field type="text" name="email" disabled={!isEditing} />
-                  {isEditing && errors.email && touched.email ? (
-                    <div>{errors.email}</div>
-                  ) : null}
-                </Label>
-                <Label htmlFor="birthday">
-                  <span>Birthday:</span>
-                  <Field type="text" name="birthday" disabled={!isEditing} />
-                  {isEditing && errors.birthday && touched.birthday ? (
-                    <div>{errors.birthday}</div>
-                  ) : null}
-                </Label>
-                <Label htmlFor="birthday">
-                  <span>Phone:</span>
-                  <Field type="text" name="phone" disabled={!isEditing} />
-                  {isEditing && errors.phone && touched.phone ? (
-                    <div>{errors.phone}</div>
-                  ) : null}
-                </Label>
-                <Label htmlFor="city">
-                  <span>City:</span>
-                  <Field type="text" name="city" disabled={!isEditing} />
-                  {isEditing && isEditing && errors.city && touched.city ? (
-                    <div>{errors.city}</div>
-                  ) : null}
-                </Label>
-                {isEditing ? (
-                  <ButtonSave
-                    type="submit"
-                    disabled={isSubmitting}
-                    onClick={(handleSubmit, toggleEdit)}
-                  >
-                    Save
-                  </ButtonSave>
-                ) : (
-                  <LogOutBtn type="button" onClick={() => dispatch(logout())}>
-                    Log out
-                  </LogOutBtn>
-                )}
-              </StylizedForm>
-            )}
-          </Formik>
-        </UserInfo>
-      </UserCardWrap>
-    </>
-  );
-};
+//                 <Label htmlFor="email">
+//                   <span>Email:</span>
+//                   <Field type="text" name="email" disabled={!isEditing} />
+//                   {isEditing && errors.email && touched.email ? (
+//                     <div>{errors.email}</div>
+//                   ) : null}
+//                 </Label>
+//                 <Label htmlFor="birthday">
+//                   <span>Birthday:</span>
+//                   <Field type="text" name="birthday" disabled={!isEditing} />
+//                   {isEditing && errors.birthday && touched.birthday ? (
+//                     <div>{errors.birthday}</div>
+//                   ) : null}
+//                 </Label>
+//                 <Label htmlFor="birthday">
+//                   <span>Phone:</span>
+//                   <Field type="text" name="phone" disabled={!isEditing} />
+//                   {isEditing && errors.phone && touched.phone ? (
+//                     <div>{errors.phone}</div>
+//                   ) : null}
+//                 </Label>
+//                 <Label htmlFor="city">
+//                   <span>City:</span>
+//                   <Field type="text" name="city" disabled={!isEditing} />
+//                   {isEditing && isEditing && errors.city && touched.city ? (
+//                     <div>{errors.city}</div>
+//                   ) : null}
+//                 </Label>
+//                 {isEditing ? (
+//                   <ButtonSave
+//                     type="submit"
+//                     disabled={isSubmitting}
+//                     onClick={(handleSubmit, toggleEdit)}
+//                   >
+//                     Save
+//                   </ButtonSave>
+//                 ) : (
+//                   <LogOutBtn type="button" onClick={() => dispatch(logout())}>
+//                     Log out
+//                   </LogOutBtn>
+//                 )}
+//               </StylizedForm>
+//             )}
+//           </Formik>
+//         </UserInfo>
+//       </UserCardWrap>
+//     </>
+//   );
+// };
 
 // export default UserCard;
 
