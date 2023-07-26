@@ -1,204 +1,176 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
-import bg_mobile from '../../images/background/bg-mobile@1x.png';
-import bg_tablet from '../../images/background/bg-tablet@1x.png';
-import bg_desktop from '../../images/background/bg-desktop@1x.png';
-import { NavLink } from 'react-router-dom';
 
-export const FormContainer = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 58px);
-  background-image: url(${bg_mobile});
-  background-repeat: space repeat;
-  background-size: contain;
-  background-position-y: center;
-  padding-top: 20px;
-  @media (min-width: 768px) {
-    background-image: url(${bg_tablet});
-    /* padding-top: 92px; */
-    padding-top: 60px;
-    padding-bottom: 268px;
-    min-height: calc(100vh - 64px);
-  }
-  @media (min-width: 1280px) {
-    background-image: url(${bg_desktop});
-    padding-top: 40px;
-    padding-bottom: 147px;
-  }
-`;
-
-export const InputTitle = styled.h3`
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  @media (min-width: 768px) {
-    font-size: 20px;
-    line-height: 27px;
-    font-weight: 500;
-  }
-`;
-
-export const Forma = styled(Form)`
-  position: relative;
-  width: 280px;
-  min-height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+export const AddPetFormWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 458px;
   padding: 20px 8px;
-  background-color: #fff;
+
+  background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
-  margin: 0 auto;
+
   @media (min-width: 768px) {
-    width: 458px;
-    min-height: 542px;
     padding: 20px 32px;
-    border-radius: 40px;
-   
+    max-width: ${props =>
+      props.category !== 'my-pet' && props.step === 2 ? '704px' : '458px'};
   }
+
   @media (min-width: 1280px) {
-    width: 458px;
-    padding: 20px 32px;
-  }
-  > div {
-    position: relative;
-    }
-  :last-child {
-    font-size: 12px;
+    max-width: ${props =>
+      props.category !== 'my-pet' && props.step === 2 ? '822px' : '458px'};
+    padding: ${props =>
+      props.category !== 'my-pet' && props.step === 2
+        ? '30px 75px'
+        : '20px 32px'};
   }
 `;
 
-export const Stepper = styled.div`
+export const PetFormTitle = styled.h1`
+  margin-bottom: 24px;
+  margin-left: 20px;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: calc(27 / 20);
+  color: #111111;
+
+  @media (min-width: 768px) {
+    margin-left: 0;
+    text-align: ${props =>
+      props.category !== 'my-pet' && props.step === 2 ? 'center' : 'left'};
+  }
+`;
+
+export const StepsList = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+    margin-bottom: ${props => (props.step === 0 ? '60px' : '36px')};
+  }
 `;
 
-export const Step = styled.div`
+export const Step = styled.li`
+  position: relative;
+  width: 80px;
+  font-size: 10px;
+  line-height: calc(14 / 10);
+  font-weight: 500;
+  color: ${props => {
+    if (props.step === 0) {
+      return props.index === 0 ? '#54ADFF' : '#888888';
+    } else if (props.step === 1) {
+      return props.index === 0
+        ? '#00C3AD'
+        : props.index === 1
+        ? '#54ADFF'
+        : '#888888';
+    } else if (props.step === 2) {
+      return props.index < 2 ? '#00C3AD' : '#54ADFF';
+    }
+  }};
+
+  @media (min-width: 768px) {
+    width: 120px;
+    font-size: 16px;
+    line-height: calc(26 / 26);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    border-radius: 8px;
+    background-color: ${props => {
+      if (props.step === 0) {
+        return props.index === 0 ? '#54ADFF' : '#CCE4FB';
+      } else if (props.step === 1) {
+        return props.index === 0
+          ? '#00C3AD'
+          : props.index === 1
+          ? '#54ADFF'
+          : '#CCE4FB';
+      } else if (props.step === 2) {
+        return props.index < 2 ? '#00C3AD' : '#54ADFF';
+      }
+    }};
+  }
+`;
+
+export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: auto;
-  width: calc(100% / 3);
-  max-width: 120px;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 14px;
-  @media (min-width: 768px) {
-    font-size: 16px;
-    line-height: 26px;
-  }
-`;
-
-export const StepLine = styled.div`
-  background-color: #cce4fb;
-  height: 8px;
-  border-radius: 8px;
-  max-width: 120px;
-  margin-top: 12px;
-`;
-
-export const Input = styled(Field)`
-  width: 100%;
-  font-size: 14px;
-  line-height: 1.3;
-  padding: 11px 0 12px 14px;
-  background: white;
-  border: 1px solid #54adff;
-  border-radius: 50px;
-  margin-bottom: 7px;
-  &:focus,
-  &:hover {
-    outline: none;
-  }
-  @media (min-width: 768px) {
-    font-size: 18px;
-    padding: 14px 0 13px 32px;
-  }
-  @media (min-width: 1280px) {
-    width: 394px;
-  }
-`;
-
-export const Option = styled.label`
-  display: inline-block;
-  border-radius: 40px;
-  background-color: #cce4fb;
-  padding: 8px 16px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  cursor: pointer;
-`;
-
-export const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  margin-bottom: 0px;
-  @media (max-width: 767px) {
-    margin-top: 24px;
-    gap: 20px;
-    flex-direction: column-reverse;
-  }
-`;
-// посилання має бути на навлінк
-export const CancelButton = styled(NavLink)`
-  display: inline-flex;
-  align-items: center;
-  padding: 9px 0px;
-  background: transparent;
-  border: none;
-  text-decoration: none;
-  @media (max-width: 767px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;
-export const PrevStepButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  padding: 9px 0px;
-  background: transparent;
-  border: none;
-  @media (max-width: 767px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;
-export const NextStepButton = styled.button`
-  display: inline-flex;
+  gap: 20px;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 9px 0px;
-  background: #54adff;
-  border-radius: 40px;
-  border: none;
+
   @media (min-width: 768px) {
-    width: 248px;
+    flex-direction: row-reverse;
+    gap: 32px;
   }
 `;
-export const ButtonText = styled.span`
-  margin-right: 12px;
-  font-family: 'Manrope';
-  font-style: normal;
-  color: white;
-  font-size: 16px;
+
+export const ButtonFilled = styled.button`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 248px;
+  height: 40px;
+
   font-weight: 700;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: calc(22 / 16);
+  color: #fef9f9;
+  letter-spacing: 0.04em;
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  background-position: 0 0, center;
+  background-size: 0% 0%, cover;
+  background-repeat: no-repeat;
+  background-color: #54adff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    transition: all 0.2s ease-in-out;
+    background-size: 100% 100%, cover;
+    transform: scale(1.05);
+  }
+
+  :disabled {
+    opacity: 0.5;
+  }
 `;
-export const ErrBox = styled.div`
-  position: absolute;
-  white-space: nowrap;
-  bottom: -8px;
-  left: 15px;
-  color: red;
-  font-size: 11px;
-  @media (min-width: 768px) {
-    bottom: -12px;
-    font-size: 14px;
-    left: 33px;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 94px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: calc(22 / 16);
+  letter-spacing: 0.04em;
+
+  background-color: transparent;
+  border: none;
+  color: #54adff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    transform: scale(1.05);
   }
 `;
