@@ -7,7 +7,7 @@ export const getAllAnimal = createAsyncThunk(
   'notices/fetchNotices',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/pets`);
+      const { data } = await axios.get(`/api/notices`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
