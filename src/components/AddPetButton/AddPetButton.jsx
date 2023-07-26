@@ -1,12 +1,12 @@
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toast';
 import { useSelector } from 'react-redux';
 import { BsPlusLg } from 'react-icons/bs';
 import { Btn } from './AddPetButton.styled';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const AddPetButton = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -15,7 +15,7 @@ const AddPetButton = () => {
       toast.error('You need to sign in');
       return;
     }
-    navigate('/add-pet');
+    // navigate('/add-pet');
   };
 
   return (
