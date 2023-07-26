@@ -14,7 +14,7 @@ import {
   AuthList,
   AuthItem,
 } from './NavBar.styled';
-import image from './logo.jpeg';
+import image from '../../images/logo/logo-large.svg';
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
