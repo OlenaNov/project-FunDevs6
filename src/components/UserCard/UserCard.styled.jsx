@@ -1,9 +1,9 @@
-import { Form } from 'formik';
+// import { Form } from 'formik';
 import styled from 'styled-components';
 // import { RxCross1 } from 'react-icons/rx';
-import { ImCross } from 'react-icons/im';
-import { FiEdit3 } from 'react-icons/fi';
-import { theme } from 'theme/theme';
+// import { ImCross } from 'react-icons/im';
+// import { FiEdit3 } from 'react-icons/fi';
+// import { theme } from 'theme/theme';
 
 // export const UserInfo = styled.div`
 //   @media screen and min-width: 480px {
