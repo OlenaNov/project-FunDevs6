@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
+import { useDispatch } from 'react-redux';
+// import {
+//   fetchAddToFavorite,
+//   fetchDeleteFromFavorite,
+// } from '../../redux/auth/auth-operations';
 
 import {
   AnimalCard,
@@ -24,18 +29,50 @@ import {
   MdFavorite,
 } from 'react-icons/md';
 import Notiflix from 'notiflix';
+import { getAllAnimal } from '../../api/notice-api';
 
-export const NoticeCategoryItem = () => {
+export const NoticeCategoryItem = ({ id }) => {
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
   const isUserAuthenticated = useSelector(isUserLogin);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllAnimal());
+  }, [dispatch]);
+
+  // const animal = getAllAnimal();
+  console.log(getAllAnimal());
+
+  // const dispatch = useDispatch();
+  // const favoriteCardIds = useSelector(state => state.favoriteCardIds);
+
+  // useEffect(() => {
+  //   setIsAddedToFavorites(isUserAuthenticated && favoriteCardIds.includes(id));
+  // }, [isUserAuthenticated, favoriteCardIds, id]);
+
+  // const handleHeartIconClick = async () => {
+  //   if (!isUserAuthenticated) {
+  //     setIsAddedToFavorites(prevState => !prevState);
+
+  //     try {
+  //       if (!isAddedToFavorites) {
+  //         await dispatch(fetchAddToFavorite(id));
+  //       } else {
+  //         await dispatch(fetchDeleteFromFavorite(id));
+  //       }
+  //     } catch (error) {
+  //       console.error('Ошибка при выполнении API-запроса:', error);
+  //     }
+  //   } else {
+  //     Notiflix.Notify.warning('You should be authorized');
+  //   }
+  // };
 
   const handleHeartIconClick = () => {
     if (isUserAuthenticated) {
       setIsAddedToFavorites(prevState => !prevState);
     } else {
-      Notiflix.Notify.warning(
-        'You should be authorized'
-      );
+      Notiflix.Notify.warning('You should be authorized');
     }
   };
 
