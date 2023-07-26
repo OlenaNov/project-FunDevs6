@@ -39,7 +39,6 @@ export const TheSexTitle = styled.p`
 export const SexLabel = styled.label`
   display: flex;
   align-items: center;
-  /* gap: 10px; */
 
   font-weight: 400;
   font-size: 16px;

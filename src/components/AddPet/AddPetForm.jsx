@@ -1,3 +1,9 @@
+import { Formik, Form } from 'formik';
+
+import PersonalDetails from './PersonalDetails/PersonalDetails';
+import ChooseOption from './ChooseOption/ChooseOption';
+import MoreInfo from './MoreInfo/MoreInfo';
+
 import {
   AddPetFormWrapper,
   PetFormTitle,
@@ -7,7 +13,7 @@ import {
   ButtonFilled,
   ButtonWrap,
 } from './AddPetForm.styled';
-import { Pets, West } from '@mui/icons-material';
+import { MdPets, MdWest } from 'react-icons/md';
 import validationSchema from './validationSchema';
 
 const initialValues = {
@@ -24,12 +30,12 @@ const initialValues = {
 };
 
 const AddPetForm = () => {
-  const [step, setStep] = useState(0);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const steps = ['Choose option', 'Personal details', 'More info'];
-  const isLoading = useSelector(selectIsLoading);
-  const isNoticeLoading = useSelector(selectIsNoticeLoading);
+  const [step, setStep] 
+// тут треба хукі ще
+  
+  
+   const steps = ['Choose option', 'Personal details', 'More info'];
+  
 
   const handleClickNext = e => {
     e.preventDefault();
@@ -77,7 +83,7 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      dispatch(addNotice([values.category, formData])).then(response => {
+      dispatch(([values.category, formData])).then(response => {
         if (!response.error) {
           navigate(`/notices/${values.category}`);
           resetForm();
@@ -88,7 +94,7 @@ const AddPetForm = () => {
     }
 
     if (values.category === 'for-free') {
-      dispatch(addNotice([values.category, formData])).then(response => {
+      dispatch(([values.category, formData])).then(response => {
         if (!response.error) {
           navigate(`/notices/${values.category}`);
           resetForm();
@@ -101,7 +107,7 @@ const AddPetForm = () => {
     formData.append('price', values.price.toString());
 
     if (values.category === 'sell') {
-      dispatch(addNotice([values.category, formData])).then(response => {
+      dispatch([values.category, formData]).then(response => {
         if (!response.error) {
           navigate(`/notices/${values.category}`);
           resetForm();
@@ -185,7 +191,7 @@ const AddPetForm = () => {
                   disabled={isLoading || isNoticeLoading}
                 >
                   <span>Done</span>
-                  <Pets
+                  <MdPets
                     sx={{
                       width: 24,
                       height: 20,
@@ -225,7 +231,7 @@ const AddPetForm = () => {
                 >
                   Next
                   {/* <span>Next</span> */}
-                  <Pets
+                  <MdPets
                     sx={{ width: 24, height: 24, transform: 'rotate(25deg)' }}
                   />
                 </ButtonFilled>
@@ -234,7 +240,7 @@ const AddPetForm = () => {
                 type="button"
                 onClick={step === 0 ? handleCancel : handleClickBack}
               >
-                <West sx={{ width: 24, height: 24 }} />
+                <MdWest sx={{ width: 24, height: 24 }} />
                 <span>{step === 0 ? 'Cancel' : 'Back'}</span>
               </Button>
             </ButtonWrap>
