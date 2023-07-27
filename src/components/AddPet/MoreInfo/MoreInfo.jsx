@@ -14,7 +14,8 @@ import {
 } from './MoreInfo.styled';
 import { Field } from 'formik';
 import { Message } from './MoreInfo.styled';
-import { GrAdd, BsGenderMale, BsGenderFemale } from 'react-icons';
+import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
+import { GrAdd } from 'react-icons/gr';
 
 const MoreInfo = ({
   setFieldValue,
