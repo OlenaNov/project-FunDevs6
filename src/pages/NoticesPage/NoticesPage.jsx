@@ -89,7 +89,7 @@ export const NoticesPage = () => {
     const category = path[path.length - 1];
 
     try {
-      const { pets, total } = await getNotices({
+      const pets = await getNotices({
         category,
         query,
         gender,
@@ -98,21 +98,23 @@ export const NoticesPage = () => {
         age,
       });
 
-      if (pets.length === 0 && total) {
+      if (pets.length === 0) {
         searchParams.set('page', page - 1);
         setSearchParams(searchParams);
         return;
       }
 
-      if (total === 0) {
-        setItems([]);
-        resetPage();
-        setSearchParams(searchParams);
-        setIsLoading(false);
-        return;
-      }
+      // if (total === 0) {
+      //   setItems([]);
+      //   resetPage();
+      //   setSearchParams(searchParams);
+      //   setIsLoading(false);
+      //   return;
+      // }
 
-      setPageCount(Math.ceil(total / PER_PAGE));
+      console.log(pets);
+
+      // setPageCount(Math.ceil(total / PER_PAGE));
       setItems(pets);
     } catch (error) {
       toast.error(error.message);
@@ -219,7 +221,8 @@ export const NoticesPage = () => {
           </NoticesPageContainerFilterAdd>
         </NoticeFilterContainer>
       </NoticesPageContainer>
-      <NoticesCategoriesList />
+
+      <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
     </div>
   );
 };
