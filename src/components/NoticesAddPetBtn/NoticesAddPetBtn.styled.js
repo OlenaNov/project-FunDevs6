@@ -36,7 +36,29 @@ export const StyledNavLinkWrapper = styled('div')`
   gap: 12px;
   margin-left: 12px;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 100px) and (max-width: 370px) {
+    position: fixed;
+    z-index: 1;
+    margin-top: 60%;
+    margin-right: 12%;
+    width: 80px;
+    height: 80px;
+  }
+
+  @media screen and (min-width: 371px) and (max-width: 424px) {
+    position: fixed;
+    z-index: 1;
+    margin-top: 55%;
+    margin-right: 24%;
+    width: 80px;
+    height: 80px;
+  }
+
+  @media screen and (min-width: 425px) and (max-width: 767px) {
+    position: fixed;
+    z-index: 1;
+    margin-top: 40%;
+    margin-right: 31%;
     width: 80px;
     height: 80px;
   }
