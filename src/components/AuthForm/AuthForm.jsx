@@ -44,6 +44,7 @@ const AuthForm = ({ isRegister, onSubmit }) => {
         email: '',
         password: '',
         confirmPassword: '',
+        ...(isRegister && { name: '' }),
       }}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -57,6 +58,43 @@ const AuthForm = ({ isRegister, onSubmit }) => {
               <h2 className={css.title}>Registration</h2>
             ) : (
               <h2 className={css.title}>Login</h2>
+            )}
+            {isRegister && (
+              <div className={css.inputWrap}>
+                <label htmlFor="name" hidden>
+                  Name
+                </label>
+                <Field
+                  id="name"
+                  type="name"
+                  name="name"
+                  placeholder="Name"
+                  className={`${css.input} ${
+                    touched.name && errors.name && css.errorInput
+                  }`}
+                />
+                {touched.name && hasFieldError(errors, 'name') && (
+                  <RxCross2
+                    id="svg"
+                    className={css.crossIcon}
+                    onClick={() => clearInput('name', setFieldValue)}
+                  />
+                )}
+                {touched.name && isFieldValid(errors, 'name') && (
+                  <BsCheck id="svg" className={css.confirmIcon} />
+                )}
+              </div>
+            )}
+            {touched.name && !errors.name ? (
+              <div className={css.successMessage}>Name is secure</div>
+            ) : (
+              <div className={css.errorWrap}>
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={css.error}
+                />
+              </div>
             )}
             <div className={css.inputWrap}>
               <label htmlFor="email" hidden>
@@ -82,13 +120,18 @@ const AuthForm = ({ isRegister, onSubmit }) => {
                 <BsCheck id="svg" className={css.confirmIcon} />
               )}
             </div>
-            <div className={css.errorWrap}>
-              <ErrorMessage
-                name="email"
-                component="div"
-                className={css.error}
-              />
-            </div>
+            {touched.email && !errors.email ? (
+              <div className={css.successMessage}>Email is secure</div>
+            ) : (
+              <div className={css.errorWrap}>
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={css.error}
+                />
+              </div>
+            )}
+
             <div className={css.inputWrap}>
               <label htmlFor="password" hidden>
                 Password
@@ -168,16 +211,21 @@ const AuthForm = ({ isRegister, onSubmit }) => {
                     <GoEyeClosed id="svg" className={css.eyeIcon} />
                   </button>
                 )}
-                <div className={css.errorWrap}>
-                  <ErrorMessage
-                    name="confirmPassword"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+                {touched.confirmPassword && !errors.confirmPassword ? (
+                  <div className={css.successMessage}>Password confirmed</div>
+                ) : (
+                  <div className={css.errorWrap}>
+                    <ErrorMessage
+                      name="confirmPassword"
+                      component="div"
+                      className={css.error}
+                    />
+                  </div>
+                )}
               </div>
             )}
           </div>
+
           <div className={css.btnContainer}>
             <Button
               type="submit"

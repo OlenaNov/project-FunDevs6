@@ -1,9 +1,10 @@
+import MainDefault from "components/MainDefault";
 
 export const MainPage = () => {
  
  return (
   <>
-    "MainPage"
+    <MainDefault />
   </>
   );
 };

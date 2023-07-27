@@ -1,14 +1,25 @@
-import AddPetButton from "components/AddPetButton/AddPetButton";
+// import AddPetButton from 'components/AddPetButton/AddPetButton';
 
+// const AddPetPage = () => {
+//   return (
+//     <>
+//       <AddPetButton />
+//     </>
+//   );
+//   // return <AddPet />;
+// };
+
+// export default AddPetPage;
+
+import { useEffect } from 'react';
+import AddPetForm from 'components/AddPetForm';
 
 const AddPetPage = () => {
+  useEffect(() => {
+    document.title = 'YourPet | Add pet';
+  });
 
-return (
-  <>
-    <AddPetButton />
-  </>
-)
-  // return <AddPet />;
+  return <AddPetForm />;
 };
 
 export default AddPetPage;

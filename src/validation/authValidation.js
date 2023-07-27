@@ -1,6 +1,12 @@
 import * as Yup from 'yup';
 
 export const registrationValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .nullable()
+    .required('Required')
+    .min(2, 'Name must be at least 2 characters')
+    .max(16, 'Name must be no more than 16 characters')
+    .matches(/^[A-Za-z]+$/, 'Name must contain only letters'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
     .nullable()
