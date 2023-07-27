@@ -130,21 +130,4 @@ export const fetchDeleteFromFavorite = createAsyncThunk(
   }
 );
 
-// export const addPet = createAsyncThunk(
-//   'pets/addPet',
-//   async (petInfo, thunkAPI) => {
-//     const token = selectToken(thunkAPI.getState());
-
-//     if (!token) {
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
-
-//     try {
-//       setAuthHeader(token);
-//       const { data } = await axios.post('/pet/add', petInfo);
-//       return data.data.post;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const addPet = createAsyncThunk();
