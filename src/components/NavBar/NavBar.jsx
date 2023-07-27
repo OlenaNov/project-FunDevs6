@@ -33,7 +33,7 @@ export const NavBar = () => {
 
   return (
     <Header>
-      <Logo to="/">
+      <Logo to="/main">
         <img src={image} alt="logo" />
       </Logo>
 
