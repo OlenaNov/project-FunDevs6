@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Background from 'components/Background/Background';
 import Button from 'components/Button/Button';
 import Section from 'components/Section/Section';
+
 import { LiaPawSolid } from 'react-icons/lia';
 import css from './NotFoundPage.module.css';
 
