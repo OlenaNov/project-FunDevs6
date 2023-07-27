@@ -1,4 +1,7 @@
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { Outlet } from 'react-router-dom';
+
+// import { BurgerMenu } from "./Burger/BurgerMenu";
 import React, { useState } from 'react';
 import {
   Header,
@@ -15,6 +18,7 @@ import {
   AuthItem,
 } from './NavBar.styled';
 import image from '../../images/logo/logo-large.svg';
+// import Paw from "./img/paw.svg";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,29 +33,24 @@ export const NavBar = () => {
 
   return (
     <Header>
-      <Logo href="/">
+      <Logo to="/">
         <img src={image} alt="logo" />
       </Logo>
-      <OpenBtn open={!isOpen} onClick={handleOpenClick}>
-        <FaBars />
-      </OpenBtn>
+
       <Nav open={isOpen}>
         <NavList>
           <NavItem>
-            <NavLink href="/#">News</NavLink>
+            <NavLink to="/news">News</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/#">Find pet</NavLink>
+            <NavLink to="/notices">Find pet</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/#">Our friends</NavLink>
+            <NavLink to="/friends">Our friends</NavLink>
           </NavItem>
         </NavList>
-        <CloseBtn open={isOpen} onClick={handleCloseClick}>
-          <FaTimes />
-        </CloseBtn>
       </Nav>
-      <AuthList>
+      <AuthList open={isOpen}>
         <AuthItem>
           <LogIn type="button">Log IN</LogIn>
         </AuthItem>
@@ -59,6 +58,13 @@ export const NavBar = () => {
           <Registr type="button">Registration</Registr>
         </AuthItem>
       </AuthList>
+      <OpenBtn open={!isOpen} onClick={handleOpenClick}>
+        <FaBars />
+      </OpenBtn>
+      <CloseBtn open={isOpen} onClick={handleCloseClick}>
+        <FaTimes />
+      </CloseBtn>
+      <Outlet />
     </Header>
   );
 };
