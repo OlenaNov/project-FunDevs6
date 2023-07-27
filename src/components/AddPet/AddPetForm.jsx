@@ -1,5 +1,8 @@
-import { Formik, Form } from 'formik';
+import { useState } from 'react';
 
+// вказати імпорти на хуки та нотісайс та редакс 
+
+import { Formik, Form } from 'formik';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
 import ChooseOption from './ChooseOption/ChooseOption';
 import MoreInfo from './MoreInfo/MoreInfo';
@@ -15,6 +18,7 @@ import {
 } from './AddPetForm.styled';
 import { MdPets, MdWest } from 'react-icons/md';
 import validationSchema from './validationSchema';
+// import { useSelector } from 'react-redux';
 
 const initialValues = {
   category: 'my-pet',
@@ -30,12 +34,23 @@ const initialValues = {
 };
 
 const AddPetForm = () => {
-  const [step, setStep] 
-// тут треба хукі ще
-  
-  
-   const steps = ['Choose option', 'Personal details', 'More info'];
-  
+  const [step, setStep]
+  // тут треба хукі ще
+  // на навігацію navigate
+  // на діспатч dispatch
+  // на лоадінг isLoading
+  // на звязати з нотісайс isNoticeLoading
+  //
+  //
+// const [step, setStep] = useState(0);
+// const navigate = useNavigate();
+// const dispatch = useDispatch();
+// const steps = ['Choose option', 'Personal details', 'More info'];
+// const isLoading = useSelector();
+// const isNoticeLoading = useSelector();
+
+
+  // const steps = ['Choose option', 'Personal details', 'More info'];
 
   const handleClickNext = e => {
     e.preventDefault();
@@ -83,7 +98,7 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      dispatch(([values.category, formData])).then(response => {
+      dispatch([values.category, formData]).then(response => {
         if (!response.error) {
           navigate(`/notices/${values.category}`);
           resetForm();
@@ -94,7 +109,7 @@ const AddPetForm = () => {
     }
 
     if (values.category === 'for-free') {
-      dispatch(([values.category, formData])).then(response => {
+      dispatch([values.category, formData]).then(response => {
         if (!response.error) {
           navigate(`/notices/${values.category}`);
           resetForm();
