@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: 'https://back-end-yourpet.onrender.com/api',
+});
+
 export const getNoticeById = async id => {
   const { data } = await axios.get(`/notice/${id}`);
 
@@ -19,7 +23,7 @@ export const getSellNotices = async ({
   gender,
   age,
 }) => {
-  const { data } = await axios.get(`/notice/sell`, {
+  const { data } = await instance.get(`/notices/sell`, {
     params: {
       page,
       limit,
@@ -39,7 +43,7 @@ export const getInGoodHandsNotices = async ({
   gender,
   age,
 }) => {
-  const { data } = await axios.get(`/notice/inGoodHands`, {
+  const { data } = await instance.get(`/notices/for-free`, {
     params: {
       page,
       limit,
@@ -59,7 +63,7 @@ export const getLostNotices = async ({
   gender,
   age,
 }) => {
-  const { data } = await axios.get(`/notice/lost`, {
+  const { data } = await instance.get(`/notices/lost-found`, {
     params: {
       page,
       limit,
