@@ -18,7 +18,7 @@ const App = () => {
     <Suspense>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
+          <Route path="main" element={<MainPage />} />
           <Route path="notices" element={<NoticesPage />} />
           <Route element={<PublicRoute />}>
             <Route path="register" element={<RegisterPage />} />
@@ -28,8 +28,9 @@ const App = () => {
             <Route path="user" element={<UserPage />} />
             {/* <Route path="add-pet" element={<AddPetPage />} /> */}
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+
       </Routes>
     </Suspense>
   );

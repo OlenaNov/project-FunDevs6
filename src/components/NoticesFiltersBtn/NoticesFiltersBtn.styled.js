@@ -23,6 +23,11 @@ export const StyledNavLink = styled(NavLink)`
     color: ${theme.colors.white};
     background-color: ${theme.colors.blue};
   }
+
+  @media screen and (max-width: 767px) {
+    border-radius: 50%;
+    padding: 10px;
+  }
 `;
 
 export const StyledNavLinkWrapper = styled('div')`
@@ -43,4 +48,10 @@ export const IconWrapper = styled('div')`
   display: flex;
   align-items: center;
   margin-left: 8px;
+
+  @media screen and (max-width: 767px) {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
 `;

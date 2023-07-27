@@ -42,5 +42,6 @@ export const NoticeFilterContainer = styled.div`
 export const NoticesPageContainerFilterAdd = styled('div')`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  float: right;
 `;
