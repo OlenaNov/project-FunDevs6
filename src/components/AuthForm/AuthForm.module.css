@@ -170,6 +170,7 @@
   position: absolute;
   right: 13px;
   top: 12px;
+  color: #00c3ad;
   cursor: pointer;
 }
 
@@ -177,6 +178,7 @@
   position: absolute;
   right: 13px;
   top: 12px;
+  color: #00c3ad;
   stroke: #f43f5e;
   cursor: pointer;
 }
@@ -185,5 +187,6 @@
   position: absolute;
   right: 18px;
   top: 18px;
+  color: #00c3ad;
   stroke: #00c3ad;
 }
