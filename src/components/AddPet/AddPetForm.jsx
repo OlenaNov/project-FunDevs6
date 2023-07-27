@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
+<<<<<<< Updated upstream
 // вказати імпорти на хуки та нотісайс та редакс 
+=======
+// вказати імпорти на хуки та нотісайс
+>>>>>>> Stashed changes
 
 import { Formik, Form } from 'formik';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
@@ -34,7 +38,11 @@ const initialValues = {
 };
 
 const AddPetForm = () => {
+<<<<<<< Updated upstream
   const [step, setStep]
+=======
+  const [step, setStep] = useState(0);
+>>>>>>> Stashed changes
   // тут треба хукі ще
   // на навігацію navigate
   // на діспатч dispatch
@@ -42,6 +50,7 @@ const AddPetForm = () => {
   // на звязати з нотісайс isNoticeLoading
   //
   //
+<<<<<<< Updated upstream
 // const [step, setStep] = useState(0);
 // const navigate = useNavigate();
 // const dispatch = useDispatch();
@@ -51,6 +60,10 @@ const AddPetForm = () => {
 
 
   // const steps = ['Choose option', 'Personal details', 'More info'];
+=======
+
+  const steps = ['Choose option', 'Personal details', 'More info'];
+>>>>>>> Stashed changes
 
   const handleClickNext = e => {
     e.preventDefault();
