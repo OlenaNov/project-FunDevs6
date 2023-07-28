@@ -34,6 +34,7 @@ const App = () => {
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
           </Route>
+          {/* <Route path="user" element={<UserPage />} /> */}
           <Route element={<PrivateRoute />}>
             <Route path="user" element={<UserPage />} />
             {/* <Route path="add-pet" element={<AddPetPage />} /> */}
