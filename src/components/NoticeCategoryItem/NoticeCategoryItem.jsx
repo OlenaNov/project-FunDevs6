@@ -29,7 +29,6 @@ import {
 import { calcPetAge, normalizeCategory } from 'utils';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
-
   // const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
   // const isUserAuthenticated = useSelector(isUserLogin);
   // const dispatch = useDispatch();
@@ -66,7 +65,6 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   //   }
   // };
 
-
   // const handleHeartIconClick = () => {
   //   if (isUserAuthenticated) {
   //     setIsAddedToFavorites(prevState => !prevState);
@@ -81,29 +79,29 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   const age = calcPetAge(date);
   const normCategory = normalizeCategory(category);
 
-  const getPetAge = dateString => {
-    const dateParts = dateString.split('-');
-    const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-    const today = new Date();
-    const timeDiff = today - dateObject;
-    const millisecondsPerDay = 1000 * 60 * 60 * 24;
-    const days = Math.floor(timeDiff / millisecondsPerDay);
-    const millisecondsPerMonth = 1000 * 60 * 60 * 24 * 30.4375;
-    const years = Math.floor(timeDiff / (millisecondsPerMonth * 12));
-    const months = Math.floor(
-      (timeDiff % (millisecondsPerMonth * 12)) / millisecondsPerMonth
-    );
+  // const getPetAge = dateString => {
+  //   const dateParts = dateString.split('-');
+  //   const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+  //   const today = new Date();
+  //   const timeDiff = today - dateObject;
+  //   const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  //   const days = Math.floor(timeDiff / millisecondsPerDay);
+  //   const millisecondsPerMonth = 1000 * 60 * 60 * 24 * 30.4375;
+  //   const years = Math.floor(timeDiff / (millisecondsPerMonth * 12));
+  //   const months = Math.floor(
+  //     (timeDiff % (millisecondsPerMonth * 12)) / millisecondsPerMonth
+  //   );
 
-    if (years < 1) {
-      if (months < 1) {
-        return days + (days === 1 ? ' day' : ' days');
-      } else {
-        return months + (months === 1 ? ' month' : ' months');
-      }
-    } else {
-      return years + (years === 1 ? ' year' : ' years');
-    }
-  };
+  //   if (years < 1) {
+  //     if (months < 1) {
+  //       return days + (days === 1 ? ' day' : ' days');
+  //     } else {
+  //       return months + (months === 1 ? ' month' : ' months');
+  //     }
+  //   } else {
+  //     return years + (years === 1 ? ' year' : ' years');
+  //   }
+  // };
 
   return (
     <>
@@ -129,8 +127,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
             <IconWrapper>
               {sex === 'male' ? <MdMale size="24" /> : <MdFemale size="24" />}
             </IconWrapper>
-            {item.gender}
-            {getPetAge(item.date)}
+            {item.sex}
           </StyledCardButtonBottom>
         </AnimalInfo>
         <StyledComent>{title}</StyledComent>
@@ -145,7 +142,6 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           </StyledCardButtonRight> */}
         </RightButtonWrapper>
       </AnimalCard>
-
     </>
   );
 };
