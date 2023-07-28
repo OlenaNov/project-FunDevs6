@@ -1,14 +1,13 @@
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import NoticesSearch from 'components/NoticesSearch';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFiltersBtn from '../../components/NoticesFiltersBtn/NoticesFiltersBtn';
 import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn';
-// import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
-import NoticesCategoriesList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
+import NoticesNotFound from '../../components/NoticesNotFound';
 
 import {
   NoticeFilterContainer,
@@ -17,13 +16,14 @@ import {
   Title,
 } from './NoticesPage.styled';
 
-import { getNotices, getFilterValues, createSearchParams } from 'utils';
+import { getNotices } from 'utils';
 import { getUser, isUserLogin } from 'redux/auth/auth-selectors';
 import { deleteNoticeById } from 'api/notices/notices-api';
 import {
   addFavoriteNotice,
   deleteFavoriteNotice,
 } from 'api/notices/favorite-api';
+import Pagination from '../../components/Pagination';
 
 const PER_PAGE = 12;
 
@@ -34,7 +34,7 @@ export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isLogin = useSelector(isUserLogin);
   const user = useSelector(getUser);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { pathname } = useLocation();
   const prevPathname = useRef(pathname);
 
@@ -48,21 +48,21 @@ export const NoticesPage = () => {
     setSearchParams(searchParams);
   }, [searchParams, setSearchParams]);
 
-  const handleFilterChange = target => {
-    createSearchParams(target, searchParams, setSearchParams);
-    resetPage();
-  };
+  // const handleFilterChange = target => {
+  //   createSearchParams(target, searchParams, setSearchParams);
+  //   resetPage();
+  // };
 
-  const handleFilterReset = value => {
-    if (value === 'male' || value === 'female') {
-      searchParams.delete('gender');
-    } else {
-      searchParams.delete('age');
-    }
+  // const handleFilterReset = value => {
+  //   if (value === 'male' || value === 'female') {
+  //     searchParams.delete('gender');
+  //   } else {
+  //     searchParams.delete('age');
+  //   }
 
-    setSearchParams(searchParams);
-    resetPage();
-  };
+  //   setSearchParams(searchParams);
+  //   resetPage();
+  // };
 
   const handleSubmit = ({ query }) => {
     searchParams.set('query', query);
@@ -89,7 +89,7 @@ export const NoticesPage = () => {
     const category = path[path.length - 1];
 
     try {
-      const pets = await getNotices({
+      const { notices, totalHits } = await getNotices({
         category,
         query,
         gender,
@@ -98,24 +98,22 @@ export const NoticesPage = () => {
         age,
       });
 
-      if (pets.length === 0) {
+      if (notices.length === 0) {
         searchParams.set('page', page - 1);
         setSearchParams(searchParams);
         return;
       }
 
-      // if (total === 0) {
-      //   setItems([]);
-      //   resetPage();
-      //   setSearchParams(searchParams);
-      //   setIsLoading(false);
-      //   return;
-      // }
+      if (totalHits === 0) {
+        setItems([]);
+        resetPage();
+        setSearchParams(searchParams);
+        setIsLoading(false);
+        return;
+      }
 
-      console.log(pets);
-
-      // setPageCount(Math.ceil(total / PER_PAGE));
-      setItems(pets);
+      setPageCount(Math.ceil(totalHits / PER_PAGE));
+      setItems(notices);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -177,7 +175,7 @@ export const NoticesPage = () => {
         toast.error(error.message);
       }
     },
-    [dispatch, getApiNotices, isLogin, pathname, user.favoriteNotices]
+    [getApiNotices, isLogin, pathname, user.favoriteNotices]
   );
 
   useEffect(() => {
@@ -198,7 +196,6 @@ export const NoticesPage = () => {
     }
 
     if (prevPathname.current !== pathname) {
-      // reset pagination for category change
       prevPathname.current = pathname;
       resetPage();
     }
@@ -206,7 +203,10 @@ export const NoticesPage = () => {
     getApiNotices();
   }, [getApiNotices, isLogin, pathname, resetPage, searchParams]);
 
-  const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
+  // const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
+
+  console.log(pageCount);
+  console.log(Number(page));
 
   return (
     <div>
@@ -223,6 +223,14 @@ export const NoticesPage = () => {
       </NoticesPageContainer>
 
       <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
+      {items.length === 0 && !isLoading && <NoticesNotFound />}
+      {pageCount > 1 && items.length > 0 && (
+        <Pagination
+          onPageClick={handlePageClick}
+          pageCount={pageCount}
+          currentPage={Number(page)}
+        />
+      )}
     </div>
   );
 };

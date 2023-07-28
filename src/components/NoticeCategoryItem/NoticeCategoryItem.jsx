@@ -29,21 +29,20 @@ import {
   MdFavorite,
 } from 'react-icons/md';
 import Notiflix from 'notiflix';
-import { getAllAnimal } from '../../api/notice-api';
 
 import { calcPetAge, normalizeCategory } from 'utils';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
   const isUserAuthenticated = useSelector(isUserLogin);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllAnimal());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllAnimal());
+  // }, [dispatch]);
 
-  // const animal = getAllAnimal();
-  console.log(getAllAnimal());
+  // // const animal = getAllAnimal();
+  // console.log(getAllAnimal());
 
   // const dispatch = useDispatch();
   // const favoriteCardIds = useSelector(state => state.favoriteCardIds);
@@ -70,13 +69,13 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   //   }
   // };
 
-  const handleHeartIconClick = () => {
-    if (isUserAuthenticated) {
-      setIsAddedToFavorites(prevState => !prevState);
-    } else {
-      Notiflix.Notify.warning('You should be authorized');
-    }
-  };
+  // const handleHeartIconClick = () => {
+  //   if (isUserAuthenticated) {
+  //     setIsAddedToFavorites(prevState => !prevState);
+  //   } else {
+  //     Notiflix.Notify.warning('You should be authorized');
+  //   }
+  // };
 
   const { _id, category, title, location, date, sex, photo } = item;
 
