@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesListWrapper } from './NoticesCategoriesList.styled';
+
 import { useOutletContext } from 'react-router-dom';
 
 const NoticesCategoriesList = () => {
