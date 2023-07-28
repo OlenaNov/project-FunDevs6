@@ -2,6 +2,7 @@
 // import { useSelector } from 'react-redux';
 // import { isUserLogin } from '../../redux/auth/auth-selectors';
 // import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import {
   AnimalCard,
@@ -26,9 +27,14 @@ import {
 } from 'react-icons/md';
 // import Notiflix from 'notiflix';
 
+import NoticesModal from 'components/NoticesModal';
+import NoticesModalContent from 'components/NoticesModalContent';
+
 import { calcPetAge, normalizeCategory } from 'utils';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
+  const [showLearnMore, setShowLearnMore] = useState(false);
+
   // const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
   // const isUserAuthenticated = useSelector(isUserLogin);
   // const dispatch = useDispatch();
@@ -131,7 +137,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           </StyledCardButtonBottom>
         </AnimalInfo>
         <StyledComent>{title}</StyledComent>
-        <LearnMore>Learn More</LearnMore>
+        <LearnMore onClick={() => setShowLearnMore(true)}>Learn More</LearnMore>
         <RightButtonWrapper>
           {/* <StyledCardButtonRight onClick={onFavorite}>
             {isAddedToFavorites ? (
@@ -142,6 +148,11 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           </StyledCardButtonRight> */}
         </RightButtonWrapper>
       </AnimalCard>
+      {showLearnMore && (
+        <NoticesModal onClose={() => setShowLearnMore(false)}>
+          <NoticesModalContent item={item} />
+        </NoticesModal>
+      )}
     </>
   );
 };
