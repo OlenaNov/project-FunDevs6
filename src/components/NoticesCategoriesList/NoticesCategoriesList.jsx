@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesListWrapper } from './NoticesCategoriesList.styled';
 import Pagination from '../Pagination/Pagination';
