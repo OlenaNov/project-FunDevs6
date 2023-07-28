@@ -13,8 +13,14 @@ const authPersistConfig = {
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
+const noticesPersistConfig = {
+  key: 'notices',
+  storage,
+  whitelist: ['notices'],
+};
+
 const persistedNoticesReducer = persistReducer(
-  authPersistConfig,
+  noticesPersistConfig,
   noticesReducer
 );
 
