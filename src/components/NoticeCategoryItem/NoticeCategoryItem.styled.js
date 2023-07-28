@@ -88,8 +88,7 @@ export const CategoryBadge = styled.div`
 
 export const StyledComent = styled.p`
   margin: 20px;
-  font-family: 'Manrope', sans-serif;
-  font-style: 'Bold';
+  font-family: ${({ theme }) => theme.fonts.main.bold};
   font-size: ${theme.fontSizes[4]};
   line-height: 33px;
 `;
