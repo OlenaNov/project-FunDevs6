@@ -1,6 +1,6 @@
-import ReactPropTypes from 'prop-types';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { getUser } from 'redux/auth/auth-selectors';
+// import ReactPropTypes from 'prop-types';
+// import { useSelector } from 'react-redux/es/hooks/useSelector';
+// import { getUser } from 'redux/auth/auth-selectors';
 
 import {
   NoticesContentImage,
@@ -24,7 +24,7 @@ import {
 import { normalizeCategory } from 'utils';
 
 const NoticesModal = ({ item, onFavorite }) => {
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
 
   const {
     // _id,
