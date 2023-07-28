@@ -1,5 +1,4 @@
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Outlet } from 'react-router-dom';
 
 // import { BurgerMenu } from "./Burger/BurgerMenu";
 import React, { useState } from 'react';
@@ -64,7 +63,6 @@ export const NavBar = () => {
       <CloseBtn open={isOpen} onClick={handleCloseClick}>
         <FaTimes />
       </CloseBtn>
-      <Outlet />
     </Header>
   );
 };

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { isUserLogin } from '../../redux/auth/auth-selectors';
-import { useDispatch } from 'react-redux';
+// import React, { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { isUserLogin } from '../../redux/auth/auth-selectors';
+// import { useDispatch } from 'react-redux';
 
 import {
   AnimalCard,
@@ -12,7 +12,7 @@ import {
   IconWrapper,
   StyledComent,
   LearnMore,
-  StyledCardButtonRight,
+  // StyledCardButtonRight,
   RightButtonWrapper,
 } from './NoticeCategoryItem.styled';
 
@@ -21,17 +21,17 @@ import {
   MdOutlineAccessTime,
   MdMale,
   MdFemale,
-  MdFavoriteBorder,
-  MdFavorite,
+  // MdFavoriteBorder,
+  // MdFavorite,
 } from 'react-icons/md';
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 
 import { calcPetAge, normalizeCategory } from 'utils';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
 
-  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
-  const isUserAuthenticated = useSelector(isUserLogin);
+  // const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+  // const isUserAuthenticated = useSelector(isUserLogin);
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -75,7 +75,8 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   //   }
   // };
 
-  const { _id, category, title, location, date, sex, photo } = item;
+  // const { _id, category, title, location, date, sex, photo } = item; Error '_id' is assigned a value but never used.
+  const { category, title, location, date, sex, photo } = item;
 
   const age = calcPetAge(date);
   const normCategory = normalizeCategory(category);
@@ -129,18 +130,19 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
               {sex === 'male' ? <MdMale size="24" /> : <MdFemale size="24" />}
             </IconWrapper>
             {item.gender}
+            {getPetAge(item.date)}
           </StyledCardButtonBottom>
         </AnimalInfo>
         <StyledComent>{title}</StyledComent>
         <LearnMore>Learn More</LearnMore>
         <RightButtonWrapper>
-          <StyledCardButtonRight onClick={onFavorite}>
+          {/* <StyledCardButtonRight onClick={onFavorite}>
             {isAddedToFavorites ? (
               <MdFavorite size="24" />
             ) : (
               <MdFavoriteBorder size="24" />
             )}
-          </StyledCardButtonRight>
+          </StyledCardButtonRight> */}
         </RightButtonWrapper>
       </AnimalCard>
 
