@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesListWrapper } from './NoticesCategoriesList.styled';
-import Pagination from '../Pagination/Pagination';
+
+import { useOutletContext } from 'react-router-dom';
 
 const NoticesCategoriesList = () => {
-  const [currentPage, setCurrentPage] = useState(1); // Создайте состояние для текущей страницы
-  const itemsPerPage = 10;
-
-  const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber); // Обновляем состояние текущей страницы при изменении пагинации
-  };
+  const { items, handleDelete, handleFavoriteClick } = useOutletContext();
 
   return (
     <>
-      <CategoriesListWrapper>
-        <NoticeCategoryItem
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          onPageChange={handlePageChange}
-        />
-      </CategoriesListWrapper>
-      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
+      {items.length > 0 && (
+        <CategoriesListWrapper>
+          {items.map(item => (
+            <NoticeCategoryItem
+              key={item._id}
+              item={item}
+              onDelete={handleDelete}
+              onFavorite={handleFavoriteClick}
+            />
+          ))}
+        </CategoriesListWrapper>
+      )}
     </>
   );
 };

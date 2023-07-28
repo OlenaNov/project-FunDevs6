@@ -15,6 +15,7 @@ import {
   StyledCardButtonRight,
   RightButtonWrapper,
 } from './NoticeCategoryItem.styled';
+
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
   MdOutlineAccessTime,
@@ -24,26 +25,60 @@ import {
   MdFavorite,
 } from 'react-icons/md';
 import Notiflix from 'notiflix';
-import { getAllAnimal } from '../../redux/notices/notices-operations';
 
-export const NoticeCategoryItem = () => {
+import { calcPetAge, normalizeCategory } from 'utils';
+
+export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
+
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
   const isUserAuthenticated = useSelector(isUserLogin);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllAnimal());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllAnimal());
+  // }, [dispatch]);
 
-  const animals = useSelector(state => state.notices.animals.pets);
+  // // const animal = getAllAnimal();
+  // console.log(getAllAnimal());
 
-  const handleHeartIconClick = () => {
-    if (isUserAuthenticated) {
-      setIsAddedToFavorites(prevState => !prevState);
-    } else {
-      Notiflix.Notify.warning('You should be authorized');
-    }
-  };
+  // const dispatch = useDispatch();
+  // const favoriteCardIds = useSelector(state => state.favoriteCardIds);
+
+  // useEffect(() => {
+  //   setIsAddedToFavorites(isUserAuthenticated && favoriteCardIds.includes(id));
+  // }, [isUserAuthenticated, favoriteCardIds, id]);
+
+  // const handleHeartIconClick = async () => {
+  //   if (!isUserAuthenticated) {
+  //     setIsAddedToFavorites(prevState => !prevState);
+
+  //     try {
+  //       if (!isAddedToFavorites) {
+  //         await dispatch(fetchAddToFavorite(id));
+  //       } else {
+  //         await dispatch(fetchDeleteFromFavorite(id));
+  //       }
+  //     } catch (error) {
+  //       console.error('Ошибка при выполнении API-запроса:', error);
+  //     }
+  //   } else {
+  //     Notiflix.Notify.warning('You should be authorized');
+  //   }
+  // };
+
+
+  // const handleHeartIconClick = () => {
+  //   if (isUserAuthenticated) {
+  //     setIsAddedToFavorites(prevState => !prevState);
+  //   } else {
+  //     Notiflix.Notify.warning('You should be authorized');
+  //   }
+  // };
+
+  const { _id, category, title, location, date, sex, photo } = item;
+
+  const age = calcPetAge(date);
+  const normCategory = normalizeCategory(category);
 
   const getPetAge = dateString => {
     const dateParts = dateString.split('-');
@@ -71,51 +106,44 @@ export const NoticeCategoryItem = () => {
 
   return (
     <>
-      {animals
-        ? animals.map(item => (
-            <AnimalCard key={item.id}>
-              <CategoryBadge>{item.category}</CategoryBadge>
-              <AnimalImage src={item.photo} alt={item.title} />
-              <AnimalInfo>
-                <StyledCardButtonBottom>
-                  <IconWrapper>
-                    <HiOutlineLocationMarker size={24} />
-                  </IconWrapper>
-                  {item.location}
-                </StyledCardButtonBottom>
+      <AnimalCard>
+        <CategoryBadge>{normCategory}</CategoryBadge>
+        <AnimalImage src={photo} alt={title} />
+        <AnimalInfo>
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              <HiOutlineLocationMarker size={24} />
+            </IconWrapper>
+            {location}
+          </StyledCardButtonBottom>
 
-                <StyledCardButtonBottom>
-                  <IconWrapper>
-                    <MdOutlineAccessTime size={24} />
-                  </IconWrapper>
-                  {getPetAge(item.date)}
-                </StyledCardButtonBottom>
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              <MdOutlineAccessTime size={24} />
+            </IconWrapper>
+            {age}
+          </StyledCardButtonBottom>
 
-                <StyledCardButtonBottom>
-                  <IconWrapper>
-                    {item.sex === 'male' ? (
-                      <MdMale size="24" />
-                    ) : (
-                      <MdFemale size="24" />
-                    )}
-                  </IconWrapper>
-                  {item.sex}
-                </StyledCardButtonBottom>
-              </AnimalInfo>
-              <StyledComent>{item.title}</StyledComent>
-              <LearnMore>Learn More</LearnMore>
-              <RightButtonWrapper>
-                <StyledCardButtonRight onClick={handleHeartIconClick}>
-                  {isAddedToFavorites ? (
-                    <MdFavorite size="24" />
-                  ) : (
-                    <MdFavoriteBorder size="24" />
-                  )}
-                </StyledCardButtonRight>
-              </RightButtonWrapper>
-            </AnimalCard>
-          ))
-        : null}
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              {sex === 'male' ? <MdMale size="24" /> : <MdFemale size="24" />}
+            </IconWrapper>
+            {item.gender}
+          </StyledCardButtonBottom>
+        </AnimalInfo>
+        <StyledComent>{title}</StyledComent>
+        <LearnMore>Learn More</LearnMore>
+        <RightButtonWrapper>
+          <StyledCardButtonRight onClick={onFavorite}>
+            {isAddedToFavorites ? (
+              <MdFavorite size="24" />
+            ) : (
+              <MdFavoriteBorder size="24" />
+            )}
+          </StyledCardButtonRight>
+        </RightButtonWrapper>
+      </AnimalCard>
+
     </>
   );
 };
