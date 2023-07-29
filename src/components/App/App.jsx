@@ -10,7 +10,7 @@ const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
-// const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
+const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 const NoticesCategoriesList = lazy(() =>
   import('../../components/NoticesCategoriesList')
@@ -27,8 +27,24 @@ const App = () => {
             <Route path="sell" element={<NoticesCategoriesList />} />
             <Route path="lost-found" element={<NoticesCategoriesList />} />
             <Route path="for-free" element={<NoticesCategoriesList />} />
-            <Route path="favorite" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} /> } />
-            <Route path="own" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} />}/>
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesList />}
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesList />}
+                />
+              }
+            />
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="register" element={<RegisterPage />} />
