@@ -8,7 +8,7 @@ import noticesReducer from './notices/notices-slice';
 const authPersistConfig = {
   key: 'token',
   storage,
-  whitelist: ['token', 'isLogin'],
+  whitelist: ['token'],
 };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);

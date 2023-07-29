@@ -188,6 +188,7 @@ import {
   EditPhotoWrap,
   FormSection,
   ErrorMessageStyled,
+  UserInfoWrap,
 } from './UserForm.styled';
 import Notiflix from 'notiflix';
 import { updateUser, updateUserAvatar } from 'redux/auth/auth-operations';
@@ -312,39 +313,41 @@ const UserForm = ({ isEditing, toggleEdit }) => {
               </EditPhotoWrap>
             </AvatarSection>
           </Label>
-          <FormSection>
-            <Label htmlFor="name">
-              <span>Name:</span>
-              <Field
-                type="text"
-                name="name"
-                disabled={!isEditing}
-                placeholder="Your name"
-              />
-              <ErrorMessage name="name" component={ErrorMessageStyled} />
-            </Label>
-            <Label htmlFor="email">
-              <span>Email:</span>
-              <Field type="text" name="email" disabled={!isEditing} />
-            </Label>
-            <Label htmlFor="birthday">
-              <span>Birthday:</span>
-              <Field type="text" name="birthday" disabled={!isEditing} />
-            </Label>
-            <Label htmlFor="birthday">
-              <span>Phone:</span>
-              <Field type="text" name="phone" disabled={!isEditing} />
-            </Label>
-            <Label htmlFor="city">
-              <span>City:</span>
-              <Field type="text" name="city" disabled={!isEditing} />
-            </Label>
-          </FormSection>
-          {isEditing ? (
-            <ButtonSave type="submit" disabled={isSubmitting}>
-              Save
-            </ButtonSave>
-          ) : null}
+          <UserInfoWrap>
+            <FormSection>
+              <Label htmlFor="name">
+                <span>Name:</span>
+                <Field
+                  type="text"
+                  name="name"
+                  disabled={!isEditing}
+                  placeholder="Your name"
+                />
+                <ErrorMessage name="name" component={ErrorMessageStyled} />
+              </Label>
+              <Label htmlFor="email">
+                <span>Email:</span>
+                <Field type="text" name="email" disabled={!isEditing} />
+              </Label>
+              <Label htmlFor="birthday">
+                <span>Birthday:</span>
+                <Field type="text" name="birthday" disabled={!isEditing} />
+              </Label>
+              <Label htmlFor="birthday">
+                <span>Phone:</span>
+                <Field type="text" name="phone" disabled={!isEditing} />
+              </Label>
+              <Label htmlFor="city">
+                <span>City:</span>
+                <Field type="text" name="city" disabled={!isEditing} />
+              </Label>
+            </FormSection>
+            {isEditing ? (
+              <ButtonSave type="submit" disabled={isSubmitting}>
+                Save
+              </ButtonSave>
+            ) : null}
+          </UserInfoWrap>
         </StylizedForm>
       )}
     </Formik>

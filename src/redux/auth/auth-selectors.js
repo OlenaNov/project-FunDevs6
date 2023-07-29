@@ -9,3 +9,5 @@ export const checkError = ({ auth }) => auth.error;
 export const isLoading = ({ auth }) => auth.isLoading;
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+
+export const selectisRefreshing = state => state.auth.isRefreshing;
