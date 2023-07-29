@@ -3,81 +3,69 @@ import { Link } from 'react-router-dom';
 
 export const Header = styled.header`
   background-color: #fff;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   justify-content: end;
   align-items: center;
   position: relative;
-  @media (min-width: 768px) {
-    padding: 20px;
+  @media screen and (min-width: 768px) {
+    padding: 24px 32px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 20px 16px;
   }
 `;
-
-export const Nav = styled.nav`
-  display: none;
-  /* transform: translateY(-100%); */
-
-  @media (min-width: 768px) {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: auto;
-    transform: none;
-    background-color: transparent;
-  }
-`;
-
 export const Logo = styled(Link)`
   margin-right: auto;
   width: 116px;
   height: 20px;
-  @media (min-width: 480px) {
+  @media screen and (min-width: 768px) {
     width: 162px;
     height: 28px;
     margin-right: auto;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 1200px) {
     margin-right: auto;
   }
 `;
 
-export const NavList = styled.ul`
-  /* flex-direction: column; */
-
-  @media (min-width: 768px) {
-    list-style: none;
-    padding: 0;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
+export const DropDownMenu = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  @media screen and(min-width: 1200px) {
+    display: none;
   }
+`;
+
+export const Nav = styled.nav`
+  background-color: #fff;
+`;
+
+export const NavList = styled.ul`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export const NavItem = styled.li`
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0;
-  }
+  margin: 0 auto;
 `;
 
 export const NavLink = styled(Link)`
-  /* color: #333;
-  text-decoration: none;
-  font-size: 16px; */
-
-  @media (min-width: 768px) {
-    color: #111;
-    font-family: Manrope;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: 0.8px;
-  }
+  color: #111;
+  font-family: Manrope;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 1.28px;
 
   &:hover {
     color: #ffc107;
@@ -96,7 +84,7 @@ export const CloseBtn = styled.button`
   height: 24px;
   margin-left: 25px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `;
@@ -113,57 +101,36 @@ export const OpenBtn = styled.button`
   height: 24px;
   margin-left: 25px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `;
 
 export const AuthList = styled.ul`
-  display: none;
-  /* position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: transparent;
-  display: ${({ open }) => (open ? 'flex' : 'none')}; */
-
-  transition: transform 0.3s ease-in-out;
-  z-index: 1;
-  @media (min-width: 480px) {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    transform: none;
-    background-color: transparent;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 40px;
+  @media screen and(min-width: 768px) {
+    display: none;
   }
 `;
 
-export const AuthItem = styled.li`
-  @media (min-width: 768px) {
-    display: block;
-  }
-`;
-// export const LogInImg = styled.img`
-//   @media (min-width: 768px) {
-//     display: flex;
-//     fill: black;
-//   }
-// `;
+export const AuthItem = styled.li``;
 
 export const LogIn = styled.button`
+  display: flex;
   width: 165px;
-  padding: 7px 20px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
   border-radius: 40px;
-  border: 2px solid #ffc107;
-  background: #ffc107;
+  border: 2px solid var(--yellow, #ffc107);
+  background: var(--yellow, #ffc107);
 
   color: #fef9f9;
   font-family: Manrope;
@@ -172,63 +139,22 @@ export const LogIn = styled.button`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-
-  @media (min-width: 768px) {
-    width: 165px;
-    padding: 8px 20px;
-    border-radius: 40px;
-    border: 2px solid #ffc107;
-    background: #ffc107;
-
-    color: #fef9f9;
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.64px;
-  }
-
-  &:hover {
-    animation: jello-horizontal 0.9s both;
-  }
-
-  @keyframes jello-horizontal {
-    0% {
-      transform: scale3d(1, 1, 1);
-    }
-
-    30% {
-      transform: scale3d(1.25, 0.75, 1);
-    }
-
-    40% {
-      transform: scale3d(0.75, 1.25, 1);
-    }
-
-    50% {
-      transform: scale3d(1.15, 0.85, 1);
-    }
-
-    65% {
-      transform: scale3d(0.95, 1.05, 1);
-    }
-
-    75% {
-      transform: scale3d(1.05, 0.95, 1);
-    }
-    100% {
-      transform: scale3d(1, 1, 1);
-    }
+  @media screen and(min-width: 768px) {
+    display: none;
   }
 `;
 
 export const Registr = styled.button`
+  display: flex;
   width: 165px;
   padding: 7px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+
   border-radius: 40px;
   border: 2px solid #ffc107;
-  background: transparent;
 
   color: #ffc107;
   font-family: Manrope;
@@ -237,53 +163,4 @@ export const Registr = styled.button`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.64px;
-
-  @media (min-width: 768px) {
-    width: 165px;
-    padding: 8px 20px;
-    border-radius: 40px;
-    border: 2px solid #ffc107;
-    background: transparent;
-
-    color: #ffc107;
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: 0.64px;
-  }
-  &:hover {
-    animation: jello-horizontal 0.9s both;
-  }
-
-  @keyframes jello-horizontal {
-    0% {
-      transform: scale3d(1, 1, 1);
-    }
-
-    30% {
-      transform: scale3d(1.25, 0.75, 1);
-    }
-
-    40% {
-      transform: scale3d(0.75, 1.25, 1);
-    }
-
-    50% {
-      transform: scale3d(1.15, 0.85, 1);
-    }
-
-    65% {
-      transform: scale3d(0.95, 1.05, 1);
-    }
-
-    75% {
-      transform: scale3d(1.05, 0.95, 1);
-    }
-
-    100% {
-      transform: scale3d(1, 1, 1);
-    }
-  }
 `;
