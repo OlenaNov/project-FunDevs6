@@ -53,7 +53,7 @@ export const current = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'auth/update-user',
+  'auth/users',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
@@ -74,7 +74,7 @@ export const updateUser = createAsyncThunk(
 );
 
 export const updateUserAvatar = createAsyncThunk(
-  'auth/update-avatar',
+  'auth/avatars',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();

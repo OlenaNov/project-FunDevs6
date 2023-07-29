@@ -130,10 +130,8 @@ export const AvatarSection = styled.div`
 `;
 
 export const FormSection = styled.div`
-  /* @media screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.desktop}) {
-    
-  } */
+  @media screen and (max-width: 767px) {
+  }
   display: flex;
   flex-direction: column;
   gap: 8px;
