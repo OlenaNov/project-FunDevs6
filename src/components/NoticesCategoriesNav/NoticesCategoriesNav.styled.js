@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { theme } from '../../theme/theme';
 
 export const StyledNavLink = styled(NavLink)`
-  color: ${theme.colors.blue};
-  background: ${theme.colors.lightBlue};
+  color: ${props =>
+    props.active === 'true' ? theme.colors.white : theme.colors.blue};
+  background: ${props =>
+    props.active === 'true' ? theme.colors.blue : theme.colors.lightBlue};
   padding: 8px 16px;
   border-radius: 40px;
   font-family: 'Manrope', sans-serif;

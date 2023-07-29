@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const CategoriesListWrapper = styled('div')`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  // justify-content: center;
+  margin: 0 auto;
   column-gap: 32px;
   row-gap: 24px;
   margin-top: 42px;
@@ -14,7 +15,8 @@ export const CategoriesListWrapper = styled('div')`
     margin-top: 24px;
   }
 
-  @media screen and (min-width: 761px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 1248px;
     margin-top: 40px;
   }
 `;
