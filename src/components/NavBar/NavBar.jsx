@@ -2,7 +2,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { Outlet } from 'react-router-dom';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
-// import { BurgerMenu } from "./Burger/BurgerMenu";
+
 import React, { useState } from 'react';
 import {
   Header,
@@ -18,8 +18,10 @@ import {
   Registr,
   AuthList,
   AuthItem,
+  UserBtn,
 } from './NavBar.styled';
 import image from '../../images/logo/logo-large.svg';
+import user from '../../images/user/user.svg';
 // import Paw from "./img/paw.svg";
 
 export const NavBar = () => {
@@ -66,6 +68,9 @@ export const NavBar = () => {
 
       <DesktopNav />
       <DesktopAuth />
+      <UserBtn type="button">
+        <img src={user} alt="user" />
+      </UserBtn>
       <OpenBtn open={!isOpen} onClick={handleOpenClick}>
         <FaBars />
       </OpenBtn>

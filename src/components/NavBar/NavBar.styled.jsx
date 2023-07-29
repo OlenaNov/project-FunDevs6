@@ -82,7 +82,8 @@ export const CloseBtn = styled.button`
   align-items: center;
   width: 24px;
   height: 24px;
-  margin-left: 25px;
+  margin-left: 8px;
+  /* margin-left: 25px; */
 
   @media (min-width: 1200px) {
     display: none;
@@ -99,7 +100,8 @@ export const OpenBtn = styled.button`
   align-items: center;
   width: 24px;
   height: 24px;
-  margin-left: 25px;
+  margin-left: 8px;
+  /* margin-left: 25px; */
 
   @media (min-width: 1200px) {
     display: none;
@@ -163,4 +165,9 @@ export const Registr = styled.button`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.64px;
+`;
+
+export const UserBtn = styled.button`
+  border-style: none;
+  background-color: transparent;
 `;
