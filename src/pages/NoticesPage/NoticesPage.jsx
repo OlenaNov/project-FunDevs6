@@ -13,6 +13,7 @@ import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn
 import NoticesNotFound from '../../components/NoticesNotFound';
 
 import {
+  NoticesContainter,
   NoticeFilterContainer,
   NoticesPageContainer,
   NoticesPageContainerFilterAdd,
@@ -207,21 +208,21 @@ export const NoticesPage = () => {
   const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
 
   return (
-    <div>
+    <NoticesContainter>
       <Title>Find your favorite pet</Title>
       <NoticesSearch onFormSubmit={handleSubmit} onClear={handleClear} />
       <NoticesPageContainer>
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />
           <NoticesPageContainerFilterAdd>
-            <NoticesFilters onFilter={handleFilterChange} filters={filters} />
-            <NoticesAddPetBtn />
             {filters.length > 0 && (
               <NoticesSelectedFilters
                 filters={filters}
                 handleReset={handleFilterReset}
               />
             )}
+            <NoticesFilters onFilter={handleFilterChange} filters={filters} />
+            <NoticesAddPetBtn />
           </NoticesPageContainerFilterAdd>
         </NoticeFilterContainer>
       </NoticesPageContainer>
@@ -235,7 +236,7 @@ export const NoticesPage = () => {
           currentPage={Number(page)}
         />
       )}
-    </div>
+    </NoticesContainter>
   );
 };
 

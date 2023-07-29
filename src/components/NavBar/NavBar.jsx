@@ -4,7 +4,6 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
-
 import React, { useState } from 'react';
 import {
   Header,

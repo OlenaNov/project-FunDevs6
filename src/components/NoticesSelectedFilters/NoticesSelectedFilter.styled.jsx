@@ -3,6 +3,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { theme } from '../../theme/theme';
 
 export const Filters = styled.div`
+  margin-right: 12px;
   @media screen and (max-width: 767px) {
     margin-top: 80px;
     max-width: 140px;
