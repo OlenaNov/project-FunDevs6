@@ -13,7 +13,7 @@ export const DesktopNav = () => {
           <NavLinkDesktop to="/news">News</NavLinkDesktop>
         </NavItemDesktop>
         <NavItemDesktop>
-          <NavLinkDesktop to="/notices">Find pet</NavLinkDesktop>
+          <NavLinkDesktop to="notices">Find pet</NavLinkDesktop>
         </NavItemDesktop>
         <NavItemDesktop>
           <NavLinkDesktop to="/friends">Our friends</NavLinkDesktop>
