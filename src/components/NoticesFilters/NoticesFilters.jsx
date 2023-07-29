@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FilterOpenBtn,
   FilterBtnIcon,
@@ -21,7 +21,7 @@ export const NoticesFilters = ({ onFilter, filters }) => {
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
 
-  const nandleFilterClick = () => {
+  const handleFilterClick = e => {
     setIsFilterOpen(prevState => !prevState);
   };
 
@@ -41,14 +41,15 @@ export const NoticesFilters = ({ onFilter, filters }) => {
     <FilterWrapper>
       <FilterOpenBtn
         type="button"
-        onClick={nandleFilterClick}
+        onClick={handleFilterClick}
         aria-label="filter switch"
+        name="filtersBtn"
       >
         <FilterBtnLabel>Filter</FilterBtnLabel>
         <FilterBtnIcon />
       </FilterOpenBtn>
       {isFilterOpen && (
-        <FilterDropDownContainer>
+        <FilterDropDownContainer id="filtersMenu">
           <DropDownContent>
             <DropDownContentText>Filters</DropDownContentText>
             <DropDownSubMenu>
@@ -56,6 +57,7 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                 type="button"
                 onClick={handleAgeClick}
                 aria-label="switch age option"
+                name="filtersBtn"
               >
                 {isAgeOpen ? (
                   <ArrowIcon />
@@ -104,6 +106,7 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                 type="button"
                 onClick={handleGenderClick}
                 aria-label="switch gender option"
+                name="filtersBtn"
               >
                 {isGenderOpen ? (
                   <ArrowIcon />

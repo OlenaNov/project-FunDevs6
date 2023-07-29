@@ -1,12 +1,34 @@
 import styled from 'styled-components';
+import { theme } from '../../theme/theme';
+
+export const NoticesContainter = styled.div`
+  padding-top: ${theme.space[3] * 5 + 'px'};
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 117px;
+  max-width: 320px;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: ${theme.space[4] * 5 + 'px'};
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-bottom: 209px;
+    max-width: ${theme.breakpoints.tablet};
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    max-width: 1280px;
+  }
+`;
 
 export const NoticesPageContainer = styled('div')`
   width: 100%;
   height: 100%;
-  padding-top: ${({ theme }) => theme.space[3] * 5 + 'px'};
+  padding-top: ${theme.space[3] * 2 + 4 + 'px'};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding-top: ${({ theme }) => theme.space[4] * 5 + 'px'};
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: ${theme.space[3] * 5 + 'px'};
   }
 `;
 
@@ -27,21 +49,31 @@ export const NoticeFilterContainer = styled.div`
   justify-content: space-around;
   align-items: flex-start; */
   }
-  margin-right: 20px;
-  margin-left: 30px;
-  @media screen and (max-width: 760px) {
+
+  @media screen and (max-width: 767px) {
+    width: 280px;
   }
+
   @media screen and (min-width: 761px) {
-    justify-content: space-around;
+    max-width: 768px;
+    justify-content: space-between;
     align-items: flex-start;
-    margin-right: 20px;
-    margin-left: 30px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    max-width: 1280px;
   }
 `;
 
 export const NoticesPageContainerFilterAdd = styled('div')`
+  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   float: right;
 `;

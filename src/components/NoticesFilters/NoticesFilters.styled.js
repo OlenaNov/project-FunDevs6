@@ -32,42 +32,53 @@ export const FilterOpenBtn = styled.button`
   transition: color 250ms cubic-bezier(0.215, 0.61, 0.355, 1),
     background-color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  &:hover,
-  &:focus {
-    color: #ffffff;
-    border: none;
-    background-color: ${theme.colors.blue};
+  &.active {
+    color: ${({ theme }) => theme.colors.white};
 
-    &::before {
-      opacity: 1;
-    }
+    background-color: ${({ theme }) => theme.colors.blue};
   }
 
   &::before {
     content: '';
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
     position: absolute;
     top: 0;
-    left: 0;
-    z-index: -1;
-    background: ${theme.colors.gradientBlue});
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: ${({ theme }) => theme.colors.gradientBlue};
+    border-radius: 40px;
     opacity: 0;
-    transition: opacity 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    z-index: -1;
+
+    transition: opacity 300ms ${({ theme }) => theme.transition.main};
   }
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}){
-      position: relative;
-      padding: 9px;
-      width: 152px;
-      border: 2px solid ${theme.colors.blue};
-      border-radius: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      background-color: transparent;
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    position: relative;
+    padding: 9px;
+    width: 152px;
+    border: 2px solid ${theme.colors.blue};
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
   }
 `;
 
