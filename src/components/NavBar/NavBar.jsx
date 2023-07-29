@@ -1,6 +1,6 @@
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
