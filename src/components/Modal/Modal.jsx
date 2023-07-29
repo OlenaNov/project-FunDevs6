@@ -3,9 +3,10 @@ import { createPortal } from "react-dom";
 import { Backdrop, ModalWrapper } from "./Modal.styled";
 import { useCallback, useEffect } from "react";
 
+
 const modalRoot = document.querySelector('#modal-root');
 
-export default function ModalApproveAction({ onClose, onYes, children }) {
+export default function Modal({ onClose, children }) {
 
     const handleKeyDown = useCallback(e => {
         if(e.code === 'Escape') {
@@ -27,6 +28,7 @@ export default function ModalApproveAction({ onClose, onYes, children }) {
 
     return createPortal(
         <Backdrop  onClick={handleBackdrop}>
+            
             <ModalWrapper>{children()}</ModalWrapper>
         </Backdrop>,
      modalRoot);
