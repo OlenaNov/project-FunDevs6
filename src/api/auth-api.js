@@ -34,24 +34,20 @@ export const getCurrent = async token => {
   }
 };
 
-export const updateUser = async (token, data) => {
+export const updateUser = async data => {
   try {
-    setToken(token);
     const { data: result } = await instance.patch('/users', data);
     return result;
   } catch (error) {
-    setToken();
     throw error;
   }
 };
 
-export const updateAvatar = async (token, data) => {
+export const updateAvatar = async data => {
   try {
-    setToken(token);
     const { data: result } = await instance.patch('/users/avatars', data);
     return result;
   } catch (error) {
-    setToken();
     throw error;
   }
 };

@@ -35,25 +35,21 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
+
+      if (!auth.token) {
+        return rejectWithValue(null);
+      }
       const data = await api.getCurrent(auth.token);
       return data;
     } catch ({ response }) {
       authErrorMessage(response);
-      return rejectWithValue(response);
+      return rejectWithValue(null);
     }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.token) {
-        return false;
-      }
-    },
   }
 );
 
 export const updateUser = createAsyncThunk(
-  'auth/update-user',
+  'auth/users',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
@@ -74,7 +70,7 @@ export const updateUser = createAsyncThunk(
 );
 
 export const updateUserAvatar = createAsyncThunk(
-  'auth/update-avatar',
+  'auth/avatars',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
