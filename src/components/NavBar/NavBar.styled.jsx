@@ -37,6 +37,7 @@ export const DropDownMenu = styled.div`
   top: 100%;
   left: 0;
   width: 100%;
+  height: 100vh;
   background-color: #fff;
   @media screen and(min-width: 1200px) {
     display: none;
@@ -115,8 +116,8 @@ export const AuthList = styled.ul`
   gap: 12px;
   width: 100%;
   margin-bottom: 40px;
-  @media screen and(min-width: 768px) {
-    display: none;
+  @media (min-width: 768px) {
+    display: none ;
   }
 `;
 
