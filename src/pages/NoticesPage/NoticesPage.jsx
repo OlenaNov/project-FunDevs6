@@ -1,11 +1,14 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import { createSearchParams } from 'utils';
+import { getFilterValues } from 'utils';
 import NoticesSearch from 'components/NoticesSearch';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
-import NoticesFiltersBtn from '../../components/NoticesFiltersBtn/NoticesFiltersBtn';
+import NoticesFilters from '../../components/NoticesFilters';
+import NoticesSelectedFilters from 'components/NoticesSelectedFilters';
 import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesNotFound from '../../components/NoticesNotFound';
 
@@ -48,26 +51,24 @@ export const NoticesPage = () => {
     setSearchParams(searchParams);
   }, [searchParams, setSearchParams]);
 
-  // const handleFilterChange = target => {
-  //   createSearchParams(target, searchParams, setSearchParams);
-  //   resetPage();
-  // };
+  const handleFilterChange = target => {
+    createSearchParams(target, searchParams, setSearchParams);
+    resetPage();
+  };
 
-  // const handleFilterReset = value => {
-  //   if (value === 'male' || value === 'female') {
-  //     searchParams.delete('gender');
-  //   } else {
-  //     searchParams.delete('age');
-  //   }
+  const handleFilterReset = value => {
+    if (value === 'male' || value === 'female') {
+      searchParams.delete('gender');
+    } else {
+      searchParams.delete('age');
+    }
 
-  //   setSearchParams(searchParams);
-  //   resetPage();
-  // };
+    setSearchParams(searchParams);
+    resetPage();
+  };
 
   const handleSubmit = ({ query }) => {
     searchParams.set('query', query);
-
-    console.log(query);
 
     setSearchParams(searchParams);
     resetPage();
@@ -203,10 +204,7 @@ export const NoticesPage = () => {
     getApiNotices();
   }, [getApiNotices, isLogin, pathname, resetPage, searchParams]);
 
-  // const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
-
-  console.log(pageCount);
-  console.log(Number(page));
+  const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
 
   return (
     <div>
@@ -216,8 +214,14 @@ export const NoticesPage = () => {
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />
           <NoticesPageContainerFilterAdd>
-            <NoticesFiltersBtn />
+            <NoticesFilters onFilter={handleFilterChange} filters={filters} />
             <NoticesAddPetBtn />
+            {filters.length > 0 && (
+              <NoticesSelectedFilters
+                filters={filters}
+                handleReset={handleFilterReset}
+              />
+            )}
           </NoticesPageContainerFilterAdd>
         </NoticeFilterContainer>
       </NoticesPageContainer>
