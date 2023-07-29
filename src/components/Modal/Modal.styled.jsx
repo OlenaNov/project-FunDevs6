@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { GrClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
     position: fixed;
@@ -14,6 +15,16 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
+    position: relative;
     max-width: calc(100vw - 100px);
     max-height: calc(100vh - 100px);
+`;
+
+
+export const IconClose = styled(GrClose)`
+position: absolute;
+width: 24px;
+height: 24px;
+flex-shrink: 0;
+fill: #54ADFF;
 `;
