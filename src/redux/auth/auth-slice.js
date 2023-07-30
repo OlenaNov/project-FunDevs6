@@ -8,6 +8,7 @@ import {
   logout,
   fetchAddToFavorite,
   fetchDeleteFromFavorite,
+  refreshUser,
 } from './auth-operations';
 import initialState from './auth-initialState';
 
@@ -36,9 +37,7 @@ export const authSlice = createSlice({
         state.token = token;
         state.isLogin = true;
       })
-      .addCase(signup.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      .addCase(signup.rejected, handleRejected)
       .addCase(login.pending, state => {
         handlePending(state);
       })
@@ -49,20 +48,21 @@ export const authSlice = createSlice({
         state.token = token;
         state.isLogin = true;
       })
-      .addCase(login.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      .addCase(login.rejected, handleRejected)
       .addCase(current.pending, state => {
         handlePending(state);
       })
       .addCase(current.fulfilled, (state, { payload }) => {
         const user = payload;
+        state.isRefreshing = false;
         state.isLoading = false;
         state.user = user;
         state.isLogin = true;
       })
-      .addCase(current.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
+      .addCase(current.rejected, state => {
+        // handleRejected();
+        state.isRefreshing = false;
+        state.isLoading = false;
         state.isLogin = false;
         state.token = '';
         state.user = {};
@@ -76,9 +76,7 @@ export const authSlice = createSlice({
         state.user = user;
         state.isLogin = true;
       })
-      .addCase(updateUser.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      .addCase(updateUser.rejected, handleRejected)
       .addCase(updateUserAvatar.pending, state => {
         handlePending(state);
       })
@@ -88,21 +86,15 @@ export const authSlice = createSlice({
         state.user = user;
         state.isLogin = true;
       })
-      .addCase(updateUserAvatar.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
-      .addCase(logout.pending, state => {
-        handlePending(state);
-      })
+      .addCase(updateUserAvatar.rejected, handleRejected)
+      .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, state => {
         state.isLoading = false;
         state.user = {};
         state.token = '';
         state.isLogin = false;
       })
-      .addCase(logout.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      .addCase(logout.rejected, handleRejected)
       .addCase(fetchAddToFavorite.pending, state => {
         state.isLoading = true;
       })
@@ -131,8 +123,19 @@ export const authSlice = createSlice({
         state.notices = { data: [] };
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(refreshUser.pending, state => {
+        // state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLogin = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

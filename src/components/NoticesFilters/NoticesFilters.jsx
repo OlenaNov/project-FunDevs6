@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FilterOpenBtn,
   FilterBtnIcon,
@@ -21,6 +21,26 @@ export const NoticesFilters = ({ onFilter, filters }) => {
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
 
+  useEffect(() => {
+    const filterBtn = document.getElementById('filtersBtn');
+    const menu = document.getElementById('filtersMenu');
+
+    const outsideFilterMenuClickHandler = e => {
+      if (
+        e.target !== menu &&
+        !menu.contains(e.target) &&
+        e.target !== filterBtn &&
+        !filterBtn.contains(e.target)
+      )
+        setIsFilterOpen(false);
+    };
+
+    document.body.addEventListener('click', outsideFilterMenuClickHandler);
+
+    return () =>
+      document.body.removeEventListener('click', outsideFilterMenuClickHandler);
+  }, []);
+
   const handleFilterClick = e => {
     setIsFilterOpen(prevState => !prevState);
   };
@@ -38,18 +58,18 @@ export const NoticesFilters = ({ onFilter, filters }) => {
   };
 
   return (
-    <FilterWrapper>
+    <FilterWrapper id="filtersMenu">
       <FilterOpenBtn
         type="button"
         onClick={handleFilterClick}
         aria-label="filter switch"
-        name="filtersBtn"
+        id="filtersBtn"
       >
         <FilterBtnLabel>Filter</FilterBtnLabel>
         <FilterBtnIcon />
       </FilterOpenBtn>
       {isFilterOpen && (
-        <FilterDropDownContainer id="filtersMenu">
+        <FilterDropDownContainer>
           <DropDownContent>
             <DropDownContentText>Filters</DropDownContentText>
             <DropDownSubMenu>
@@ -57,7 +77,6 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                 type="button"
                 onClick={handleAgeClick}
                 aria-label="switch age option"
-                name="filtersBtn"
               >
                 {isAgeOpen ? (
                   <ArrowIcon />
@@ -106,7 +125,6 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                 type="button"
                 onClick={handleGenderClick}
                 aria-label="switch gender option"
-                name="filtersBtn"
               >
                 {isGenderOpen ? (
                   <ArrowIcon />

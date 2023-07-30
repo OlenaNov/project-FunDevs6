@@ -35,25 +35,21 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
+
+      if (!auth.token) {
+        return rejectWithValue(null);
+      }
       const data = await api.getCurrent(auth.token);
       return data;
     } catch ({ response }) {
       authErrorMessage(response);
-      return rejectWithValue(response);
+      return rejectWithValue(null);
     }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.token) {
-        return false;
-      }
-    },
   }
 );
 
 export const updateUser = createAsyncThunk(
-  'auth/update-user',
+  'auth/users',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
@@ -74,7 +70,7 @@ export const updateUser = createAsyncThunk(
 );
 
 export const updateUserAvatar = createAsyncThunk(
-  'auth/update-avatar',
+  'auth/avatars',
   async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
@@ -126,6 +122,46 @@ export const fetchDeleteFromFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  // async (_, { rejectWithValue, getState }) => {
+  //   const { auth } = getState();
+  //   const persistedToken = auth.token;
+
+  //   if (persistedToken === null) {
+  //     return rejectWithValue('Unable to fetch user');
+  //   }
+
+  //   try {
+  //     const res = await api.getCurrent(persistedToken);
+  //     return res.data;
+  //   } catch (error) {
+  //     const { response } = error;
+  //     if (response.status === 401) {
+  //       toast.error(response.data.message);
+  //       return rejectWithValue(response.data.message);
+  //     } else {
+  //       toast.error(error.message);
+  //       return rejectWithValue(error.message);
+  //     }
+  //   }
+  // }
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+
+      if (!auth.token) {
+        return rejectWithValue(null);
+      }
+      const data = await api.getCurrent(auth.token);
+      return data;
+    } catch ({ response }) {
+      authErrorMessage(response);
+      return rejectWithValue(null);
     }
   }
 );

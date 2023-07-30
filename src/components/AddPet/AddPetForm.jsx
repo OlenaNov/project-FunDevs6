@@ -1,6 +1,5 @@
-
 // import { useState } from 'react';
-// // вказати імпорти на хуки та нотісайс та редакс 
+// // вказати імпорти на хуки та нотісайс та редакс
 
 // import { Formik, Form } from 'formik';
 // import PersonalDetails from './PersonalDetails/PersonalDetails';
@@ -48,7 +47,6 @@
 // // const isLoading = useSelector();
 // // const isNoticeLoading = useSelector();
 
-
 //   const handleClickNext = e => {
 //     e.preventDefault();
 
@@ -297,12 +295,10 @@
 // };
 
 // const AddPetForm = () => {
-//   const [step, setStep] 
+//   const [step, setStep]
 // // тут треба хукі ще
-  
-  
+
 //    const steps = ['Choose option', 'Personal details', 'More info'];
-  
 
 //   const handleClickNext = e => {
 //     e.preventDefault();
@@ -519,4 +515,3 @@
 // };
 
 // export default AddPetForm;
-

@@ -8,18 +8,19 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 
-import { rootReducer } from './root-reducer';
+import { authReducer } from './auth/auth-slice';
+import persistReducer from 'redux-persist/es/persistReducer';
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: { auth: persistReducer(authPersistConfig, authReducer) },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

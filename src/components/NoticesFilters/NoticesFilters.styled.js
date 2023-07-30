@@ -146,14 +146,14 @@ export const DropDownSubMenu = styled.div`
 `;
 
 export const FilterBtn = styled.button`
-padding: 0;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: ${theme.colors.lightBlue};
-    transition: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+  width: 100%;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: ${theme.colors.lightBlue};
+  transition: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
 `;
 
 export const ArrowIcon = styled(SlArrowUp)`

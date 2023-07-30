@@ -4,6 +4,10 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
+
 import React, { useState } from 'react';
 import {
   Header,
@@ -26,6 +30,10 @@ import user from '../../images/user/user.svg';
 // import Paw from "./img/paw.svg";
 
 export const NavBar = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  // const isLoggedIn = true;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenClick = () => {
@@ -38,19 +46,25 @@ export const NavBar = () => {
 
   return (
     <Header>
-      <Logo to="/main">
+      <Logo to="/">
         <img src={image} alt="logo" />
       </Logo>
       {isOpen && (
         <DropDownMenu>
-          <AuthList>
-            <AuthItem>
-              <LogIn type="button">Log IN</LogIn>
-            </AuthItem>
-            <AuthItem>
-              <Registr type="button">Registration</Registr>
-            </AuthItem>
-          </AuthList>
+          {!isLoggedIn && (
+            <AuthList>
+              <AuthItem>
+                <LogIn type="button" to="/login">
+                  Log IN
+                </LogIn>
+              </AuthItem>
+              <AuthItem>
+                <Registr type="button" to="/register">
+                  Registration
+                </Registr>
+              </AuthItem>
+            </AuthList>
+          )}
           <Nav>
             <NavList>
               <NavItem>
@@ -68,10 +82,17 @@ export const NavBar = () => {
       )}
 
       <DesktopNav />
-      <DesktopAuth />
-      <UserBtn type="button">
-        <img src={user} alt="user" />
-      </UserBtn>
+
+      {isLoggedIn ? (
+        <Link to="/user">
+          <UserBtn type="button">
+            <img src={user} alt="user" /> <span>{}</span>
+          </UserBtn>
+        </Link>
+      ) : (
+        <DesktopAuth />
+      )}
+
       <OpenBtn open={!isOpen} onClick={handleOpenClick}>
         <FaBars />
       </OpenBtn>
