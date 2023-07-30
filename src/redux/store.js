@@ -8,8 +8,15 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
 
 import { rootReducer } from './root-reducer';
+
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
 
 export const store = configureStore({
   reducer: rootReducer,
