@@ -22,30 +22,30 @@ export const MainDefault = () => {
        <Title>Take good care of your small pets</Title>
        <picture>
             <source
-               srcset={(ImgDesktopWebp, ImgDesktopWebp2x)}
+               srcSet={(ImgDesktopWebp, ImgDesktopWebp2x)}
                media="(min-width: 1200px)"
                type="image/webp"
             />
             <source
-               srcset={(ImgDesktopPng, ImgDesktopPng2x)}
+               srcSet={(ImgDesktopPng, ImgDesktopPng2x)}
                media="(min-width: 1200px)"
             />
             <source
-               srcset={(ImgTabletWebp, ImgTabletWebp2x)}
+               srcSet={(ImgTabletWebp, ImgTabletWebp2x)}
                media="(min-width: 768px)"
                type="image/webp"
             />
             <source
-               srcset={(ImgTabletPng, ImgTabletPng2x)}
+               srcSet={(ImgTabletPng, ImgTabletPng2x)}
                media="(min-width: 768px)"
             />
             <source
-               srcset={(ImgMobileWebp, ImgMobileWebp2x)}
+               srcSet={(ImgMobileWebp, ImgMobileWebp2x)}
                media="(max-width: 767px)"
                type="image/webp"
             />
             <source
-               srcset={(ImgMobilePng, ImgMobilePng2x)}
+               srcSet={(ImgMobilePng, ImgMobilePng2x)}
                media="(max-width: 767px)"
             />
             <img src={(ImgMobilePng)} alt="Pets" />

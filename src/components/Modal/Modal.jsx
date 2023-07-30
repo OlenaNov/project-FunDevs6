@@ -1,6 +1,6 @@
 
 import { createPortal } from "react-dom";
-import { Backdrop, ModalWrapper } from "./Modal.styled";
+import { Backdrop, ButtonClose, IconClose, ModalWrapper } from "./Modal.styled";
 import { useCallback, useEffect } from "react";
 
 
@@ -28,8 +28,14 @@ export default function Modal({ onClose, children }) {
 
     return createPortal(
         <Backdrop  onClick={handleBackdrop}>
-            
-            <ModalWrapper>{children()}</ModalWrapper>
+            <ModalWrapper>
+                <ButtonClose
+                    type="button"
+                    onClick={() => onClose()}>
+                    <IconClose />
+                </ButtonClose>
+                {children()}
+                </ModalWrapper>
         </Backdrop>,
      modalRoot);
 };

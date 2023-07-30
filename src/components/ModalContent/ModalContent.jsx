@@ -1,11 +1,11 @@
-import { Title } from "components/MainDefault/MainDefault.styled";
-import { ButtonCancel, ButtonYes, IconYes, WrapperContent } from "./ModalContent.styled";
+import { ButtonCancel, ButtonYes, IconYes, Title, Text } from "./ModalContent.styled";
 
-export const ModalContent = ({ message, fnYes, fnCancel }) => {
+export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
  
  return (
-    <WrapperContent>
-     <Title>{message}</Title>
+    <>
+     <Title>{title}</Title >
+     {message && <Text>{message}</Text>}
      <ButtonCancel
         type="button"
         onClick={fnCancel}
@@ -16,7 +16,7 @@ export const ModalContent = ({ message, fnYes, fnCancel }) => {
      >Yes
      <IconYes />
      </ButtonYes>
-    </WrapperContent>
+    </>
     );
 };
 
