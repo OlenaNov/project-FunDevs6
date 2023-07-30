@@ -37,5 +37,3 @@ export const FormTitle = styled.h2`
 export const LabelField = styled.div`
   display: flex;
 `;
-
-export const LogOutBtn = styled.button``;
