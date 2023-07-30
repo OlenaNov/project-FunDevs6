@@ -15,6 +15,7 @@ const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 const NoticesCategoriesList = lazy(() =>
   import('../../components/NoticesCategoriesList')
 );
+const OurFriendsPage = lazy(() => import('../../pages/OurFriendsPage'));
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="favorite" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} /> } />
             <Route path="own" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} />}/>
           </Route>
+          <Route path="friends" element={<OurFriendsPage />}/>
           <Route element={<PublicRoute />}>
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
