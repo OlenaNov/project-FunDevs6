@@ -39,14 +39,33 @@ const App = () => {
             <Route path="/" element={<Layout />}>
               <Route index element={<MainPage to="/main" />} />
               <Route path="notices" element={<NoticesPage />}>
-                <Route index element={<Navigate to="/notices/sell" replace />} />
+                <Route
+                  index
+                  element={<Navigate to="/notices/sell" replace />}
+                />
                 <Route path="sell" element={<NoticesCategoriesList />} />
                 <Route path="lost-found" element={<NoticesCategoriesList />} />
                 <Route path="for-free" element={<NoticesCategoriesList />} />
-                <Route path="favorite" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} /> } />
-                <Route path="own" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} /> } />
+                <Route
+                  path="favorite"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<NoticesCategoriesList />}
+                    />
+                  }
+                />
+                <Route
+                  path="own"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<NoticesCategoriesList />}
+                    />
+                  }
+                />
               </Route>
-              <Route path="friends" element={<OurFriendsPage />}/>
+              <Route path="friends" element={<OurFriendsPage />} />
               <Route element={<PublicRoute />}>
                 <Route path="register" element={<RegisterPage />} />
                 <Route path="login" element={<LoginPage />} />

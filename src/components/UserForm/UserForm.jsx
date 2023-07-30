@@ -1,15 +1,15 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import {
-  Avatar,
-  AvatarSection,
+  // Avatar,
+  // AvatarSection,
   ButtonSave,
   EditIcon,
   EditInpuButton,
-  EditPhotoWrap,
+  // EditPhotoWrap,
   FormSection,
   Icon,
   IconEdit,
-  IconEditPhoto,
+  // IconEditPhoto,
   Label,
   StylizedForm,
   UserInfoWrap,
@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
 import { useState } from 'react';
 
-import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
+// import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 import { updateUser } from 'redux/auth/auth-operations';
 import { validationSchema } from 'validation';
 
