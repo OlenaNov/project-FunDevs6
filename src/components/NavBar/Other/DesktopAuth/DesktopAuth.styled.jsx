@@ -29,6 +29,10 @@ export const AuthItemDesktop = styled.li``;
 
 export const LogInDesktop = styled.button`
   @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     width: 165px;
     padding: 8px 20px;
     border-radius: 40px;

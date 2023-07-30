@@ -53,6 +53,7 @@ export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 `;
 
 export const NavItem = styled.li`
@@ -117,7 +118,7 @@ export const AuthList = styled.ul`
   width: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
-    display: none ;
+    display: none;
   }
 `;
 
@@ -168,7 +169,29 @@ export const Registr = styled.button`
   letter-spacing: 0.64px;
 `;
 
+export const UserContainer = styled.div`
+  @media (min-width: 768px) {
+    margin-right: 22px;
+  }
+`;
+
 export const UserBtn = styled.button`
   border-style: none;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const UserName = styled.span`
+  @media (max-width: 767px) {
+    display: none;
+  }
+  color: #ffc107;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.64px;
 `;
