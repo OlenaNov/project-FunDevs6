@@ -5,7 +5,7 @@ import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
+import { selectIsLogin, getUser } from '../../redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
 
 import React, { useState } from 'react';
@@ -32,9 +32,10 @@ import user from '../../images/user/user.svg';
 import paw from '../../images/paw-logIn/paw.svg';
 
 export const NavBar = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLogin);
   const username = useSelector(getUser);
 
+  // console.log(isLoggedIn);
   // const username = 'Dima';
   // const isLoggedIn = false;
 
@@ -59,14 +60,18 @@ export const NavBar = () => {
             <AuthList>
               <AuthItem>
                 <Link to="/login">
-                  <LogIn type="button" to="/login">
+                  <LogIn type="button" to="/login" onClick={handleCloseClick}>
                     Log IN <img src={paw} alt="paw" />
                   </LogIn>
                 </Link>
               </AuthItem>
               <AuthItem>
                 <Link to="/register">
-                  <Registr type="button" to="/register">
+                  <Registr
+                    type="button"
+                    to="/register"
+                    onClick={handleCloseClick}
+                  >
                     Registration
                   </Registr>
                 </Link>
@@ -78,7 +83,7 @@ export const NavBar = () => {
               <NavItem onClick={handleCloseClick}>
                 <NavLink to="/news">News</NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem onClick={handleCloseClick}>
                 <NavLink to="/notices">Find pet</NavLink>
               </NavItem>
 
