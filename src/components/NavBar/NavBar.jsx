@@ -5,7 +5,7 @@ import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
+import { selectIsLogin, getUser } from '../../redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
 
 import React, { useState } from 'react';
@@ -32,12 +32,12 @@ import user from '../../images/user/user.svg';
 import paw from '../../images/paw-logIn/paw.svg';
 
 export const NavBar = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLogin);
   const username = useSelector(getUser);
-  
+
   // console.log(isLoggedIn);
   // const username = 'Dima';
-  // const isLoggedIn = true;
+  // const isLoggedIn = false;
 
   const [isOpen, setIsOpen] = useState(false);
 
