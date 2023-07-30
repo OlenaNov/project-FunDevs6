@@ -55,7 +55,7 @@ const App = () => {
                 <Route path="user" element={<UserPage />} />
                 {/* <Route path="add-pet" element={<AddPetPage />} /> */}
               </Route>
-              <Route path="*" element={<NotFoundPage />} />
+              <Route path="*" element={<NotFoundPage to="/not-found" />} />
             </Route>
           </Routes>
         </Suspense>
