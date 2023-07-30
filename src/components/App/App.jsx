@@ -21,14 +21,30 @@ const App = () => {
     <Suspense>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="main" element={<MainPage />} />
-          <Route path="notices" element={<NoticesPage />}>
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<Navigate to="/notices/sell" replace />} />
             <Route path="sell" element={<NoticesCategoriesList />} />
             <Route path="lost-found" element={<NoticesCategoriesList />} />
             <Route path="for-free" element={<NoticesCategoriesList />} />
-            <Route path="favorite" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} /> } />
-            <Route path="own" element={ <PrivateRoute redirectTo="/login" component={<NoticesCategoriesList />} />}/>
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesList />}
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesList />}
+                />
+              }
+            />
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="register" element={<RegisterPage />} />

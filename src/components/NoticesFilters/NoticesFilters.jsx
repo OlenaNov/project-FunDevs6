@@ -73,8 +73,8 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                       onChange={handleCheckboxChange}
                       type="checkbox"
                       name="age"
-                      value="0-12 m"
-                      checked={filters.includes('0-12 m')}
+                      value="3m-12m"
+                      checked={filters.includes('3m-12m')}
                     />
                     3-12 m
                   </FilterFormLabel>
@@ -83,8 +83,8 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                       onChange={handleCheckboxChange}
                       type="checkbox"
                       name="age"
-                      value="1 year"
-                      checked={filters.includes('1 year')}
+                      value="1y"
+                      checked={filters.includes('1y')}
                     />
                     up to 1 year
                   </FilterFormLabel>
@@ -93,8 +93,8 @@ export const NoticesFilters = ({ onFilter, filters }) => {
                       onChange={handleCheckboxChange}
                       type="checkbox"
                       name="age"
-                      value="2 years +"
-                      checked={filters.includes('2 years +')}
+                      value="2y"
+                      checked={filters.includes('2y')}
                     />
                     up to 2 year
                   </FilterFormLabel>
