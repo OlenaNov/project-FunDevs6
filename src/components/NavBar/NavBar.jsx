@@ -4,8 +4,8 @@ import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
 import { useSelector } from 'react-redux';
+import { selectIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
-import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 
 import React, { useState } from 'react';
 import {
@@ -23,15 +23,19 @@ import {
   AuthList,
   AuthItem,
   UserBtn,
+  UserContainer,
+  UserName,
 } from './NavBar.styled';
 import image from '../../images/logo/logo-large.svg';
 import user from '../../images/user/user.svg';
-// import Paw from "./img/paw.svg";
+import paw from '../../images/paw-logIn/paw.svg';
 
 export const NavBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const username = useSelector(getUser);
 
-  // const isLoggedIn = true;
+  // const username = 'Dima';
+  // const isLoggedIn = false;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,26 +57,32 @@ export const NavBar = () => {
           {!isLoggedIn && (
             <AuthList>
               <AuthItem>
-                <LogIn type="button" to="/login">
-                  Log IN
-                </LogIn>
+                <Link to="/login">
+                  <LogIn type="button" to="/login">
+                    Log IN <img src={paw} alt="paw" />
+                  </LogIn>
+                </Link>
               </AuthItem>
               <AuthItem>
-                <Registr type="button" to="/register">
-                  Registration
-                </Registr>
+                <Link to="/register">
+                  <Registr type="button" to="/register">
+                    Registration
+                  </Registr>
+                </Link>
               </AuthItem>
             </AuthList>
           )}
           <Nav>
             <NavList>
-              <NavItem>
+              <NavItem onClick={handleCloseClick}>
                 <NavLink to="/news">News</NavLink>
               </NavItem>
-              <NavItem>
+
+              <NavItem onClick={handleCloseClick}>
                 <NavLink to="notices">Find pet</NavLink>
               </NavItem>
-              <NavItem>
+
+              <NavItem onClick={handleCloseClick}>
                 <NavLink to="/friends">Our friends</NavLink>
               </NavItem>
             </NavList>
@@ -83,11 +93,13 @@ export const NavBar = () => {
       <DesktopNav />
 
       {isLoggedIn ? (
-        <Link to="/user">
-          <UserBtn type="button">
-            <img src={user} alt="user" /> <span>{}</span>
-          </UserBtn>
-        </Link>
+        <UserContainer>
+          <Link to="/user">
+            <UserBtn type="button">
+              <img src={user} alt="user" /> <UserName>{username}</UserName>
+            </UserBtn>
+          </Link>
+        </UserContainer>
       ) : (
         <DesktopAuth />
       )}
