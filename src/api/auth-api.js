@@ -36,7 +36,8 @@ export const getCurrent = async token => {
 
 export const updateUser = async data => {
   try {
-    const { data: result } = await instance.patch('/users', data);
+    console.log(444, data);
+    const { data: result } = await instance.patch('/users/', data);
     return result;
   } catch (error) {
     throw error;
