@@ -34,12 +34,16 @@ export const getCurrent = async token => {
   }
 };
 
-export const updateUser = async data => {
+export const updateUser = async (data, token) => {
   try {
-    const { data: result } = await instance.patch('/users', data);
+    console.log(444, data);
+    const { data: result } = await instance.patch('/users/', data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     return result;
   } catch (error) {
-    throw error;
+    console.error(error);
+    throw error.message;
   }
 };
 
