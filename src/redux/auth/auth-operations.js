@@ -35,7 +35,7 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-
+      console.log(777, auth.token);
       if (!auth.token) {
         return rejectWithValue(null);
       }
@@ -56,7 +56,7 @@ export const updateUser = createAsyncThunk(
       const { auth } = getState();
       console.log(555, auth.token);
       console.log(333, data);
-      const updatedUser = await api.updateUser(data);
+      const updatedUser = await api.updateUser(data, auth.token);
       return updatedUser;
     } catch ({ response }) {
       return rejectWithValue(response);

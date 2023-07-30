@@ -28,24 +28,45 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   console.log(222, user);
 
   // const [avatar, setAvatar] = useState(user.avatarURL || '');
-  // const [name, setName] = useState(user.name || '');
-  // const [email, setEmail] = useState(user.email || '');
-  // const [birthday, setBirthday] = useState(user.birthday || '');
-  // const [phone, setPhone] = useState(user.phone || '');
-  // const [city, setCity] = useState(user.city || '');
+  const [name, setName] = useState(user.name || '');
+  const [email, setEmail] = useState(user.email || '');
+  const [birthday, setBirthday] = useState(user.birthday || '');
+  const [phone, setPhone] = useState(user.phone || '');
+  const [city, setCity] = useState(user.city || '');
 
-  const handleSubmit = values => {
+  const handleSubmit = (e, values) => {
     // Перевіряємо, чи є помилки валідації
+
+    // const { name, value } = e.target;
+    switch (name) {
+      case 'name':
+        setName(values.name);
+        break;
+      case 'email':
+        setEmail(values.email);
+        break;
+      case 'birthday':
+        setBirthday(values.birthday);
+        break;
+      case 'phone':
+        setPhone(values.phone);
+        break;
+      case 'city':
+        setCity(values.city);
+        break;
+      default:
+        break;
+    }
 
     console.log('123', values);
     dispatch(
       updateUser({
-        // avatarURL: 'khgk',
-        // name: values.name,
-        email: values.email,
-        birthday: values.birthday,
-        phone: values.phone,
-        city: values.city,
+        avatarURL: 'khgk',
+        name: name,
+        email: email,
+        birthday: birthday,
+        phone: phone,
+        city: city,
         // avatarURL: 'khgk',
         // email: 'Tomas11@gmail.com',
         // name: 'Tomas1199',
@@ -61,11 +82,11 @@ const UserForm = ({ isEditing, toggleEdit }) => {
       <h1>Social Profiles</h1>
       <Formik
         initialValues={{
-          name: user.name || '',
-          email: user.email || '',
-          birthday: user.birthday || '',
-          phone: user.phone || '',
-          city: user.city || '',
+          name: name || '',
+          email: email || '',
+          birthday: birthday || '',
+          phone: phone || '',
+          city: city || '',
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
