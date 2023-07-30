@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { isUserLogin } from '../../redux/auth/auth-selectors';
 import {
   StyledNavLink,
   StyledNavLinkWrapper,
@@ -6,9 +8,11 @@ import {
   IconWrapperMobill,
 } from './NoticesAddPetBtn.styled';
 import { AiOutlinePlus } from 'react-icons/ai';
+import Notiflix from 'notiflix';
 
 export const NoticesAddPetBtn = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isLoggedIn = useSelector(isUserLogin);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,9 +26,16 @@ export const NoticesAddPetBtn = () => {
     };
   }, []);
 
+  const handleAddPetClick = () => {
+    if (!isLoggedIn) {
+      Notiflix.Notify.warning('Please sign in or register to add a pet.');
+      return;
+    }
+  };
+
   return (
     <StyledNavLinkWrapper>
-      <StyledNavLink>
+      <StyledNavLink to="/add-pet" onClick={handleAddPetClick}>
         {isMobile ? (
           <IconWrapperMobill>
             <IconWrapper>
