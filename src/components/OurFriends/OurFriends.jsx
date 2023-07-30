@@ -41,7 +41,7 @@ const OurFriends = () => {
                   </Contacts>
 
                   <Contacts>
-                    <ContactTitle>Адрес:</ContactTitle>
+                    <ContactTitle>Address:</ContactTitle>
                     {friend.addressUrl && friend.address !== 'website only' ? (
                       <ContactsLink href={friend.addressUrl}>
                         {friend.address}
