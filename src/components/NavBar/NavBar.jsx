@@ -46,7 +46,7 @@ export const NavBar = () => {
 
   return (
     <Header>
-      <Logo to="/main">
+      <Logo to="/">
         <img src={image} alt="logo" />
       </Logo>
       {isOpen && (
@@ -71,7 +71,7 @@ export const NavBar = () => {
                 <NavLink to="/news">News</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="notices">Find pet</NavLink>
+                <NavLink to="/notices">Find pet</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/friends">Our friends</NavLink>

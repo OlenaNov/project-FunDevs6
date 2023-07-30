@@ -36,7 +36,7 @@ const App = () => {
         <Suspense>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path="main" element={<MainPage />} />
+              <Route index element={<MainPage to="/main" />} />
               <Route path="notices" element={<NoticesPage />}>
                 <Route
                   index
