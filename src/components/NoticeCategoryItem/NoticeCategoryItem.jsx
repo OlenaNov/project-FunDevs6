@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { isUserLogin } from '../../redux/auth/auth-selectors';
-import { useDispatch } from 'react-redux';
-// import {
-//   fetchAddToFavorite,
-//   fetchDeleteFromFavorite,
-// } from '../../redux/auth/auth-operations';
+// import React, { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { isUserLogin } from '../../redux/auth/auth-selectors';
+// import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import {
   AnimalCard,
@@ -16,32 +13,38 @@ import {
   IconWrapper,
   StyledComent,
   LearnMore,
-  StyledCardButtonRight,
+  // StyledCardButtonRight,
   RightButtonWrapper,
 } from './NoticeCategoryItem.styled';
-import { animal } from './animal';
+
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
   MdOutlineAccessTime,
   MdMale,
   MdFemale,
-  MdFavoriteBorder,
-  MdFavorite,
+  // MdFavoriteBorder,
+  // MdFavorite,
 } from 'react-icons/md';
-import Notiflix from 'notiflix';
-import { getAllAnimal } from '../../api/notice-api';
+// import Notiflix from 'notiflix';
 
-export const NoticeCategoryItem = ({ id }) => {
-  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
-  const isUserAuthenticated = useSelector(isUserLogin);
-  const dispatch = useDispatch();
+import NoticesModal from 'components/NoticesModal';
+import NoticesModalContent from 'components/NoticesModalContent';
 
-  useEffect(() => {
-    dispatch(getAllAnimal());
-  }, [dispatch]);
+import { calcPetAge, normalizeCategory } from 'utils';
 
-  // const animal = getAllAnimal();
-  console.log(getAllAnimal());
+export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
+  const [showLearnMore, setShowLearnMore] = useState(false);
+
+  // const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+  // const isUserAuthenticated = useSelector(isUserLogin);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getAllAnimal());
+  // }, [dispatch]);
+
+  // // const animal = getAllAnimal();
+  // console.log(getAllAnimal());
 
   // const dispatch = useDispatch();
   // const favoriteCardIds = useSelector(state => state.favoriteCardIds);
@@ -68,59 +71,88 @@ export const NoticeCategoryItem = ({ id }) => {
   //   }
   // };
 
-  const handleHeartIconClick = () => {
-    if (isUserAuthenticated) {
-      setIsAddedToFavorites(prevState => !prevState);
-    } else {
-      Notiflix.Notify.warning('You should be authorized');
-    }
-  };
+  // const handleHeartIconClick = () => {
+  //   if (isUserAuthenticated) {
+  //     setIsAddedToFavorites(prevState => !prevState);
+  //   } else {
+  //     Notiflix.Notify.warning('You should be authorized');
+  //   }
+  // };
+
+  // const { _id, category, title, location, date, sex, photo } = item; Error '_id' is assigned a value but never used.
+  const { category, title, location, date, sex, photo } = item;
+
+  const age = calcPetAge(date);
+  const normCategory = normalizeCategory(category);
+
+  // const getPetAge = dateString => {
+  //   const dateParts = dateString.split('-');
+  //   const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+  //   const today = new Date();
+  //   const timeDiff = today - dateObject;
+  //   const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  //   const days = Math.floor(timeDiff / millisecondsPerDay);
+  //   const millisecondsPerMonth = 1000 * 60 * 60 * 24 * 30.4375;
+  //   const years = Math.floor(timeDiff / (millisecondsPerMonth * 12));
+  //   const months = Math.floor(
+  //     (timeDiff % (millisecondsPerMonth * 12)) / millisecondsPerMonth
+  //   );
+
+  //   if (years < 1) {
+  //     if (months < 1) {
+  //       return days + (days === 1 ? ' day' : ' days');
+  //     } else {
+  //       return months + (months === 1 ? ' month' : ' months');
+  //     }
+  //   } else {
+  //     return years + (years === 1 ? ' year' : ' years');
+  //   }
+  // };
 
   return (
     <>
-      {animal.map(item => (
-        <AnimalCard key={item.id}>
-          <CategoryBadge>{item.category}</CategoryBadge>
-          <AnimalImage src={item.image} alt={item.title} />
-          <AnimalInfo>
-            <StyledCardButtonBottom>
-              <IconWrapper>
-                <HiOutlineLocationMarker size={24} />
-              </IconWrapper>
-              {item.place}
-            </StyledCardButtonBottom>
+      <AnimalCard>
+        <CategoryBadge>{normCategory}</CategoryBadge>
+        <AnimalImage src={photo} alt={title} />
+        <AnimalInfo>
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              <HiOutlineLocationMarker size={24} />
+            </IconWrapper>
+            {location}
+          </StyledCardButtonBottom>
 
-            <StyledCardButtonBottom>
-              <IconWrapper>
-                <MdOutlineAccessTime size={24} />
-              </IconWrapper>
-              {item.dateOfBirth}
-            </StyledCardButtonBottom>
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              <MdOutlineAccessTime size={24} />
+            </IconWrapper>
+            {age}
+          </StyledCardButtonBottom>
 
-            <StyledCardButtonBottom>
-              <IconWrapper>
-                {item.gender === 'male' ? (
-                  <MdMale size="24" />
-                ) : (
-                  <MdFemale size="24" />
-                )}
-              </IconWrapper>
-              {item.gender}
-            </StyledCardButtonBottom>
-          </AnimalInfo>
-          <StyledComent>{item.title}</StyledComent>
-          <LearnMore>Learn More</LearnMore>
-          <RightButtonWrapper>
-            <StyledCardButtonRight onClick={handleHeartIconClick}>
-              {isAddedToFavorites ? (
-                <MdFavorite size="24" />
-              ) : (
-                <MdFavoriteBorder size="24" />
-              )}
-            </StyledCardButtonRight>
-          </RightButtonWrapper>
-        </AnimalCard>
-      ))}
+          <StyledCardButtonBottom>
+            <IconWrapper>
+              {sex === 'male' ? <MdMale size="24" /> : <MdFemale size="24" />}
+            </IconWrapper>
+            {item.sex}
+          </StyledCardButtonBottom>
+        </AnimalInfo>
+        <StyledComent>{title}</StyledComent>
+        <LearnMore onClick={() => setShowLearnMore(true)}>Learn More</LearnMore>
+        <RightButtonWrapper>
+          {/* <StyledCardButtonRight onClick={onFavorite}>
+            {isAddedToFavorites ? (
+              <MdFavorite size="24" />
+            ) : (
+              <MdFavoriteBorder size="24" />
+            )}
+          </StyledCardButtonRight> */}
+        </RightButtonWrapper>
+      </AnimalCard>
+      {showLearnMore && (
+        <NoticesModal onClose={() => setShowLearnMore(false)}>
+          <NoticesModalContent item={item} />
+        </NoticesModal>
+      )}
     </>
   );
 };

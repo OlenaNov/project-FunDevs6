@@ -51,7 +51,7 @@ export const SearchBtn = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
-  transform: ${({ searchQuery }) => searchQuery && 'translateX(-27px)'};
+  transform: ${({ query }) => query && 'translateX(-27px)'};
   transition: transform 300ms ${({ theme }) => theme.transition.main};
   & svg {
     color: ${({ theme }) => theme.colors.blue};
@@ -61,7 +61,7 @@ export const SearchBtn = styled.button`
 export const ClearBtn = styled(SearchBtn)`
   right: 13px;
   transform: translateX(0);
-  opacity: ${({ searchQuery }) => (searchQuery ? 1 : 0)};
+  opacity: ${({ query }) => (query ? 1 : 0)};
   transition: opacity 300ms ${({ theme }) => theme.transition.main};
   & svg {
     color: ${({ theme }) => theme.colors.yellow};

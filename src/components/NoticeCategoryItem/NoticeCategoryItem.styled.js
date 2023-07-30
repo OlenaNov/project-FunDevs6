@@ -5,18 +5,18 @@ export const AnimalCard = styled.div`
   position: relative;
   box-shadow: 3px 8px 14px 0 rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
-  width: 285px;
-  height: 460px;
+  width: 280px;
+  height: 456px;
   &:focus,
   &:hover {
     box-shadow: ${({ theme }) => theme.boxShadows.secondary};
   }
 
-  @media screen and (max-width: 760px) {
-    width: 285px;
-  }
-  @media screen and (min-width: 761px) and (max-width: 1024px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 336px;
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 288px;
   }
 `;
 
@@ -88,13 +88,13 @@ export const CategoryBadge = styled.div`
 
 export const StyledComent = styled.p`
   margin: 20px;
-  font-family: 'Manrope', sans-serif;
-  font-style: 'Bold';
+  font-family: ${({ theme }) => theme.fonts.main.bold};
   font-size: ${theme.fontSizes[4]};
   line-height: 33px;
 `;
 
 export const LearnMore = styled.button`
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
@@ -118,14 +118,39 @@ export const LearnMore = styled.button`
     display: none;
   }
 
-  &:hover {
-    border: none;
-    background: ${theme.colors.blue};
-    color: white;
-    svg {
-      filter: brightness(0) invert(1);
-      display: inline-block;
-    }
+  transition: color 300ms ${({ theme }) => theme.transition.main},
+    background-color 300ms ${({ theme }) => theme.transition.main};
+
+  &.active {
+    color: ${theme.colors.white};
+
+    background-color: ${theme.colors.blue};
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: ${theme.colors.gradientBlue};
+    border-radius: 40px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 300ms ${theme.transition.main};
+  }
+
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: transparent;
+    border-color: transparent;
   }
 `;
 

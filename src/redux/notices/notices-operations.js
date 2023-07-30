@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://back-end-yourpet.onrender.com';
+axios.defaults.baseURL = 'https://back-end-yourpet.onrender.com';
+// 'https://cors.iamnd.eu.org/?url=https://back-end-yourpet.onrender.com';
 
 export const getAllAnimal = createAsyncThunk(
   'notices/fetchNotices',

@@ -1,5 +1,6 @@
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Outlet } from 'react-router-dom';
+
+// import { Outlet } from 'react-router-dom';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
@@ -49,7 +50,7 @@ export const NavBar = () => {
 
   return (
     <Header>
-      <Logo to="/main">
+      <Logo to="/">
         <img src={image} alt="logo" />
       </Logo>
       {isOpen && (
@@ -77,9 +78,8 @@ export const NavBar = () => {
               <NavItem onClick={handleCloseClick}>
                 <NavLink to="/news">News</NavLink>
               </NavItem>
-
-              <NavItem onClick={handleCloseClick}>
-                <NavLink to="notices">Find pet</NavLink>
+              <NavItem>
+                <NavLink to="/notices">Find pet</NavLink>
               </NavItem>
 
               <NavItem onClick={handleCloseClick}>
@@ -110,7 +110,6 @@ export const NavBar = () => {
       <CloseBtn open={isOpen} onClick={handleCloseClick}>
         <FaTimes />
       </CloseBtn>
-      <Outlet />
     </Header>
   );
 };
