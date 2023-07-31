@@ -2,9 +2,10 @@ const initialState = {
   user: {},
   token: '',
   isLogin: false,
-  isRefreshing: true,
+  isRefreshing: false,
   isLoading: false,
   error: null,
+  favorite: [],
 };
 
 export default initialState;

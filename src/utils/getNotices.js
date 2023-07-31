@@ -32,14 +32,14 @@ export const getNotices = async params => {
 
 const getAgeParam = age => {
   switch (age) {
-    case '0-12 m':
-      return 12;
+    case '3m-12m':
+      return '3m-12m';
 
-    case '1 year':
-      return 24;
+    case '1y':
+      return '1y';
 
-    case '2 years +':
-      return 25;
+    case '2y':
+      return '2y';
 
     default:
       return;

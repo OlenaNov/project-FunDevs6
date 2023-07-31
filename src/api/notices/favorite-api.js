@@ -1,7 +1,7 @@
-import axios from 'axios';
+import instance from 'api/auth-api';
 
 export const getFavoriteNotices = async ({ query, gender, age }) => {
-  const { data } = await axios.get(`/notice/favorite`, {
+  const { data } = await instance.get(`/notices/favorite`, {
     params: {
       query,
       gender,
@@ -13,13 +13,13 @@ export const getFavoriteNotices = async ({ query, gender, age }) => {
 };
 
 export const addFavoriteNotice = async id => {
-  const { data } = await axios.post(`/notice/favorite/${id}`);
+  const { data } = await instance.post(`/notices/favorite/${id}`);
 
   return data;
 };
 
 export const deleteFavoriteNotice = async id => {
-  const { data } = await axios.delete(`/notice/favorite/${id}`);
+  const { data } = await instance.delete(`/notices/favorite/${id}`);
 
   return data;
 };

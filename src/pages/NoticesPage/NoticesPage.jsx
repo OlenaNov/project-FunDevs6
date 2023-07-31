@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { createSearchParams } from 'utils';
@@ -28,6 +28,7 @@ import {
   deleteFavoriteNotice,
 } from 'api/notices/favorite-api';
 import Pagination from '../../components/Pagination';
+import { refreshUser } from 'redux/auth/auth-operations';
 
 const PER_PAGE = 12;
 
@@ -38,7 +39,7 @@ export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isLogin = useSelector(isUserLogin);
   const user = useSelector(getUser);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const prevPathname = useRef(pathname);
 
@@ -46,6 +47,10 @@ export const NoticesPage = () => {
   const gender = searchParams.get('gender');
   const age = searchParams.get('age');
   const page = searchParams.get('page');
+
+  if (!user?.favorite && isLogin) {
+    dispatch(refreshUser());
+  }
 
   const resetPage = useCallback(() => {
     searchParams.set('page', 1);
@@ -101,7 +106,9 @@ export const NoticesPage = () => {
       });
 
       if (notices.length === 0) {
-        searchParams.set('page', page - 1);
+        // searchParams.set('page', page - 1);
+        setItems([]);
+        resetPage();
         setSearchParams(searchParams);
         return;
       }
@@ -155,10 +162,10 @@ export const NoticesPage = () => {
       const path = pathname.split('/');
       const category = path[path.length - 1];
 
-      if (user.favoriteNotices.includes(id)) {
+      if (user.favorite.includes(id)) {
         try {
           await deleteFavoriteNotice(id);
-          // dispatch(refreshUser());
+          dispatch(refreshUser());
           if (category === 'favorite') {
             await getApiNotices();
           }
@@ -171,13 +178,13 @@ export const NoticesPage = () => {
 
       try {
         await addFavoriteNotice(id);
-        // dispatch(refreshUser());
+        dispatch(refreshUser());
         toast.success('Added successfully!');
       } catch (error) {
         toast.error(error.message);
       }
     },
-    [getApiNotices, isLogin, pathname, user.favoriteNotices]
+    [isLogin, pathname, user.favorite, dispatch, getApiNotices]
   );
 
   useEffect(() => {
@@ -226,7 +233,6 @@ export const NoticesPage = () => {
           </NoticesPageContainerFilterAdd>
         </NoticeFilterContainer>
       </NoticesPageContainer>
-
       <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
       {items.length === 0 && !isLoading && <NoticesNotFound />}
       {pageCount > 1 && items.length > 0 && (

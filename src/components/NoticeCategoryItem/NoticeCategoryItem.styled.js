@@ -7,6 +7,8 @@ export const AnimalCard = styled.div`
   border-radius: 0px 0px 40px 40px;
   width: 280px;
   height: 456px;
+  background-color: #ffffff;
+
   &:focus,
   &:hover {
     box-shadow: ${({ theme }) => theme.boxShadows.secondary};
@@ -50,15 +52,7 @@ export const StyledCardButtonBottom = styled.button`
   border: none;
   border-radius: 15px;
   font-weight: 600;
-
-  &:hover,
-  &:focus {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.blue};
-    svg {
-      color: ${theme.colors.white};
-    }
-  }
+  cursor: default;
 `;
 
 export const IconWrapper = styled('div')`
@@ -100,7 +94,7 @@ export const LearnMore = styled.button`
   position: absolute;
   bottom: 24px;
   width: 248px;
-  background-color: ${theme.colors.white};
+  background-color: #ffffff;
   color: ${theme.colors.blue};
   border: 2px solid #54adff;
   border-radius: 40px;

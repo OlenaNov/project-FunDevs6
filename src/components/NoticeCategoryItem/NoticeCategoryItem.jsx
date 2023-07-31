@@ -13,7 +13,7 @@ import {
   IconWrapper,
   StyledComent,
   LearnMore,
-  // StyledCardButtonRight,
+  StyledCardButtonRight,
   RightButtonWrapper,
 } from './NoticeCategoryItem.styled';
 
@@ -22,8 +22,8 @@ import {
   MdOutlineAccessTime,
   MdMale,
   MdFemale,
-  // MdFavoriteBorder,
-  // MdFavorite,
+  MdFavoriteBorder,
+  MdFavorite,
 } from 'react-icons/md';
 // import Notiflix from 'notiflix';
 
@@ -31,83 +31,32 @@ import NoticesModal from 'components/NoticesModal';
 import NoticesModalContent from 'components/NoticesModalContent';
 
 import { calcPetAge, normalizeCategory } from 'utils';
+import { useSelector } from 'react-redux';
+import { getUser, isUserLogin } from 'redux/auth/auth-selectors';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   const [showLearnMore, setShowLearnMore] = useState(false);
+  const isLogin = useSelector(isUserLogin);
+  const user = useSelector(getUser);
 
-  // const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
-  // const isUserAuthenticated = useSelector(isUserLogin);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getAllAnimal());
-  // }, [dispatch]);
-
-  // // const animal = getAllAnimal();
-  // console.log(getAllAnimal());
-
-  // const dispatch = useDispatch();
-  // const favoriteCardIds = useSelector(state => state.favoriteCardIds);
-
-  // useEffect(() => {
-  //   setIsAddedToFavorites(isUserAuthenticated && favoriteCardIds.includes(id));
-  // }, [isUserAuthenticated, favoriteCardIds, id]);
-
-  // const handleHeartIconClick = async () => {
-  //   if (!isUserAuthenticated) {
-  //     setIsAddedToFavorites(prevState => !prevState);
-
-  //     try {
-  //       if (!isAddedToFavorites) {
-  //         await dispatch(fetchAddToFavorite(id));
-  //       } else {
-  //         await dispatch(fetchDeleteFromFavorite(id));
-  //       }
-  //     } catch (error) {
-  //       console.error('Ошибка при выполнении API-запроса:', error);
-  //     }
-  //   } else {
-  //     Notiflix.Notify.warning('You should be authorized');
-  //   }
-  // };
-
-  // const handleHeartIconClick = () => {
-  //   if (isUserAuthenticated) {
-  //     setIsAddedToFavorites(prevState => !prevState);
-  //   } else {
-  //     Notiflix.Notify.warning('You should be authorized');
-  //   }
-  // };
-
-  // const { _id, category, title, location, date, sex, photo } = item; Error '_id' is assigned a value but never used.
-  const { category, title, location, date, sex, photo } = item;
+  const { _id, category, title, location, date, sex, photo } = item;
 
   const age = calcPetAge(date);
   const normCategory = normalizeCategory(category);
 
-  // const getPetAge = dateString => {
-  //   const dateParts = dateString.split('-');
-  //   const dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-  //   const today = new Date();
-  //   const timeDiff = today - dateObject;
-  //   const millisecondsPerDay = 1000 * 60 * 60 * 24;
-  //   const days = Math.floor(timeDiff / millisecondsPerDay);
-  //   const millisecondsPerMonth = 1000 * 60 * 60 * 24 * 30.4375;
-  //   const years = Math.floor(timeDiff / (millisecondsPerMonth * 12));
-  //   const months = Math.floor(
-  //     (timeDiff % (millisecondsPerMonth * 12)) / millisecondsPerMonth
-  //   );
+  const favorite = isLogin && user.favorite.includes(_id);
 
-  //   if (years < 1) {
-  //     if (months < 1) {
-  //       return days + (days === 1 ? ' day' : ' days');
-  //     } else {
-  //       return months + (months === 1 ? ' month' : ' months');
-  //     }
+  // const setfavorite = () => {
+  //   console.log(user?.favorite);
+  //   if (!user?.favorite) {
+  //     console.log('всередині undefined');
+  //     dispatch(refreshUser());
   //   } else {
-  //     return years + (years === 1 ? ' year' : ' years');
+  //     return isLogin && user.favorite.includes(_id);
   //   }
   // };
+
+  // const favorite = setfavorite();
 
   return (
     <>
@@ -139,13 +88,13 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
         <StyledComent>{title}</StyledComent>
         <LearnMore onClick={() => setShowLearnMore(true)}>Learn More</LearnMore>
         <RightButtonWrapper>
-          {/* <StyledCardButtonRight onClick={onFavorite}>
-            {isAddedToFavorites ? (
+          <StyledCardButtonRight onClick={() => onFavorite(_id)}>
+            {favorite ? (
               <MdFavorite size="24" />
             ) : (
               <MdFavoriteBorder size="24" />
             )}
-          </StyledCardButtonRight> */}
+          </StyledCardButtonRight>
         </RightButtonWrapper>
       </AnimalCard>
       {showLearnMore && (

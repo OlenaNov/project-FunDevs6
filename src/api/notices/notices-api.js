@@ -1,17 +1,13 @@
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: 'https://back-end-yourpet.onrender.com/api',
-});
+import instance from 'api/auth-api';
 
 export const getNoticeById = async id => {
-  const { data } = await axios.get(`/notice/${id}`);
+  const { data } = await instance.get(`/notices/${id}`);
 
   return data;
 };
 
 export const deleteNoticeById = async id => {
-  const res = await axios.delete(`/notice/${id}`);
+  const res = await instance.delete(`/notices/${id}`);
 
   return res;
 };
@@ -83,7 +79,7 @@ export const getOwnNotices = async ({
   gender,
   age,
 }) => {
-  const { data } = await axios.get(`/notice/myAdds`, {
+  const { data } = await instance.get(`/notices/myAdds`, {
     params: {
       page,
       limit,
