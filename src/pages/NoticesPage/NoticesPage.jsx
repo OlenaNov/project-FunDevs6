@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import NoticesFilters from '../../components/NoticesFilters';
 import NoticesSelectedFilters from 'components/NoticesSelectedFilters';
 import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesNotFound from '../../components/NoticesNotFound';
+import Loader from '../../components/Loader';
 
 import {
   NoticesContainter,
@@ -41,7 +42,7 @@ export const NoticesPage = () => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  // const prevPathname = useRef(pathname);
+  const prevPathname = useRef(pathname);
 
   const query = searchParams.get('query');
   const gender = searchParams.get('gender');
@@ -105,9 +106,9 @@ export const NoticesPage = () => {
         age,
       });
 
-      if (notices.length === 0) {
-        // searchParams.set('page', page - 1);
-        setItems([]);
+      if (notices.length === 0 && totalHits) {
+        searchParams.set('page', page - 1);
+        // setItems([]);
         resetPage();
         setSearchParams(searchParams);
         return;
@@ -204,10 +205,10 @@ export const NoticesPage = () => {
       return;
     }
 
-    // if (prevPathname.current !== pathname) {
-    //   prevPathname.current = pathname;
-    //   resetPage();
-    // }
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
+      resetPage();
+    }
 
     getApiNotices();
   }, [getApiNotices, isLogin, pathname, resetPage, searchParams]);
@@ -233,9 +234,12 @@ export const NoticesPage = () => {
           </NoticesPageContainerFilterAdd>
         </NoticeFilterContainer>
       </NoticesPageContainer>
-      <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
+      )}
       {items.length === 0 && !isLoading && <NoticesNotFound />}
-      {pageCount > 1 && items.length > 0 && (
+      {!isLoading && pageCount > 1 && items.length > 0 && (
         <Pagination
           onPageClick={handlePageClick}
           pageCount={pageCount}

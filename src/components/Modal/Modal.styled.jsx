@@ -19,6 +19,9 @@ position: relative;
 max-width: calc(100vw - 100px);
 max-height: calc(100vh - 100px);
 
+display: flex;
+flex-direction: column;
+justify-content: center;
 padding: 60px 20px;
 width: 280px;
 height: 302px;
@@ -29,15 +32,16 @@ background: #FFF;
 
 
 export const ButtonClose = styled.button`
-
-`;
-
-export const IconClose = styled(GrClose)`
 position: absolute;
 top: 12px;
 right: 12px;
+border: none;
+background-color: #fff;
+flex-shrink: 0;
+`;
+
+export const IconClose = styled(GrClose)`
 width: 24px;
 height: 24px;
-flex-shrink: 0;
 fill: #54ADFF;
 `;

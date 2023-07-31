@@ -38,7 +38,7 @@ const PersonalDetails = ({ category, touched, errors }) => {
         )}
       </Label>
       <Label>
-        Breed
+        Type
         <Input
           type="text"
           name="breed"

@@ -1,12 +1,13 @@
-import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
+
+
 import { IconExit, LogOutBtn } from './Logout.styled';
 
-const Logout = () => {
-  const dispatch = useDispatch();
+const Logout = ({ openModal }) => {
+
 
   const handleLogout = () => {
-    dispatch(logout());
+    console.log("Open Modal");
+    openModal();
   };
 
   return (
