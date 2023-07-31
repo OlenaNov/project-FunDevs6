@@ -5,11 +5,15 @@ import {
   ButtonSave,
   EditIcon,
   EditInpuButton,
+  EditPhotoButton,
   EditPhotoWrap,
   FormSection,
   Icon,
+  IconCheckPhoto,
+  IconCheckPhotoNo,
+  IconConfirmBox,
   IconEdit,
-  // IconEditPhoto,
+  IconEditPhoto,
   Label,
   StylizedForm,
   UserInfoWrap,
@@ -25,21 +29,30 @@ import { updateUser } from 'redux/auth/auth-operations';
 const UserForm = ({ isEditing, toggleEdit }) => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
-  console.log(222, user);
-
   const fileInput = useRef();
 
-  const [avatar, setAvatar] = useState(user.avatarURL || avatarDefault2x); // Використайте ваше дефолтне зображення тут
+  const [avatar, setAvatar] = useState(user.avatarURL || avatarDefault2x);
+  const [newAvatar, setNewAvatar] = useState(null);
 
   // обробник подій для завантаження файлу
   const handleFileChange = event => {
     if (event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = e => {
-        setAvatar(e.target.result);
+        console.log(`result`, e.target.resul);
+        setNewAvatar(e.target.result);
       };
       reader.readAsDataURL(event.target.files[0]);
     }
+  };
+
+  const handleConfirmChange = () => {
+    setAvatar(newAvatar);
+    setNewAvatar(null);
+  };
+
+  const handleCancelChange = () => {
+    setNewAvatar(null);
   };
 
   const handleEditPhoto = () => {
@@ -56,7 +69,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   const handleSubmit = values => {
     // Перевіряємо, чи є помилки валідації
 
-    console.log('123', values);
+    // console.log('123', values);
     console.log('avatar', avatar);
 
     dispatch(
@@ -80,7 +93,6 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
   return (
     <div>
-      <h1>Social Profiles</h1>
       <Formik
         initialValues={{
           name: user.name || '',
@@ -101,12 +113,29 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
           <UserInfoWrap>
             <AvatarSection>
-              <Avatar src={avatar} alt="User avatar" />
+              <Avatar src={newAvatar || avatar} alt="User avatar" />
               {isEditing && (
                 <EditPhotoWrap>
-                  <EditInpuButton type="button" onClick={handleEditPhoto}>
+                  {/* <EditInpuButton type="button" onClick={handleEditPhoto}>
                     Edit Photo
-                  </EditInpuButton>
+                  </EditInpuButton> */}
+                  {!newAvatar ? (
+                    <EditPhotoButton type="button" onClick={handleEditPhoto}>
+                      <IconEditPhoto /> <span>Edit Photo</span>
+                    </EditPhotoButton>
+                  ) : (
+                    <IconConfirmBox>
+                      <IconCheckPhoto
+                        type="button"
+                        onClick={handleConfirmChange}
+                      ></IconCheckPhoto>
+                      <span>Confirm</span>
+                      <IconCheckPhotoNo
+                        type="button"
+                        onClick={handleCancelChange}
+                      ></IconCheckPhotoNo>
+                    </IconConfirmBox>
+                  )}
                   <input
                     type="file"
                     ref={fileInput}
@@ -116,6 +145,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 </EditPhotoWrap>
               )}
             </AvatarSection>
+
             <FormSection>
               <Label htmlFor="name">
                 <span>Name:</span>
@@ -144,7 +174,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 <Field type="text" name="city" disabled={!isEditing} />
               </Label>
             </FormSection>
-            {isEditing ? <ButtonSave type="submit">Save123</ButtonSave> : null}
+            {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
           </UserInfoWrap>
         </StylizedForm>
       </Formik>
