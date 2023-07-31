@@ -12,7 +12,7 @@
 // export default AddPetPage;
 
 import { useEffect } from 'react';
-import AddPetForm from 'components/AddPetForm';
+import AddPetForm from '../../components/AddPet/AddPetForm';
 
 const AddPetPage = () => {
   useEffect(() => {

@@ -14,7 +14,7 @@ const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
-// const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
+const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 const NoticesCategoriesList = lazy(() =>
   import('../../components/NoticesCategoriesList')
@@ -72,7 +72,7 @@ const App = () => {
               </Route>
               <Route element={<PrivateRoute />}>
                 <Route path="user" element={<UserPage />} />
-                {/* <Route path="add-pet" element={<AddPetPage />} /> */}
+                <Route path="add-pet" element={<AddPetPage />} />
               </Route>
               <Route path="*" element={<NotFoundPage to="/not-found" />} />
             </Route>
