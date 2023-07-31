@@ -26,7 +26,7 @@ letter-spacing: -0.14px;
 export const ButtonCancel = styled.button`
 display: flex;
 margin-bottom: 8px;
-width: 256px;
+max-width: 256px;
 height: 40px;
 padding: 8px 20px;
 justify-content: center;
@@ -48,7 +48,7 @@ letter-spacing: 0.64px;
 
 export const ButtonYes = styled.button`
 display: flex;
-width: 256px;
+max-height: 256px;
 padding: 8px 20px;
 justify-content: center;
 align-items: center;
