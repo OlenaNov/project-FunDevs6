@@ -188,9 +188,9 @@ export const NoticesPage = () => {
   );
 
   useEffect(() => {
-    if (!searchParams.has('page')) {
-      resetPage();
-    }
+    // if (!searchParams.has('page')) {
+    //   resetPage();
+    // }
 
     setIsLoading(true);
 

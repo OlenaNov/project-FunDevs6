@@ -12,13 +12,7 @@ export const deleteNoticeById = async id => {
   return res;
 };
 
-export const getSellNotices = async ({
-  page = 1,
-  limit = 12,
-  query,
-  gender,
-  age,
-}) => {
+export const getSellNotices = async ({ page, limit, query, gender, age }) => {
   const { data } = await instance.get(`/notices/sell`, {
     params: {
       page,
@@ -33,8 +27,8 @@ export const getSellNotices = async ({
 };
 
 export const getInGoodHandsNotices = async ({
-  page = 1,
-  limit = 12,
+  page,
+  limit,
   query,
   gender,
   age,
@@ -52,13 +46,7 @@ export const getInGoodHandsNotices = async ({
   return data;
 };
 
-export const getLostNotices = async ({
-  page = 1,
-  limit = 12,
-  query,
-  gender,
-  age,
-}) => {
+export const getLostNotices = async ({ page, limit, query, gender, age }) => {
   const { data } = await instance.get(`/notices/lost-found`, {
     params: {
       page,
@@ -72,13 +60,7 @@ export const getLostNotices = async ({
   return data;
 };
 
-export const getOwnNotices = async ({
-  page = 1,
-  limit = 12,
-  query,
-  gender,
-  age,
-}) => {
+export const getOwnNotices = async ({ page, limit, query, gender, age }) => {
   const { data } = await instance.get(`/notices/myAdds`, {
     params: {
       page,
