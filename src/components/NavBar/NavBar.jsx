@@ -84,7 +84,7 @@ export const NavBar = () => {
                 <NavLink to="/news">News</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/notices/sell?page=1">Find pet</NavLink>
+                <NavLink to="/notices/sell">Find pet</NavLink>
               </NavItem>
 
               <NavItem onClick={handleCloseClick}>
