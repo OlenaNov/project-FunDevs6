@@ -143,6 +143,7 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
+  text-align: center;
   color: #888888;
 }
 
@@ -151,6 +152,7 @@
   line-height: 1.33;
   letter-spacing: 0.04em;
   text-decoration: underline;
+  display: inline-block;
   color: #54adff;
 }
 
