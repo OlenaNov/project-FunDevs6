@@ -15,14 +15,27 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-    position: relative;
-    max-width: calc(100vw - 100px);
-    max-height: calc(100vh - 100px);
+position: relative;
+max-width: calc(100vw - 100px);
+max-height: calc(100vh - 100px);
+
+padding: 60px 20px;
+width: 280px;
+height: 302px;
+flex-shrink: 0;
+border-radius: 20px;
+background: #FFF;
 `;
 
 
+export const ButtonClose = styled.button`
+
+`;
+
 export const IconClose = styled(GrClose)`
 position: absolute;
+top: 12px;
+right: 12px;
 width: 24px;
 height: 24px;
 flex-shrink: 0;

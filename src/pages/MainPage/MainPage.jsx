@@ -18,7 +18,7 @@ export const MainPage = () => {
     {showModal && 
         <Modal 
           onClose={toggleModal} 
-          children={() => <ModalContent message="Already leaving?" fnYes={console.log("Yes")} fnCancel={console.log("Cancel")} /> } />}
+          children={() => <ModalContent title="Already leaving?" fnYes={() => console.log("Yes")} fnCancel={() => console.log("Cancel")} /> } />}
   </>
   );
 };
