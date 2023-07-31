@@ -41,7 +41,7 @@ export const NoticesPage = () => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const prevPathname = useRef(pathname);
+  // const prevPathname = useRef(pathname);
 
   const query = searchParams.get('query');
   const gender = searchParams.get('gender');
@@ -204,10 +204,10 @@ export const NoticesPage = () => {
       return;
     }
 
-    if (prevPathname.current !== pathname) {
-      prevPathname.current = pathname;
-      resetPage();
-    }
+    // if (prevPathname.current !== pathname) {
+    //   prevPathname.current = pathname;
+    //   resetPage();
+    // }
 
     getApiNotices();
   }, [getApiNotices, isLogin, pathname, resetPage, searchParams]);
