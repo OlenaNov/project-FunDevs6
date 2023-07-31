@@ -1,6 +1,6 @@
 // import ReactPropTypes from 'prop-types';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { getUser } from 'redux/auth/auth-selectors';
+import { getUser, isUserLogin } from 'redux/auth/auth-selectors';
 
 import {
   NoticesContentImage,
@@ -25,6 +25,7 @@ import { normalizeCategory, normilizeBirthdate } from 'utils';
 
 const NoticesModal = ({ item, onFavorite }) => {
   const user = useSelector(getUser);
+  const isLogin = useSelector(isUserLogin);
 
   const {
     _id,
@@ -37,11 +38,12 @@ const NoticesModal = ({ item, onFavorite }) => {
     title,
     photo,
     category,
+    owner,
   } = item;
 
   const normCategory = normalizeCategory(category);
   const normBirthdate = normilizeBirthdate(date);
-  const favorite = user.favorite.includes(_id);
+  const favorite = isLogin && user.favorite.includes(_id);
 
   return (
     <NoticesModalContainer>
@@ -77,19 +79,21 @@ const NoticesModal = ({ item, onFavorite }) => {
               <tr>
                 <NoticesTableLabel>Email:</NoticesTableLabel>
                 <NoticesTableValue>
-                  <NoticesEmailLink href={`mailto:primer@gmail.com`}>
-                    primev@gmail.com
+                  <NoticesEmailLink href={`mailto:${owner.email}`}>
+                    {owner.email}
                   </NoticesEmailLink>
                 </NoticesTableValue>
               </tr>
-              <tr>
-                <NoticesTableLabel>Phone:</NoticesTableLabel>
-                <NoticesTableValue>
-                  <NoticesEmailLink href={`tel:primer@gmail.com`}>
-                    0676767677
-                  </NoticesEmailLink>
-                </NoticesTableValue>
-              </tr>
+              {owner?.phone && (
+                <tr>
+                  <NoticesTableLabel>Phone:</NoticesTableLabel>
+                  <NoticesTableValue>
+                    <NoticesEmailLink href={`tel:${owner.phone}`}>
+                      {owner.phone}
+                    </NoticesEmailLink>
+                  </NoticesTableValue>
+                </tr>
+              )}
             </tbody>
           </NoticesPetInfoTable>
         </NoticesPetInfo>

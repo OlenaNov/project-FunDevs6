@@ -1,5 +1,10 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import {
+  Outlet,
+  useLocation,
+  useSearchParams,
+  useNavigate,
+} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -43,6 +48,7 @@ export const NoticesPage = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const prevPathname = useRef(pathname);
+  const navigate = useNavigate();
 
   const query = searchParams.get('query');
   const gender = searchParams.get('gender');
@@ -156,8 +162,7 @@ export const NoticesPage = () => {
   const handleFavoriteClick = useCallback(
     async id => {
       if (!isLogin) {
-        toast.error('Sign in to add to favorites.');
-        return;
+        return navigate('/login');
       }
 
       const path = pathname.split('/');
@@ -185,7 +190,7 @@ export const NoticesPage = () => {
         toast.error(error.message);
       }
     },
-    [isLogin, pathname, user.favorite, dispatch, getApiNotices]
+    [isLogin, pathname, user.favorite, navigate, dispatch, getApiNotices]
   );
 
   useEffect(() => {
