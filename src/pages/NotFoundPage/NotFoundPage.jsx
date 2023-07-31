@@ -10,7 +10,7 @@ const NotFoundPage = () => {
   const navigate = useNavigate();
 
   const handleToMain = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   return (

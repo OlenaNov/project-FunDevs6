@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/auth-operations';
-import { IconExit, LogOutBtn } from './Logout.styled';
+import { IconExit, LogOutBtn } from './LogoutComponent.styled';
 
-const Logout = () => {
+const LogoutComponent = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -11,10 +11,10 @@ const Logout = () => {
 
   return (
     <LogOutBtn type="button" onClick={handleLogout}>
+      <span>Log out</span>
       <IconExit />
-      <span>Log Out</span>
     </LogOutBtn>
   );
 };
 
-export default Logout;
+export default LogoutComponent;
