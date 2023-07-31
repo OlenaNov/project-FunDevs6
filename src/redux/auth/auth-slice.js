@@ -8,6 +8,7 @@ import {
   logout,
   fetchAddToFavorite,
   fetchDeleteFromFavorite,
+  refreshUser,
 } from './auth-operations';
 import initialState from './auth-initialState';
 
@@ -122,8 +123,19 @@ export const authSlice = createSlice({
         state.notices = { data: [] };
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(refreshUser.pending, state => {
+        // state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLogin = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

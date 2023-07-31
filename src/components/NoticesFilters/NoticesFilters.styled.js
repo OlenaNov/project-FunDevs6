@@ -146,20 +146,21 @@ export const DropDownSubMenu = styled.div`
 `;
 
 export const FilterBtn = styled.button`
-padding: 0;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: ${theme.colors.lightBlue};
-    transition: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+  width: 100%;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: ${theme.colors.lightBlue};
+  transition: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
 `;
 
 export const ArrowIcon = styled(SlArrowUp)`
   color: ${theme.colors.blue};
   width: 16px;
   height: 16px;
+  transition: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
 `;
 
 export const BtnLabel = styled.span`
@@ -188,6 +189,12 @@ font-family: ${theme.fonts.secondary.regular}
   font-size: 12px;
   line-height: 16px;
   color: ${theme.colors.blue};
+  transition: color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover {
+    color: #448ccf;
+    font-weight: 500;
+  }
 `;
 
 export const FilterFormInput = styled.input`
@@ -200,6 +207,11 @@ export const FilterFormInput = styled.input`
   border-radius: 4px;
   border: 2px solid ${theme.colors.blue};
   appearance: none;
+  transition: border 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover {
+    border: 2px solid #448ccf;
+  }
 
   &::before {
     content: '';
