@@ -1,6 +1,6 @@
 // import ReactPropTypes from 'prop-types';
-// import { useSelector } from 'react-redux/es/hooks/useSelector';
-// import { getUser } from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { getUser } from 'redux/auth/auth-selectors';
 
 import {
   NoticesContentImage,
@@ -21,13 +21,13 @@ import {
   NoticesContactLink,
   HeartIcon,
 } from './NoticesModal.styled';
-import { normalizeCategory } from 'utils';
+import { normalizeCategory, normilizeBirthdate } from 'utils';
 
 const NoticesModal = ({ item, onFavorite }) => {
-  // const user = useSelector(getUser);
+  const user = useSelector(getUser);
 
   const {
-    // _id,
+    _id,
     name,
     date,
     comments,
@@ -40,6 +40,8 @@ const NoticesModal = ({ item, onFavorite }) => {
   } = item;
 
   const normCategory = normalizeCategory(category);
+  const normBirthdate = normilizeBirthdate(date);
+  const favorite = user.favorite.includes(_id);
 
   return (
     <NoticesModalContainer>
@@ -58,7 +60,7 @@ const NoticesModal = ({ item, onFavorite }) => {
               </tr>
               <tr>
                 <NoticesTableLabel>Birthday:</NoticesTableLabel>
-                <NoticesTableValue>{date}</NoticesTableValue>
+                <NoticesTableValue>{normBirthdate}</NoticesTableValue>
               </tr>
               <tr>
                 <NoticesTableLabel>Type:</NoticesTableLabel>
@@ -94,8 +96,10 @@ const NoticesModal = ({ item, onFavorite }) => {
       </NoticesModalContent>
       <NoticesComment>{comments}</NoticesComment>
       <NoticesBtnWrapper>
-        <NoticesBtn>
-          <NoticesBtnLabel>Add To</NoticesBtnLabel>
+        <NoticesBtn onClick={() => onFavorite(_id)}>
+          <NoticesBtnLabel>
+            {favorite ? 'Remove from' : 'Add to'}
+          </NoticesBtnLabel>
           <HeartIcon />
         </NoticesBtn>
         <NoticesContactLink href="mailto:primer@gmail.com">

@@ -99,7 +99,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
       </AnimalCard>
       {showLearnMore && (
         <NoticesModal onClose={() => setShowLearnMore(false)}>
-          <NoticesModalContent item={item} />
+          <NoticesModalContent item={item} onFavorite={onFavorite} />
         </NoticesModal>
       )}
     </>

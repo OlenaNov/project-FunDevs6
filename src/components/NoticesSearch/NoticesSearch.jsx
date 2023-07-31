@@ -8,6 +8,20 @@ import { Form, Input, SearchBtn, ClearBtn } from './NoticesSearch.styled';
 const NoticesSearch = ({ onFormSubmit, onClear }) => {
   const [query, setQuery] = useState({ query: '' });
 
+  const handleClearQuery = () => {
+    setQuery({ query: '' });
+    onClear({ query: '' });
+  };
+
+  const onInputChange = e => {
+    if (!e.target.value) {
+      handleClearQuery();
+      return;
+    }
+
+    setQuery({ query: e.target.value });
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -19,15 +33,6 @@ const NoticesSearch = ({ onFormSubmit, onClear }) => {
     onFormSubmit({ ...query });
   };
 
-  const onInputChange = e => {
-    setQuery({ query: e.target.value });
-  };
-
-  const handleClear = () => {
-    setQuery({ query: '' });
-    onClear();
-  };
-
   const searchQuery = query.query;
 
   return (
@@ -37,7 +42,7 @@ const NoticesSearch = ({ onFormSubmit, onClear }) => {
         name="query"
         id="query"
         onChange={onInputChange}
-        value={searchQuery}
+        value={query.query}
         placeholder="Search"
       />
       <SearchBtn type="submit" query={searchQuery} aria-label="submit">
@@ -47,7 +52,7 @@ const NoticesSearch = ({ onFormSubmit, onClear }) => {
       <ClearBtn
         type="button"
         query={searchQuery}
-        onClick={handleClear}
+        onClick={handleClearQuery}
         aria-label="clear the input field"
       >
         <IoMdClose style={{ fontSize: 24 }} />

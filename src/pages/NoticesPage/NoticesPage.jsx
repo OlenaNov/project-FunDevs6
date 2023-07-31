@@ -50,6 +50,7 @@ export const NoticesPage = () => {
   const page = searchParams.get('page');
 
   if (!user?.favorite && isLogin) {
+    setIsLoading(true);
     dispatch(refreshUser());
   }
 
@@ -81,15 +82,15 @@ export const NoticesPage = () => {
     resetPage();
   };
 
-  const handlePageClick = e => {
-    searchParams.set('page', e.selected + 1);
-    setSearchParams(searchParams);
-  };
-
-  const handleClear = () => {
+  const handleClearSearchQuery = () => {
     searchParams.delete('query', query);
     setSearchParams(searchParams);
     resetPage();
+  };
+
+  const handlePageClick = e => {
+    searchParams.set('page', e.selected + 1);
+    setSearchParams(searchParams);
   };
 
   const getApiNotices = useCallback(async () => {
@@ -108,7 +109,6 @@ export const NoticesPage = () => {
 
       if (notices.length === 0 && totalHits) {
         searchParams.set('page', page - 1);
-        // setItems([]);
         resetPage();
         setSearchParams(searchParams);
         return;
@@ -218,7 +218,10 @@ export const NoticesPage = () => {
   return (
     <NoticesContainter>
       <Title>Find your favorite pet</Title>
-      <NoticesSearch onFormSubmit={handleSubmit} onClear={handleClear} />
+      <NoticesSearch
+        onFormSubmit={handleSubmit}
+        onClear={handleClearSearchQuery}
+      />
       <NoticesPageContainer>
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />
