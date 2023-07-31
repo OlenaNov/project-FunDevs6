@@ -33,9 +33,9 @@ import paw from '../../images/paw-logIn/paw.svg';
 
 export const NavBar = () => {
   const isLoggedIn = useSelector(selectIsLogin);
-  const username = useSelector(getUser);
+  const { name } = useSelector(getUser);
 
-  // console.log(isLoggedIn);
+  console.log(isLoggedIn);
   // const username = 'Dima';
   // const isLoggedIn = false;
 
@@ -101,7 +101,7 @@ export const NavBar = () => {
         <UserContainer>
           <Link to="/user">
             <UserBtn type="button">
-              <img src={user} alt="user" /> <UserName>{username}</UserName>
+              <img src={user} alt="user" /> <UserName>{name}</UserName>
             </UserBtn>
           </Link>
         </UserContainer>
