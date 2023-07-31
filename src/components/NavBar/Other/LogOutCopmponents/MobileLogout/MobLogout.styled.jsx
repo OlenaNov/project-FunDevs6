@@ -9,8 +9,6 @@ export const MobLogOutBtn = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
 
-  margin: auto auto 20px 20px;
-
   display: flex;
   align-items: center;
   justify-content: center;

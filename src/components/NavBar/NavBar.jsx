@@ -30,6 +30,8 @@ import {
   UserBtn,
   UserContainer,
   UserName,
+  Menu,
+  GlobalStyles,
 } from './NavBar.styled';
 import image from 'images/logo/logo-large.svg';
 import user from 'images/user/user.svg';
@@ -54,78 +56,83 @@ export const NavBar = () => {
   };
 
   return (
-    <Header>
-      <Logo to="/">
-        <img src={image} alt="logo" />
-      </Logo>
-      {isOpen && (
-        <DropDownMenu>
-          {!isLoggedIn && (
-            <AuthList>
-              <AuthItem>
-                <Link to="/login">
-                  <LogIn type="button" to="/login" onClick={handleCloseClick}>
-                    Log IN <img src={paw} alt="paw" />
-                  </LogIn>
-                </Link>
-              </AuthItem>
-              <AuthItem>
-                <Link to="/register">
-                  <Registr
-                    type="button"
-                    to="/register"
-                    onClick={handleCloseClick}
-                  >
-                    Registration
-                  </Registr>
-                </Link>
-              </AuthItem>
-            </AuthList>
-          )}
-          <UserMob />
-          <Nav>
-            <NavList>
-              <NavItem onClick={handleCloseClick}>
-                <NavLink to="/news">News</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/notices/sell">Find pet</NavLink>
-              </NavItem>
+    <>
+      <GlobalStyles menuOpen={isOpen} />
+      <Header>
+        <Logo to="/">
+          <img src={image} alt="logo" />
+        </Logo>
+        {isOpen && (
+          <DropDownMenu>
+            {!isLoggedIn && (
+              <AuthList>
+                <AuthItem>
+                  <Link to="/login">
+                    <LogIn type="button" to="/login" onClick={handleCloseClick}>
+                      Log IN <img src={paw} alt="paw" />
+                    </LogIn>
+                  </Link>
+                </AuthItem>
+                <AuthItem>
+                  <Link to="/register">
+                    <Registr
+                      type="button"
+                      to="/register"
+                      onClick={handleCloseClick}
+                    >
+                      Registration
+                    </Registr>
+                  </Link>
+                </AuthItem>
+              </AuthList>
+            )}
+            {isLoggedIn && <UserMob />}
 
-              <NavItem onClick={handleCloseClick}>
-                <NavLink to="/friends">Our friends</NavLink>
-              </NavItem>
-            </NavList>
-          </Nav>
-          {isLoggedIn && <MobLogout />}
-        </DropDownMenu>
-      )}
+            <Nav>
+              <NavList>
+                <NavItem onClick={handleCloseClick}>
+                  <NavLink to="/news">News</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/notices/sell">Find pet</NavLink>
+                </NavItem>
 
-      <DesktopNav />
+                <NavItem onClick={handleCloseClick}>
+                  <NavLink to="/friends">Our friends</NavLink>
+                </NavItem>
+              </NavList>
+            </Nav>
+            {isLoggedIn && <MobLogout />}
+            <Menu></Menu>
+          </DropDownMenu>
+        )}
 
-      {isLoggedIn && <DesktopLogout />}
+        <DesktopNav />
 
-      {isLoggedIn && isOpen ? (
-        <TabLogout />
-      ) : isLoggedIn ? (
-        <UserContainer>
-          <Link to="/user">
-            <UserBtn type="button">
-              <img src={user} alt="user" /> <UserName>{name}</UserName>
-            </UserBtn>
-          </Link>
-        </UserContainer>
-      ) : (
-        <DesktopAuth />
-      )}
+        {isLoggedIn && <DesktopLogout />}
 
-      <OpenBtn open={!isOpen} onClick={handleOpenClick}>
-        <FaBars />
-      </OpenBtn>
-      <CloseBtn open={isOpen} onClick={handleCloseClick}>
-        <FaTimes />
-      </CloseBtn>
-    </Header>
+        {isLoggedIn && isOpen ? (
+          <TabLogout />
+        ) : isLoggedIn ? (
+          <UserContainer>
+            <Link to="/user">
+              <UserBtn type="button">
+                <img src={user} alt="user" /> <UserName>{name}</UserName>
+              </UserBtn>
+            </Link>
+          </UserContainer>
+        ) : (
+          <DesktopAuth />
+        )}
+
+        <OpenBtn open={!isOpen} onClick={handleOpenClick}>
+          <FaBars />
+        </OpenBtn>
+        <CloseBtn open={isOpen} onClick={handleCloseClick}>
+          <FaTimes />
+        </CloseBtn>
+      </Header>
+    </>
   );
 };
 
