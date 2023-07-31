@@ -5,8 +5,12 @@ import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
 import { useSelector } from 'react-redux';
-import { selectIsLogin, getUser } from '../../redux/auth/auth-selectors';
+import { selectIsLogin, getUser } from 'redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
+import MobLogout from './Other/LogOutCopmponents/MobileLogout/MobLogout';
+import TabLogout from './Other/LogOutCopmponents/TabletLogout/TabLogout';
+import DesktopLogout from './Other/LogOutCopmponents/DesktopLogout/DesktopLogout';
+import UserMob from './Other/UserMob/UserMob';
 
 import React, { useState } from 'react';
 import {
@@ -27,15 +31,15 @@ import {
   UserContainer,
   UserName,
 } from './NavBar.styled';
-import image from '../../images/logo/logo-large.svg';
-import user from '../../images/user/user.svg';
-import paw from '../../images/paw-logIn/paw.svg';
+import image from 'images/logo/logo-large.svg';
+import user from 'images/user/user.svg';
+import paw from 'images/paw-logIn/paw.svg';
 
 export const NavBar = () => {
   const isLoggedIn = useSelector(selectIsLogin);
   const { name } = useSelector(getUser);
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   // const username = 'Dima';
   // const isLoggedIn = false;
 
@@ -78,6 +82,7 @@ export const NavBar = () => {
               </AuthItem>
             </AuthList>
           )}
+          <UserMob />
           <Nav>
             <NavList>
               <NavItem onClick={handleCloseClick}>
@@ -92,12 +97,17 @@ export const NavBar = () => {
               </NavItem>
             </NavList>
           </Nav>
+          {isLoggedIn && <MobLogout />}
         </DropDownMenu>
       )}
 
       <DesktopNav />
 
-      {isLoggedIn ? (
+      {isLoggedIn && <DesktopLogout />}
+
+      {isLoggedIn && isOpen ? (
+        <TabLogout />
+      ) : isLoggedIn ? (
         <UserContainer>
           <Link to="/user">
             <UserBtn type="button">
