@@ -2,8 +2,9 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Layout from 'components/Layout';
-import PublicRoute from 'components/PublicRoute/PublicRoute';
-import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import PublicRoute from 'routes/PublicRoute/PublicRoute';
+import PrivateRoute from 'routes/PrivateRoute/PrivateRoute';
+import PrivateNoticeRoute from 'routes/PrivateNoitceRoute/PrivateNoticeRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { current } from 'redux/auth/auth-operations';
 import { selectisRefreshing } from 'redux/auth/auth-selectors';
@@ -48,7 +49,7 @@ const App = () => {
                 <Route
                   path="favorite"
                   element={
-                    <PrivateRoute
+                    <PrivateNoticeRoute
                       redirectTo="/login"
                       component={<NoticesCategoriesList />}
                     />
@@ -57,7 +58,7 @@ const App = () => {
                 <Route
                   path="own"
                   element={
-                    <PrivateRoute
+                    <PrivateNoticeRoute
                       redirectTo="/login"
                       component={<NoticesCategoriesList />}
                     />
