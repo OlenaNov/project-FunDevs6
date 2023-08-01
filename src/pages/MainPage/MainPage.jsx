@@ -1,4 +1,6 @@
 
+import Background from "components/Background/Background";
+import Container from "components/Container/Container";
 import MainDefault from "components/MainDefault";
 import Modal from "components/Modal/Modal";
 import ModalContent from "components/ModalContent/ModalContent";
@@ -13,13 +15,14 @@ export const MainPage = () => {
   };
 
  return (
-  <>
+  <Container>
+    <Background />
     <MainDefault />
     {showModal && 
         <Modal 
           onClose={toggleModal} 
           children={() => <ModalContent title="Already leaving?" fnYes={() => console.log("Yes")} fnCancel={() => console.log("Cancel")} /> } />}
-  </>
+  </Container>
   );
 };
 
