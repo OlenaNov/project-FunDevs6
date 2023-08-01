@@ -17,6 +17,8 @@ import {
   // WorkDaysList,
   // WorkDay,
 } from './OurFriends.styled';
+import Background from '../Background/Background';
+
 
 const OurFriends = ({ data }) => {
   const dispatch = useDispatch();
@@ -59,6 +61,7 @@ const OurFriends = ({ data }) => {
   return (
     <>
       <TitleMain>Our friends</TitleMain>
+      <Background />
       <List>
         {friends
           ? friends.map(item => (
