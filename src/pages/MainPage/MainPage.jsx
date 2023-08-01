@@ -1,22 +1,22 @@
 import Background from 'components/Background/Background';
 import Container from 'components/Container/Container';
 import MainDefault from 'components/MainDefault';
-import Modal from 'components/Modal/Modal';
-import ModalContent from 'components/ModalContent/ModalContent';
-import { useState } from 'react';
+// import Modal from 'components/Modal/Modal';
+// import ModalContent from 'components/ModalContent/ModalContent';
+// import { useState } from 'react';
 
 export const MainPage = () => {
-  const [showModal, setShowModal] = useState(true);
+  // const [showModal, setShowModal] = useState(true);
 
-  const toggleModal = () => {
-    setShowModal(s => !s);
-  };
+  // const toggleModal = () => {
+  //   setShowModal(s => !s);
+  // };
 
   return (
     <Container>
       <Background />
       <MainDefault />
-      {showModal && (
+      {/* {showModal && (
         <Modal
           onClose={toggleModal}
           children={() => (
@@ -27,7 +27,7 @@ export const MainPage = () => {
             />
           )}
         />
-      )}
+      )} */}
     </Container>
   );
 };
