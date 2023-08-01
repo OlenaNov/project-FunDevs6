@@ -43,7 +43,6 @@
     url('./fonts/Inter/Inter-Medium.woff') format('truetype');
 }
 
-
 *,
 *::before,
 *::after {
@@ -113,34 +112,14 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 4px;
+  width: 10px;
+  position: fixed;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: rgba(158, 158, 158, 1);
   border-radius: 2px;
-}
-
-@media screen and (min-device-pixel-ratio: 2) and (max-width: 480px),
-screen and (min-resolution: 192dpi) and (max-width: 480px),
-screen and (min-resolution: 2dppx) and (max-width: 480px) {
-    body {
-        background-image: url('./images/background/bg-mobile@2x.png'); 
-    }
-}
-
-@media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
-screen and (min-resolution: 192dpi) and (min-width: 768px),
-screen and (min-resolution: 2dppx) and (min-width: 768px) {
-    body {
-        background-image: url('./images/background/bg-tablet@2x.png'); 
-    }
-}
-
-@media screen and (min-width: 1280px) {
-  body {
-    background-image: url('./images/background/bg-desktop@2x.png');
-  }
+  position: fixed;
 }
 
 code {
