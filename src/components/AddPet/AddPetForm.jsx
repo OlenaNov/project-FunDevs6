@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
+
 // можливо шлях не правильний
 import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
-// вказати імпорти на хуки та нотісайс та редакс
 
 // так розумію потрібно прописати на add redux шлях
 // import { addPet } from 'redux'
@@ -105,7 +105,7 @@ const AddPetForm = ({ addPet }) => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      // тут потрібно прописати посилання на додавання нотіс
+      // додавання нотіс ----- це функціх для відправки запиту на сервер додавання нового оголошення
       // dispatch(addNotice([values.category, formData])).then(response => {
       //   if (!response.error) {
       //     navigate(`/notices/${values.category}`);
@@ -117,7 +117,7 @@ const AddPetForm = ({ addPet }) => {
     }
 
     if (values.category === 'for-free') {
-      // тут потрібно прописати посилання на додавання нотіс
+      // додавання нотіс ----- це функціх для відправки запиту на сервер додавання нового оголошення
       // dispatch(addNotice([values.category, formData])).then(response => {
       //   if (!response.error) {
       //     navigate(`/notices/${values.category}`);
@@ -131,7 +131,7 @@ const AddPetForm = ({ addPet }) => {
     formData.append('price', values.price.toString());
 
     if (values.category === 'sell') {
-      // тут потрібно прописати посилання на додавання нотіс ----- це функціх для відправки запиту на сервер додавання нового оголошення
+      //  додавання нотіс ----- це функціх для відправки запиту на сервер додавання нового оголошення
       // dispatch(addNotice([values.category, formData])).then(response => {
       //   if (!response.error) {
       //     navigate(`/notices/${values.category}`);
