@@ -31,6 +31,7 @@ export const Logo = styled(Link)`
 `;
 
 export const DropDownMenu = styled.div`
+  z-index: 2000;
   position: absolute;
   display: flex;
   flex-direction: column;
