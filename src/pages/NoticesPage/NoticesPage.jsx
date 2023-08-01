@@ -55,11 +55,6 @@ export const NoticesPage = () => {
   const age = searchParams.get('age');
   const page = searchParams.get('page');
 
-  if (!user?.favorite && isLogin) {
-    setIsLoading(true);
-    dispatch(refreshUser());
-  }
-
   const resetPage = useCallback(() => {
     searchParams.set('page', 1);
     setSearchParams(searchParams);
@@ -145,6 +140,13 @@ export const NoticesPage = () => {
     searchParams,
     setSearchParams,
   ]);
+
+  useEffect(() => {
+    if (!user?.favorite && isLogin) {
+      setIsLoading(true);
+      dispatch(refreshUser());
+    }
+  }, [user.favorite, isLogin, dispatch]);
 
   const handleDelete = useCallback(
     async id => {
