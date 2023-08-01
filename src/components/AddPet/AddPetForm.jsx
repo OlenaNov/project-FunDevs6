@@ -5,8 +5,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
+// можливо шлях не правильний
 import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 // вказати імпорти на хуки та нотісайс та редакс
+
+// так розумію потрібно прописати на add redux шлях
+// import { addPet } from 'redux'
+
+// також шлях на нотіс для того щоб подружити з бекендом 106, 118, 132 стрічки
+// import { addNotice } from 'redux'
 
 import { Formik, Form } from 'formik';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
@@ -41,13 +48,6 @@ const initialValues = {
 
 //Добавила { addPet }
 const AddPetForm = ({ addPet }) => {
-  // тут треба хукі ще
-  // на навігацію navigate
-  // на діспатч dispatch
-  // на лоадінг isLoading
-  // на звязати з нотісайс isNoticeLoading
-  //
-  //
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -105,38 +105,41 @@ const AddPetForm = ({ addPet }) => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      dispatch([values.category, formData]).then(response => {
-        if (!response.error) {
-          navigate(`/notices/${values.category}`);
-          resetForm();
-          return;
-        }
-        return;
-      });
+      // тут потрібно прописати посилання на додавання нотіс
+      // dispatch(addNotice([values.category, formData])).then(response => {
+      //   if (!response.error) {
+      //     navigate(`/notices/${values.category}`);
+      //     resetForm();
+      //     return;
+      //   }
+      //   return;
+      // });
     }
 
     if (values.category === 'for-free') {
-      dispatch([values.category, formData]).then(response => {
-        if (!response.error) {
-          navigate(`/notices/${values.category}`);
-          resetForm();
-          return;
-        }
-        return;
-      });
+      // тут потрібно прописати посилання на додавання нотіс
+      // dispatch(addNotice([values.category, formData])).then(response => {
+      //   if (!response.error) {
+      //     navigate(`/notices/${values.category}`);
+      //     resetForm();
+      //     return;
+      //   }
+      //   return;
+      // });
     }
 
     formData.append('price', values.price.toString());
 
     if (values.category === 'sell') {
-      dispatch([values.category, formData]).then(response => {
-        if (!response.error) {
-          navigate(`/notices/${values.category}`);
-          resetForm();
-          return;
-        }
-        return;
-      });
+      // тут потрібно прописати посилання на додавання нотіс ----- це функціх для відправки запиту на сервер додавання нового оголошення
+      // dispatch(addNotice([values.category, formData])).then(response => {
+      //   if (!response.error) {
+      //     navigate(`/notices/${values.category}`);
+      //     resetForm();
+      //     return;
+      //   }
+      //   return;
+      // });
     }
   };
 
