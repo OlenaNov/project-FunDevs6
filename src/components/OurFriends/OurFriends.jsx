@@ -18,7 +18,7 @@ import {
   // WorkDay,
 } from './OurFriends.styled';
 import Background from '../Background/Background';
-
+import ScrollBtn from '../ScrollBtn/ScrollBtn';
 
 const OurFriends = ({ data }) => {
   const dispatch = useDispatch();
@@ -152,6 +152,7 @@ const OurFriends = ({ data }) => {
               </Item>
             ))
           : null}
+        <ScrollBtn />
       </List>
     </>
   );
