@@ -13,7 +13,13 @@ export const Header = styled.header`
   display: flex;
   justify-content: end;
   align-items: center;
-  position: relative;
+
+  /* position: relative; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   @media screen and (min-width: 768px) {
     padding: 24px 32px;
   }
