@@ -1,3 +1,4 @@
+// import cloudinary from 'cloudinary';
 import { Formik, Field } from 'formik';
 import {
   Avatar,
@@ -38,28 +39,48 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
   const [newAvatar, setNewAvatar] = useState(null);
 
+  // const handleFileChange = event => {
+  //   if (event.target.files[0]) {
+  //     // const url = URL.createObjectURL(event.target.files[0]);
+  //     // setAvatar(url);
+
+  //     const file = event.target.files[0];
+  //     const blob = new Blob([file], { type: file.type });
+  //     setAvatar(blob);
+  //   }
+  // };
+
+  // обробник подій для завантаження файлу
+
+  const arrayBufferToBase64 = buffer => {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  };
+
+  const base64Avatar = arrayBufferToBase64(newAvatar);
+
   const handleFileChange = event => {
     if (event.target.files[0]) {
-      const url = URL.createObjectURL(event.target.files[0]);
-      setAvatar(url);
+      const reader = new FileReader();
+      reader.onload = e => {
+        setNewAvatar(e.target.result);
+      };
+      reader.readAsArrayBuffer(event.target.files[0]);
     }
   };
 
-  // обробник подій для завантаження файлу
-  // const handleFileChange = e => {
-  //   if (e.target.files[0]) {
-  //     const url = new FormData();
-  //     FormData.append('url', url);
-
-  //     console.log(`url`, url);
-  // const reader = new FileReader();
-  // reader.onloadend = () => {
-  //   console.log(`result`, reader.result);
-  //   setNewAvatar(reader.result);
-  // };
-  // reader.readAsDataURL(e.target.files[0]);
+  // const handleFileChange = event => {
+  //   if (event.target.files[0]) {
+  //     setAvatar(event.target.files[0]);
+  //     console.log(avatar);
   //   }
   // };
+
   // const handleFileChange = e => {
   //   console.log(`result`, e.target.result);
   //   setNewAvatar(e.target.files[0]);
@@ -88,12 +109,18 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   const handleSubmit = values => {
     // Перевіряємо, чи є помилки валідації
 
-    // console.log('123', values);
+    console.log('123', values);
     console.log('avatar', avatar);
 
+    let base64Avatar;
+    if (avatar instanceof ArrayBuffer) {
+      base64Avatar = arrayBufferToBase64(avatar);
+    }
+
+    console.log('base64Avatar', base64Avatar);
     dispatch(
       updateUser({
-        avatar: avatar,
+        avatar: base64Avatar,
         name: values.name,
         email: values.email,
         birthday: values.birthday,
@@ -193,8 +220,8 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 <Field type="text" name="city" disabled={!isEditing} />
               </Label>
             </FormSection>
-            {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
           </UserInfoWrap>
+          {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
         </StylizedForm>
       </Formik>
     </div>
