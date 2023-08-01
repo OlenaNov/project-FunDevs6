@@ -2,10 +2,12 @@ import { Form } from 'formik';
 import styled from 'styled-components';
 // import { RxCross1 } from 'react-icons/rx';
 import { ImCross } from 'react-icons/im';
+import { RxCross2 } from 'react-icons/rx';
+
 import { FiEdit3 } from 'react-icons/fi';
 import { BsCamera } from 'react-icons/bs';
 import { BsCheck2 } from 'react-icons/bs';
-// import { BsCamera } from 'react-icons/bs';
+import { AiOutlineCheck } from 'react-icons/ai';
 import { theme } from 'theme/theme';
 
 export const StylizedForm = styled(Form)`
@@ -19,6 +21,7 @@ export const StylizedForm = styled(Form)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: column;
+    align-content: space-between;
     gap: 5px;
   }
 `;
@@ -54,6 +57,23 @@ export const IconCheckPhoto = styled(BsCheck2)`
 export const UserInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
+  /* @media screen and (min-width: ${({ theme }) =>
+    theme.breakpoints.tablet}) and (max-width: ${({ theme }) =>
+    theme.breakpoints.desktop}) {
+    width: 182px;
+    display: flex;
+    flex-direction: row-reverse;
+  } */
+`;
+
+export const EditPhotoButton = styled.button`
+  margin: 0 auto;
+  border: none;
+  background-color: transparent;
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 `;
 
 export const EditInpuButton = styled.div`
@@ -91,10 +111,12 @@ export const ButtonSave = styled.button`
   outline: none;
   font-family: inherit;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.35;
   letter-spacing: 0.04em;
   cursor: pointer;
+
+  margin-top: 10px;
 
   :hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -153,12 +175,32 @@ export const IconEditPhoto = styled(BsCamera)`
   stroke: ${theme.colors.blue};
 `;
 
+export const ButtonSubmitPhoto = styled(AiOutlineCheck)`
+  width: 24px;
+  height: 24px;
+  fill: ${theme.colors.blue};
+  stroke: ${theme.colors.blue};
+`;
+
+export const IconCheckPhotoNo = styled(RxCross2)`
+  width: 24px;
+  height: 24px;
+  color: #f43f5e;
+`;
+
+export const IconConfirmBox = styled.div`
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+`;
+
 export const EditPhotoWrap = styled.div`
   display: flex;
   gap: 8px;
 `;
 
 export const AvatarSection = styled.div`
+  height: 245px;
   display: flex;
   flex-direction: column;
   justify-content: center;

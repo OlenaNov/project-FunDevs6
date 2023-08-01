@@ -1,72 +1,86 @@
 import { Formik, Field } from 'formik';
 import {
-  // Avatar,
-  // AvatarSection,
+  Avatar,
+  AvatarSection,
   ButtonSave,
   EditIcon,
   EditInpuButton,
-  // EditPhotoWrap,
+  EditPhotoButton,
+  EditPhotoWrap,
   FormSection,
   Icon,
+  IconCheckPhoto,
+  IconCheckPhotoNo,
+  IconConfirmBox,
   IconEdit,
-  // IconEditPhoto,
+  IconEditPhoto,
   Label,
   StylizedForm,
   UserInfoWrap,
 } from './UserForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-// import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
+import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 import { updateUser } from 'redux/auth/auth-operations';
-import { validationSchema } from 'validation';
+// import { validationSchema } from 'validation';
 
 const UserForm = ({ isEditing, toggleEdit }) => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
-  console.log(222, user);
+  const fileInput = useRef();
+
+  const [avatar, setAvatar] = useState(user.avatarURL || avatarDefault2x);
+  const [newAvatar, setNewAvatar] = useState(null);
+
+  // обробник подій для завантаження файлу
+  const handleFileChange = event => {
+    if (event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        console.log(`result`, e.target.resul);
+        setNewAvatar(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
+  const handleConfirmChange = () => {
+    setAvatar(newAvatar);
+    setNewAvatar(null);
+  };
+
+  const handleCancelChange = () => {
+    setNewAvatar(null);
+  };
+
+  const handleEditPhoto = () => {
+    fileInput.current.click();
+  };
 
   // const [avatar, setAvatar] = useState(user.avatarURL || '');
-  const [name, setName] = useState(user.name || '');
-  const [email, setEmail] = useState(user.email || '');
-  const [birthday, setBirthday] = useState(user.birthday || '');
-  const [phone, setPhone] = useState(user.phone || '');
-  const [city, setCity] = useState(user.city || '');
+  // const [name, setName] = useState(user.name || '');
+  // const [email, setEmail] = useState(user.email || '');
+  // const [birthday, setBirthday] = useState(user.birthday || '');
+  // const [phone, setPhone] = useState(user.phone || '');
+  // const [city, setCity] = useState(user.city || '');
 
-  const handleSubmit = (e, values) => {
+  const handleSubmit = values => {
     // Перевіряємо, чи є помилки валідації
 
-    // const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(values.name);
-        break;
-      case 'email':
-        setEmail(values.email);
-        break;
-      case 'birthday':
-        setBirthday(values.birthday);
-        break;
-      case 'phone':
-        setPhone(values.phone);
-        break;
-      case 'city':
-        setCity(values.city);
-        break;
-      default:
-        break;
-    }
+    // console.log('123', values);
+    console.log('avatar', avatar);
 
-    console.log('123', values);
     dispatch(
       updateUser({
-        avatarURL: 'khgk',
-        name: name,
-        email: email,
-        birthday: birthday,
-        phone: phone,
-        city: city,
+        avatarURL: avatar,
+        name: values.name,
+        email: values.email,
+        birthday: values.birthday,
+        phone: values.phone,
+        city: values.city,
+
         // avatarURL: 'khgk',
         // email: 'Tomas11@gmail.com',
         // name: 'Tomas1199',
@@ -79,17 +93,16 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
   return (
     <div>
-      <h1>Social Profiles</h1>
       <Formik
         initialValues={{
-          name: name || '',
-          email: email || '',
-          birthday: birthday || '',
-          phone: phone || '',
-          city: city || '',
+          name: user.name || '',
+          email: user.email || '',
+          birthday: user.birthday || '',
+          phone: user.phone || '',
+          city: user.city || '',
         }}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
       >
         <StylizedForm autoComplete="off">
           <EditIcon>
@@ -99,6 +112,40 @@ const UserForm = ({ isEditing, toggleEdit }) => {
           </EditIcon>
 
           <UserInfoWrap>
+            <AvatarSection>
+              <Avatar src={newAvatar || avatar} alt="User avatar" />
+              {isEditing && (
+                <EditPhotoWrap>
+                  {/* <EditInpuButton type="button" onClick={handleEditPhoto}>
+                    Edit Photo
+                  </EditInpuButton> */}
+                  {!newAvatar ? (
+                    <EditPhotoButton type="button" onClick={handleEditPhoto}>
+                      <IconEditPhoto /> <span>Edit Photo</span>
+                    </EditPhotoButton>
+                  ) : (
+                    <IconConfirmBox>
+                      <IconCheckPhoto
+                        type="button"
+                        onClick={handleConfirmChange}
+                      ></IconCheckPhoto>
+                      <span>Confirm</span>
+                      <IconCheckPhotoNo
+                        type="button"
+                        onClick={handleCancelChange}
+                      ></IconCheckPhotoNo>
+                    </IconConfirmBox>
+                  )}
+                  <input
+                    type="file"
+                    ref={fileInput}
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                  />
+                </EditPhotoWrap>
+              )}
+            </AvatarSection>
+
             <FormSection>
               <Label htmlFor="name">
                 <span>Name:</span>
@@ -127,7 +174,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 <Field type="text" name="city" disabled={!isEditing} />
               </Label>
             </FormSection>
-            {isEditing ? <ButtonSave type="submit">Save123</ButtonSave> : null}
+            {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
           </UserInfoWrap>
         </StylizedForm>
       </Formik>
