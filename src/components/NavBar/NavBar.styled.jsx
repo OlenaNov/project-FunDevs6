@@ -1,5 +1,11 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+export const GlobalStyles = createGlobalStyle`
+  body {
+    overflow: ${({ menuOpen }) => (menuOpen ? 'hidden' : 'auto')};
+  }
+`;
 
 export const Header = styled.header`
   background-color: #fff;
@@ -29,6 +35,9 @@ export const Logo = styled(Link)`
     margin-right: auto;
   }
 `;
+export const Menu = styled.div`
+  margin-top: 60px;
+`;
 
 export const DropDownMenu = styled.div`
   z-index: 2000;
@@ -39,6 +48,8 @@ export const DropDownMenu = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
+
+  z-index: 999;
   background-color: #fff;
   @media screen and(min-width: 1200px) {
     display: none;

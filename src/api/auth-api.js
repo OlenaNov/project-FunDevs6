@@ -37,9 +37,7 @@ export const getCurrent = async token => {
 export const updateUser = async (data, token) => {
   try {
     console.log(444, data);
-    const { data: result } = await instance.patch('/users/', data, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const { data: result } = await instance.patch('/users/', data);
     return result;
   } catch (error) {
     console.error(error);

@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "cloudinary": "^1.40.0",
     "formik": "^2.4.2",
     "moment": "^2.29.4",
     "nanoid": "^4.0.2",
