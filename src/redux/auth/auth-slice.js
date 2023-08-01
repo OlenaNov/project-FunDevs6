@@ -60,7 +60,7 @@ export const authSlice = createSlice({
         state.isLogin = true;
       })
       .addCase(current.rejected, state => {
-        // handleRejected();
+        handleRejected();
         state.isRefreshing = false;
         state.isLoading = false;
         state.isLogin = false;
