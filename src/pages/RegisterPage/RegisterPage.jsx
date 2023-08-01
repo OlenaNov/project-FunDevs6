@@ -5,7 +5,7 @@ import Background from 'components/Background/Background';
 import AuthForm from 'components/AuthForm/AuthForm';
 import Section from 'components/Section/Section';
 import Container from 'components/Container/Container';
-// import ModalCongrats from 'components/ModalCongrats/ModalCongrats'; // Імпортуємо модалку
+import Loader from 'components/Loader/Loader';
 import { signup } from 'redux/auth/auth-operations';
 import { isLoading, checkError } from 'redux/auth/auth-selectors';
 
@@ -17,14 +17,12 @@ export const RegisterPage = () => {
   const loading = useSelector(isLoading);
   const error = useSelector(checkError);
   const [submissionError, setSubmissionError] = useState(null);
-  // const [showModal, setShowModal] = useState(false); // Додали стан showModal
 
   const handleSubmit = async ({ email, password, name }, { setSubmitting }) => {
     const data = { email, password, name };
     console.log(email, password, name);
     try {
       await dispatch(signup(data));
-      // setShowModal(true); // Вказуємо, що модалку потрібно показати після успішної реєстрації
       navigate('/user', { state: { from: '/register' } });
     } catch (error) {
       setSubmissionError(error);
@@ -35,7 +33,7 @@ export const RegisterPage = () => {
   };
 
   if (loading && !error) {
-    // return <Loader />;
+    return <Loader />;
   }
 
   return (
@@ -44,10 +42,6 @@ export const RegisterPage = () => {
       <Container>
         <AuthForm isRegister onSubmit={handleSubmit} />
         {submissionError && <div>Error: {submissionError.message}</div>}
-        {/* {showModal && (
-          <ModalCongrats onClose={() => setShowModal(false)} />
-        )}{' '} */}
-        {/* Показуємо модалку, якщо showModal === true */}
       </Container>
     </Section>
   );
