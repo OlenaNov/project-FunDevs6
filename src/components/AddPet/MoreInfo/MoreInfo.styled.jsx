@@ -25,11 +25,12 @@ export const TheSexWrapper = styled.div`
 
   > div {
     display: flex;
-    gap: 23px;
+    gap: 16px;
   }
 `;
 
 export const TheSexTitle = styled.p`
+  margin-bottom: 8px;
   font-weight: 500;
   font-size: 14px;
   line-height: calc(19 / 14);

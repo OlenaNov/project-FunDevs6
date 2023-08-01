@@ -37,7 +37,7 @@ export const Item = styled.li`
   box-shadow: 3px 8px 14px 0 rgba(136, 198, 253, 0.19);
   background-color: #ffffff;
   width: 280px;
-  height: 239px;
+  height: 250px;
   margin-left: auto;
   margin-right: auto;
   &:focus,
@@ -51,13 +51,13 @@ export const Item = styled.li`
 
   @media screen and (min-width: 768px) {
     width: 336px;
-    height: 275px;
+    height: 290px;
     margin: 16px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 395px;
-    height: 287px;
+    height: 300px;
     margin: 16px;
   }
 `;
@@ -71,7 +71,8 @@ export const Title = styled.a`
 
 export const ImgThumb = styled.div`
   margin-right: 12px;
-  margin-top: 16px;
+  margin-top: 18px;
+
   @media screen and (max-width: 747px) {
     width: 100px;
   }
@@ -82,6 +83,22 @@ export const ImgThumb = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 146px;
+  }
+`;
+
+export const Img = styled.img`
+  @media screen and (max-width: 747px) {
+    width: 100px;
+  }
+
+  @media screen and (min-width: 748px) and (max-width: 1279px) {
+    width: 140px;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 146px;
+    padding: 5px;
   }
 `;
 
@@ -138,4 +155,24 @@ export const ContactsLink = styled.a`
   @media screen and (min-width: 1280px) {
     font-size: 16px;
   }
+`;
+
+export const Popover = styled.div`
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+`;
+
+export const WorkDaysList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const WorkDay = styled.li`
+  padding: 4px 0;
 `;

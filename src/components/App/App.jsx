@@ -11,6 +11,7 @@ import { selectisRefreshing } from 'redux/auth/auth-selectors';
 import Loader from 'components/Loader/Loader';
 
 const MainPage = lazy(() => import('../../pages/MainPage'));
+const NewsPage = lazy(() => import('../../pages/NewsPage'));
 const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
@@ -57,7 +58,7 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="own"
+                  path="my-ads"
                   element={
                     <PrivateNoticeRoute
                       redirectTo="/login"
@@ -75,6 +76,7 @@ const App = () => {
                 <Route path="user" element={<UserPage />} />
                 <Route path="add-pet" element={<AddPetPage />} />
               </Route>
+              <Route path="news" element={<NewsPage />} />
               <Route path="*" element={<NotFoundPage to="/not-found" />} />
             </Route>
           </Routes>

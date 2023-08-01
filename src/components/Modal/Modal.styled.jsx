@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GrClose } from 'react-icons/gr';
+import { MdOutlineClose } from 'react-icons/md';
 
 export const Backdrop = styled.div`
     position: fixed;
@@ -40,7 +40,7 @@ background-color: #fff;
 flex-shrink: 0;
 `;
 
-export const IconClose = styled(GrClose)`
+export const IconClose = styled(MdOutlineClose)`
 width: 24px;
 height: 24px;
 fill: #54ADFF;

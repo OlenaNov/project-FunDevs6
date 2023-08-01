@@ -1,5 +1,10 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import {
+  Outlet,
+  useLocation,
+  useSearchParams,
+  useNavigate,
+} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -43,6 +48,7 @@ export const NoticesPage = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const prevPathname = useRef(pathname);
+  const navigate = useNavigate();
 
   const query = searchParams.get('query');
   const gender = searchParams.get('gender');
@@ -50,6 +56,7 @@ export const NoticesPage = () => {
   const page = searchParams.get('page');
 
   if (!user?.favorite && isLogin) {
+    setIsLoading(true);
     dispatch(refreshUser());
   }
 
@@ -81,15 +88,15 @@ export const NoticesPage = () => {
     resetPage();
   };
 
-  const handlePageClick = e => {
-    searchParams.set('page', e.selected + 1);
-    setSearchParams(searchParams);
-  };
-
-  const handleClear = () => {
+  const handleClearSearchQuery = () => {
     searchParams.delete('query', query);
     setSearchParams(searchParams);
     resetPage();
+  };
+
+  const handlePageClick = e => {
+    searchParams.set('page', e.selected + 1);
+    setSearchParams(searchParams);
   };
 
   const getApiNotices = useCallback(async () => {
@@ -108,7 +115,6 @@ export const NoticesPage = () => {
 
       if (notices.length === 0 && totalHits) {
         searchParams.set('page', page - 1);
-        // setItems([]);
         resetPage();
         setSearchParams(searchParams);
         return;
@@ -156,8 +162,7 @@ export const NoticesPage = () => {
   const handleFavoriteClick = useCallback(
     async id => {
       if (!isLogin) {
-        toast.error('Sign in to add to favorites.');
-        return;
+        return navigate('/login');
       }
 
       const path = pathname.split('/');
@@ -185,7 +190,7 @@ export const NoticesPage = () => {
         toast.error(error.message);
       }
     },
-    [isLogin, pathname, user.favorite, dispatch, getApiNotices]
+    [isLogin, pathname, user.favorite, navigate, dispatch, getApiNotices]
   );
 
   useEffect(() => {
@@ -218,7 +223,10 @@ export const NoticesPage = () => {
   return (
     <NoticesContainter>
       <Title>Find your favorite pet</Title>
-      <NoticesSearch onFormSubmit={handleSubmit} onClear={handleClear} />
+      <NoticesSearch
+        onFormSubmit={handleSubmit}
+        onClear={handleClearSearchQuery}
+      />
       <NoticesPageContainer>
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />

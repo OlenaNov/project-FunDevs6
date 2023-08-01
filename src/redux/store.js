@@ -11,6 +11,9 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth/auth-slice';
+import { newsReducer } from './news/news-slice';
+import { friendsReducer } from './friends/friends-slice';
+
 import persistReducer from 'redux-persist/es/persistReducer';
 
 const authPersistConfig = {
@@ -19,8 +22,23 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const friendsPersistConfig = {
+  key: 'friends',
+  storage,
+  whitelist: ['friends'],
+};
+
+const persistedFriendsReducer = persistReducer(
+  friendsPersistConfig,
+  friendsReducer
+);
+
 export const store = configureStore({
-  reducer: { auth: persistReducer(authPersistConfig, authReducer) },
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    friends: persistedFriendsReducer,
+    news: newsReducer,
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

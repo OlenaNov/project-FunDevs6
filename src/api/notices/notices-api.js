@@ -79,7 +79,7 @@ export const getOwnNotices = async ({
   gender,
   age,
 }) => {
-  const { data } = await instance.get(`/notices/myAdds`, {
+  const { data } = await instance.get(`/notices/my-ads`, {
     params: {
       page,
       limit,

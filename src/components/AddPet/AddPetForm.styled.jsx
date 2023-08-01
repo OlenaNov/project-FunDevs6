@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const AddPetFormWrapper = styled.div`
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 458px;
   padding: 20px 8px;
 
@@ -10,12 +10,14 @@ export const AddPetFormWrapper = styled.div`
   border-radius: 40px;
 
   @media (min-width: 768px) {
+    margin: 60px auto;
     padding: 20px 32px;
     max-width: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? '704px' : '458px'};
   }
 
   @media (min-width: 1280px) {
+    margin: 40px auto;
     max-width: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? '822px' : '458px'};
     padding: ${props =>

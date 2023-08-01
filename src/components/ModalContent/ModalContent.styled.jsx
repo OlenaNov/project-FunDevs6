@@ -54,6 +54,7 @@ justify-content: center;
 align-items: center;
 gap: 8px;
 
+border: 2px solid #54ADFF;
 border-radius: 40px;
 background: #54ADFF;
 
