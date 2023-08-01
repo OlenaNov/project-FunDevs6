@@ -65,7 +65,7 @@ const OurFriends = ({ data }) => {
       <List>
         {friends
           ? friends.map(item => (
-              <Item>
+              <Item key={item.id}>
                 <Title href={item.url}>{item.title}</Title>
 
                 <WrapperCard>
