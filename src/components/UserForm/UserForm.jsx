@@ -62,7 +62,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     return window.btoa(binary);
   };
 
-  const base64Avatar = arrayBufferToBase64(newAvatar);
+  // const base64Avatar = arrayBufferToBase64(newAvatar);
 
   const handleFileChange = event => {
     if (event.target.files[0]) {
