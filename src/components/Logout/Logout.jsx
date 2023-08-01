@@ -1,12 +1,9 @@
-
-
 import { IconExit, LogOutBtn } from './Logout.styled';
 
 const Logout = ({ openModal }) => {
 
 
   const handleLogout = () => {
-    console.log("Open Modal");
     openModal();
   };
 

@@ -4,7 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { DesktopNav } from './Other/DesktopNav/DesktopNav';
 import { DesktopAuth } from './Other/DesktopAuth/DesktopAuth';
 
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { selectIsLogin, getUser } from 'redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
 import MobLogout from './Other/LogOutCopmponents/MobileLogout/MobLogout';
@@ -37,7 +37,8 @@ import image from 'images/logo/logo-large.svg';
 import user from 'images/user/user.svg';
 import paw from 'images/paw-logIn/paw.svg';
 
-export const NavBar = () => {
+
+export const NavBar = ({ onOpen }) => {
   const isLoggedIn = useSelector(selectIsLogin);
   const { name } = useSelector(getUser);
 
@@ -102,17 +103,17 @@ export const NavBar = () => {
                 </NavItem>
               </NavList>
             </Nav>
-            {isLoggedIn && <MobLogout />}
+            {isLoggedIn && <MobLogout openModal={() => onOpen()} />}
             <Menu></Menu>
           </DropDownMenu>
         )}
 
         <DesktopNav />
 
-        {isLoggedIn && <DesktopLogout />}
+        {isLoggedIn && <DesktopLogout openModal={() => onOpen()} />}
 
         {isLoggedIn && isOpen ? (
-          <TabLogout />
+          <TabLogout openModal={() => onOpen()} />
         ) : isLoggedIn ? (
           <UserContainer>
             <Link to="/user">

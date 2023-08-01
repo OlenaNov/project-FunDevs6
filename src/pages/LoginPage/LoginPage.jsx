@@ -7,7 +7,7 @@ import Container from 'components/Container/Container';
 import { login } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
 import { isUserLogin, isLoading, checkError } from 'redux/auth/auth-selectors';
-// import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 
 import css from '../../components/Section/Section.module.css';
 
@@ -33,7 +33,7 @@ export const LoginPage = () => {
   }, [isLogin, navigate]);
 
   if (loading && !error) {
-    // return <Loader />;
+    return <Loader />;
   }
 
   return (

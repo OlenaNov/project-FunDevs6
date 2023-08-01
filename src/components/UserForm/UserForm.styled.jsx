@@ -14,15 +14,15 @@ export const StylizedForm = styled(Form)`
   @media screen and (min-width: ${({ theme }) =>
       theme.breakpoints.tablet}) and (max-width: ${({ theme }) =>
       theme.breakpoints.desktop}) {
-    width: 182px;
-    display: flex;
-    flex-direction: row-reverse;
+    /* width: 182px; */
+    /* display: flex;
+    flex-direction: row-reverse; */
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-content: space-between;
-    gap: 5px;
+    gap: 5px; */
   }
 `;
 
@@ -55,8 +55,8 @@ export const IconCheckPhoto = styled(BsCheck2)`
 `;
 
 export const UserInfoWrap = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   /* @media screen and (min-width: ${({ theme }) =>
     theme.breakpoints.tablet}) and (max-width: ${({ theme }) =>
     theme.breakpoints.desktop}) {
@@ -64,6 +64,18 @@ export const UserInfoWrap = styled.div`
     display: flex;
     flex-direction: row-reverse;
   } */
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+  }
 `;
 
 export const EditPhotoButton = styled.button`
@@ -94,16 +106,16 @@ export const ButtonSave = styled.button`
     padding: 6px 0;
     font-size: 14px;
   }
-  @media screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.tablet}) (max-width: 1279px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     padding: 5px 0;
     width: 255px;
     font-size: 16px;
   }
+  /* max-width: 255px; */
   width: 100%;
   gap: 8px;
   padding: 11px 0;
-  margin-bottom: 24px;
+  margin-top: 10px;
   color: #ffffff;
   background-color: #54adff;
   border-radius: 40px;
@@ -115,8 +127,6 @@ export const ButtonSave = styled.button`
   line-height: 1.35;
   letter-spacing: 0.04em;
   cursor: pointer;
-
-  margin-top: 10px;
 
   :hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -135,7 +145,7 @@ export const Label = styled.label`
 
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   justify-content: space-between;
   gap: 8px;
 
@@ -150,10 +160,6 @@ export const Label = styled.label`
     border: 1px solid ${theme.colors.blue};
     border-radius: 20px;
   }
-
-  /* div:nth-child(n) {
-    border: 1px solid transparent;
-  } */
 `;
 
 export const Avatar = styled.img`
@@ -218,5 +224,5 @@ export const FormSection = styled.div`
 `;
 
 export const ErrorMessageStyled = styled.div`
-  color: red;
+  /* color: red; */
 `;

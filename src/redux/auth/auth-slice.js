@@ -4,7 +4,7 @@ import {
   login,
   current,
   updateUser,
-  updateUserAvatar,
+  // updateUserAvatar,
   logout,
   fetchAddToFavorite,
   fetchDeleteFromFavorite,
@@ -67,33 +67,33 @@ export const authSlice = createSlice({
         state.token = '';
         state.user = {};
       })
-      .addCase(updateUser.pending, state => {
-        handlePending(state);
-      })
+      // .addCase(updateUser.pending, state => {
+      //   handlePending(state);
+      // })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         const user = payload;
         state.isLoading = false;
         state.user = user;
         state.isLogin = true;
       })
-      .addCase(updateUser.rejected, handleRejected)
-      .addCase(updateUserAvatar.pending, state => {
-        handlePending(state);
-      })
-      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
-        const user = payload;
-        state.isLoading = false;
-        state.user = user;
-        state.isLogin = true;
-      })
-      .addCase(updateUserAvatar.rejected, handleRejected)
-      .addCase(logout.pending, handlePending)
-      .addCase(logout.fulfilled, state => {
-        state.isLoading = false;
-        state.user = {};
-        state.token = '';
-        state.isLogin = false;
-      })
+      // .addCase(updateUser.rejected, handleRejected)
+      // .addCase(updateUserAvatar.pending, state => {
+      //   handlePending(state);
+      // })
+      // .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
+      //   const user = payload;
+      //   state.isLoading = false;
+      //   state.user = user;
+      //   state.isLogin = true;
+      // })
+      // .addCase(updateUserAvatar.rejected, handleRejected)
+      // .addCase(logout.pending, handlePending)
+      // .addCase(logout.fulfilled, state => {
+      //   state.isLoading = false;
+      //   state.user = {};
+      //   state.token = '';
+      //   state.isLogin = false;
+      // })
       .addCase(logout.rejected, handleRejected)
       .addCase(fetchAddToFavorite.pending, state => {
         state.isLoading = true;
