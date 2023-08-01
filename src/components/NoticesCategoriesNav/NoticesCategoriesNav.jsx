@@ -41,8 +41,8 @@ export const NoticesCategoriesNav = () => {
               favorite ads
             </StyledNavLink>
             <StyledNavLink
-              to={`/notices/own`}
-              active={(path[path.length - 1] === 'own').toString()}
+              to={`/notices/my-pets`}
+              active={(path[path.length - 1] === 'my-pets').toString()}
             >
               my ads
             </StyledNavLink>

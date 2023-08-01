@@ -57,7 +57,7 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="own"
+                  path="my-pets"
                   element={
                     <PrivateNoticeRoute
                       redirectTo="/login"
