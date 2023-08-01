@@ -1,13 +1,10 @@
-import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
 import exit from '../../../../../images/user/LogOut.svg';
 import { DeskLogOutBtn } from './DesktopLogout.styled';
 
-const DeskLogoutComponent = () => {
-  const dispatch = useDispatch();
-
+const DeskLogoutComponent = ({ openModal }) => {
+  
   const handleLogout = () => {
-    dispatch(logout());
+    openModal();
   };
 
   return (

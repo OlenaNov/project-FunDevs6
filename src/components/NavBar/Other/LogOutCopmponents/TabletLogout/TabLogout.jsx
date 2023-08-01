@@ -1,13 +1,10 @@
-import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
 import exit from '../../../../../images/user/LogOut.svg';
 import { TabLogOutBtn } from './TabLogout.styled';
 
-const TabLogoutComponent = () => {
-  const dispatch = useDispatch();
+const TabLogoutComponent = ({ openModal }) => {
 
   const handleLogout = () => {
-    dispatch(logout());
+    openModal();
   };
 
   return (
