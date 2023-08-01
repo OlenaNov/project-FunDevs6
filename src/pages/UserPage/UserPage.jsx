@@ -26,7 +26,7 @@ const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showModalContent, setShowModalContent] = useState(false);
-
+console.log(showModalContent);
   useEffect(() => {
     if (location.state?.from === '/register') {
       setIsRegistered(true);
