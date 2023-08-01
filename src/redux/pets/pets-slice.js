@@ -1,29 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getFriends } from './friends-operation';
+import { getPets } from './pets-operation';
 
-const friendsSlice = createSlice({
-  name: 'friends',
+const petsSlice = createSlice({
+  name: 'pets',
   initialState: {
-    friends: [],
+    pets: [],
     loading: false,
     error: null,
   },
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getFriends.pending, state => {
+    builder.addCase(getPets.pending, state => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(getFriends.fulfilled, (state, action) => {
+    builder.addCase(getPets.fulfilled, (state, action) => {
       state.loading = false;
       state.friends = action.payload;
     });
-    builder.addCase(getFriends.rejected, (state, action) => {
+    builder.addCase(getPets.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
   },
 });
 
-export const friendsReducer = friendsSlice.reducer; 
-export default friendsSlice;
+export const petsReducer = petsSlice.reducer;
+export default petsSlice;
