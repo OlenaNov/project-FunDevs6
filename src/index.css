@@ -43,7 +43,6 @@
     url('./fonts/Inter/Inter-Medium.woff') format('truetype');
 }
 
-
 *,
 *::before,
 *::after {
@@ -113,12 +112,14 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 4px;
+  width: 10px;
+  position: fixed;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: rgba(158, 158, 158, 1);
   border-radius: 2px;
+  position: fixed;
 }
 
 /* @media screen and (min-device-pixel-ratio: 2) and (max-width: 480px),
