@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 //добавила
@@ -6,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
-
+import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 // вказати імпорти на хуки та нотісайс та редакс
 
 import { Formik, Form } from 'formik';
@@ -58,7 +57,7 @@ const AddPetForm = ({ addPet }) => {
   const isLoading = useSelector(isUserLogin);
 
   //указала isUserLogin проверить ,какой имеено добавлять useSelector() не знаю
-  const isNoticeLoading = useSelector(isUserLogin);
+  const isNoticeLoading = useSelector(selectIsLoggedIn);
 
   const handleClickNext = e => {
     e.preventDefault();
@@ -274,4 +273,3 @@ const AddPetForm = ({ addPet }) => {
 };
 
 export default AddPetForm;
-
