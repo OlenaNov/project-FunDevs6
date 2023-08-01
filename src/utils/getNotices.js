@@ -22,7 +22,7 @@ export const getNotices = async params => {
     case 'favorite':
       return await getFavoriteNotices(params);
 
-    case 'my-pets':
+    case 'my-ads':
       return await getOwnNotices(params);
 
     default:

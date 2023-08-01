@@ -22,7 +22,9 @@ import {
   StyledComent,
   LearnMore,
   StyledCardButtonRight,
-  RightButtonWrapper,
+  RightButtonsWrapper,
+  DeleteBtn,
+  DeleteBtnIcon,
 } from './NoticeCategoryItem.styled';
 import { calcPetAge, normalizeCategory } from 'utils';
 
@@ -31,18 +33,20 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
   const isLogin = useSelector(isUserLogin);
   const user = useSelector(getUser);
 
-  const { _id, category, title, location, date, sex, photo } = item;
+  const { _id, category, title, location, date, sex, avatarURL, owner } = item;
 
   const age = calcPetAge(date);
   const normCategory = normalizeCategory(category);
 
   const favorite = isLogin && user.favorite.includes(_id);
 
+  const isOwnPet = owner?._id === user.id;
+
   return (
     <>
       <AnimalCard>
         <CategoryBadge>{normCategory}</CategoryBadge>
-        <AnimalImage src={photo} alt={title} />
+        <AnimalImage src={avatarURL} alt={title} />
         <AnimalInfo>
           <StyledCardButtonBottom>
             <IconWrapper>
@@ -67,7 +71,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
         </AnimalInfo>
         <StyledComent>{title}</StyledComent>
         <LearnMore onClick={() => setShowLearnMore(true)}>Learn More</LearnMore>
-        <RightButtonWrapper>
+        <RightButtonsWrapper>
           <StyledCardButtonRight onClick={() => onFavorite(_id)}>
             {favorite ? (
               <MdFavorite size="24" />
@@ -75,7 +79,12 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
               <MdFavoriteBorder size="24" />
             )}
           </StyledCardButtonRight>
-        </RightButtonWrapper>
+          {isOwnPet && (
+            <DeleteBtn type="button">
+              <DeleteBtnIcon />
+            </DeleteBtn>
+          )}
+        </RightButtonsWrapper>
       </AnimalCard>
       {showLearnMore && (
         <NoticesModal onClose={() => setShowLearnMore(false)}>
