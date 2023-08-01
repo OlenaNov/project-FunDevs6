@@ -93,7 +93,7 @@ export const NavBar = () => {
                 <NavItem onClick={handleCloseClick}>
                   <NavLink to="/news">News</NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem onClick={handleCloseClick}>
                   <NavLink to="/notices/sell">Find pet</NavLink>
                 </NavItem>
 

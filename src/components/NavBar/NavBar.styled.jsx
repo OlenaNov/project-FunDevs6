@@ -40,6 +40,7 @@ export const Menu = styled.div`
 `;
 
 export const DropDownMenu = styled.div`
+  z-index: 2000;
   position: absolute;
   display: flex;
   flex-direction: column;
