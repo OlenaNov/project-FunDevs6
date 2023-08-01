@@ -31,20 +31,39 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   const dispatch = useDispatch();
   const fileInput = useRef();
 
-  const [avatar, setAvatar] = useState(user.avatarURL || avatarDefault2x);
+  // const API = `http://localhost:3000/project-FunDevs6/`;
+
+  const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
+  // const showAvatar = user.avatar ? `${API + user.avatar}` : avatarDefault2x;
+
   const [newAvatar, setNewAvatar] = useState(null);
 
-  // обробник подій для завантаження файлу
   const handleFileChange = event => {
     if (event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        console.log(`result`, e.target.resul);
-        setNewAvatar(e.target.result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
+      const url = URL.createObjectURL(event.target.files[0]);
+      setAvatar(url);
     }
   };
+
+  // обробник подій для завантаження файлу
+  // const handleFileChange = e => {
+  //   if (e.target.files[0]) {
+  //     const url = new FormData();
+  //     FormData.append('url', url);
+
+  //     console.log(`url`, url);
+  // const reader = new FileReader();
+  // reader.onloadend = () => {
+  //   console.log(`result`, reader.result);
+  //   setNewAvatar(reader.result);
+  // };
+  // reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // };
+  // const handleFileChange = e => {
+  //   console.log(`result`, e.target.result);
+  //   setNewAvatar(e.target.files[0]);
+  // };
 
   const handleConfirmChange = () => {
     setAvatar(newAvatar);
@@ -74,7 +93,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
     dispatch(
       updateUser({
-        avatarURL: avatar,
+        avatar: avatar,
         name: values.name,
         email: values.email,
         birthday: values.birthday,
