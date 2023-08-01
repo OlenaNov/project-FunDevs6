@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/theme';
+import { LuTrash2 } from 'react-icons/lu';
 
 export const AnimalCard = styled.div`
   position: relative;
@@ -169,11 +170,21 @@ export const StyledCardButtonRight = styled.button`
   }
 `;
 
-export const RightButtonWrapper = styled.div`
+export const RightButtonsWrapper = styled.div`
   top: 12px;
   right: 12px;
   position: absolute;
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const DeleteBtn = styled(StyledCardButtonRight)`
+  margin-top: 16px;
+`;
+
+export const DeleteBtnIcon = styled(LuTrash2)`
+  color: ${theme.colors.blue};
+  width: 24px;
+  height: 24px;
 `;

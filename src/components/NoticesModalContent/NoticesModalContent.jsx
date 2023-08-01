@@ -36,7 +36,7 @@ const NoticesModal = ({ item, onFavorite }) => {
     location,
     sex,
     title,
-    photo,
+    avatarURL,
     category,
     owner,
   } = item;
@@ -49,7 +49,7 @@ const NoticesModal = ({ item, onFavorite }) => {
     <NoticesModalContainer>
       <NoticesModalContent>
         <NoticesContentImageWrapper>
-          <NoticesContentImage src={photo} alt={name} />
+          <NoticesContentImage src={avatarURL} alt={name} />
           <NoticesContentCategory>{normCategory}</NoticesContentCategory>
         </NoticesContentImageWrapper>
         <NoticesPetInfo>
