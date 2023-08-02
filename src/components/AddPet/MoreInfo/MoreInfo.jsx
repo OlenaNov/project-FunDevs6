@@ -44,11 +44,11 @@ const MoreInfo = ({
             <div>
               <SexLabel checked={values.sex === 'female'}>
                 <BsGenderFemale
-                // sx={{
-                //   width: 24,
-                //   height: 24,
-                //   color: values.sex === 'male' ? '#888888' : '#54ADFF',
-                // }}
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    color: values.sex === 'male' ? '#888888' : '#54ADFF',
+                  }}
                 />
                 Female
                 <Field
@@ -60,12 +60,12 @@ const MoreInfo = ({
               </SexLabel>
               <SexLabel checked={values.sex === 'male'}>
                 <BsGenderMale
-                // sx={{
-                //   width: 24,
-                //   height: 24,
-                //   color: values.sex === 'female' ? '#888888' : '#F43F5E',
-                //   transform: 'rotate(-45deg)',
-                // }}
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    color: values.sex === 'female' ? '#888888' : '#F43F5E',
+                    transform: 'rotate(-45deg)',
+                  }}
                 />
                 Male
                 <Field
