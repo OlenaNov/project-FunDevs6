@@ -5,7 +5,7 @@ export const UserMobContainer = styled.div`
   justify-content: center;
   padding: 8px 16px;
   margin-bottom: auto;
-
+  
   @media (min-width: 768px) {
     display: none;
   }
