@@ -11,7 +11,7 @@ import {
   InfoPet,
   InfoPetTitle,
   IconWrapper,
-  Title,
+  // Title,
 } from './PetsItem.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 
