@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const Header = styled.header`
-  background-color: transparent;
+  background-color: #fef9f9;
   padding: 20px;
   display: flex;
   justify-content: end;
@@ -20,6 +20,7 @@ export const Header = styled.header`
   left: 0;
   width: 100%;
   z-index: 999;
+
   @media screen and (min-width: 768px) {
     padding: 24px 32px;
   }
@@ -46,7 +47,6 @@ export const Menu = styled.div`
 `;
 
 export const DropDownMenu = styled.div`
-  z-index: 2000;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -56,14 +56,14 @@ export const DropDownMenu = styled.div`
   height: 100vh;
 
   z-index: 999;
-  background-color: #fff;
+  background-color: #fef9f9;
   @media screen and(min-width: 1200px) {
     display: none;
   }
 `;
 
 export const Nav = styled.nav`
-  background-color: #fff;
+  background-color: #fef9f9;
 `;
 
 export const NavList = styled.ul`
