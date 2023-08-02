@@ -16,13 +16,14 @@ export const UserCardWrap = styled.div`
   padding: 20px;
   position: relative;
   margin-left: 20px;
-  padding-top: ${({ theme }) => theme.space[2] * 5 + 'px'};
+  /* padding-top: ${({ theme }) => theme.space[2] * 5 + 'px'};
   padding-right: ${({ theme }) => theme.space[2] * 2 + 'px'};
   padding-bottom: ${({ theme }) => theme.space[2] * 6 + 'px'};
-  padding-left: ${({ theme }) => theme.space[2] * 2 + 'px'};
+  padding-left: ${({ theme }) => theme.space[2] * 2 + 'px'}; */
   background: #ffffff;
   box-shadow: ${({ theme }) => theme.boxShadows.main};
   border-radius: 20px;
+  min-width: 280px;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 704px;
     padding-top: ${({ theme }) => theme.space[2] * 5 + 'px'};
@@ -36,6 +37,7 @@ export const UserCardWrap = styled.div`
     height: 520px;
     padding: ${({ theme }) => theme.space[2] * 5 + 'px'};
   }
+  overflow: hidden;
 `;
 
 export const ContainerWrapper = styled.div`

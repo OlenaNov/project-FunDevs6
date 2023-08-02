@@ -25,17 +25,44 @@ import { useRef, useState } from 'react';
 
 import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 import { updateUser } from 'redux/auth/auth-operations';
-import { validationSchema } from 'validation';
+// import { validationSchema } from 'validation';
 
 const UserForm = ({ isEditing, toggleEdit }) => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const fileInput = useRef();
+  // const API = `http://localhost:3000/project-FunDevs6/`;
 
   const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
+  // const showAvatar = user.avatar ? `${API + user.avatar}` : avatarDefault2x;
 
   const [newAvatar, setNewAvatar] = useState(null);
   const [newAvatarFile, setNewAvatarFile] = useState(null);
+
+  // const handleFileChange = event => {
+  //   if (event.target.files[0]) {
+  //     // const url = URL.createObjectURL(event.target.files[0]);
+  //     // setAvatar(url);
+
+  //     const file = event.target.files[0];
+  //     const blob = new Blob([file], { type: file.type });
+  //     setAvatar(blob);
+  //   }
+  // };
+
+  // обробник подій для завантаження файлу
+
+  // const arrayBufferToBase64 = buffer => {
+  //   var binary = '';
+  //   var bytes = new Uint8Array(buffer);
+  //   var len = bytes.byteLength;
+  //   for (var i = 0; i < len; i++) {
+  //     binary += String.fromCharCode(bytes[i]);
+  //   }
+  //   return window.btoa(binary);
+  // };
+
+  // const base64Avatar = arrayBufferToBase64(newAvatar);
 
   const handleFileChange = event => {
     const fileUploaded = event.target.files[0];
@@ -43,6 +70,19 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     const currentNewAvatar = URL.createObjectURL(fileUploaded);
     setNewAvatar(currentNewAvatar);
   };
+
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1; // месяцы начинаются с 0
+    let day = date.getDate();
+
+    // добавляем ведущий ноль для месяца и дня, если это необходимо
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+
+    return `${year}-${month}-${day}`;
+  }
 
   const handleConfirmChange = () => {
     setAvatar(newAvatar);
@@ -84,12 +124,12 @@ const UserForm = ({ isEditing, toggleEdit }) => {
         initialValues={{
           name: user.name || '',
           email: user.email || '',
-          birthday: user.birthday || '',
+          birthday: user.birthday ? formatDate(user.birthday) : '',
           phone: user.phone || '',
           city: user.city || '',
         }}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
       >
         <StylizedForm autoComplete="off">
           <EditIcon>
@@ -160,9 +200,9 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 <span>City:</span>
                 <Field type="text" name="city" disabled={!isEditing} />
               </Label>
+              {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
             </FormSection>
           </UserInfoWrap>
-          {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
         </StylizedForm>
       </Formik>
     </div>
