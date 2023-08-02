@@ -42,7 +42,7 @@ const PetsItem = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {pets && pets.length > 0 ? (
+          {/* {pets && pets.length > 0 ? ( */}
             <ContainerPet>
               <ContainerPetWrapper>
                 <IconWrapper>
@@ -65,9 +65,9 @@ const PetsItem = () => {
                 </ContainerPetInfo>
               </ContainerPetWrapper>
             </ContainerPet>
-          ) : (
+          {/* ) : (
             <Title>No animals to start you need to add them</Title>
-          )}
+          )} */}
         </>
       )}
     </>

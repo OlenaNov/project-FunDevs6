@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 export const ContainerPet = styled('div')`
+  position: relative;
   margin-top: 24px;
   border-radius: 40px;
   min-width: 950px;
@@ -43,7 +44,7 @@ export const Img = styled('img')`
 
 export const ContainerPetWrapper = styled('div')`
   display: flex;
-  position: relative;
+  ${'' /* position: relative; */}
 
   @media screen and (max-width: 746px) {
     display: table-cell;
@@ -64,15 +65,16 @@ export const InfoPetTitle = styled('div')`
 `;
 
 export const IconWrapper = styled('svg')`
+  width: 24px;
+  height: 24px;
   position: absolute;
-  top: 0;
-  right: 0;
-  transition: translate(-50px, 50px);
+  top: 20px;
+  right: 20px;
 
   @media screen and (max-width: 746px) {
     position: absolute;
-    top: 255px;
-    left: 220px;
+    top: 272px;
+    right: 16px;
   }
 `;
 
