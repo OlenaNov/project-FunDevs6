@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const ContainerPet = styled('div')`
   margin-top: 24px;
   border-radius: 40px;
-  width: 950px;
+  min-width: 950px;
   height: 200px;
   padding: 20px;
   background: white;
@@ -16,14 +16,14 @@ export const ContainerPet = styled('div')`
 
   @media screen and (max-width: 746px) {
     display: table-cell;
-    width: 280px;
+    min-width: 280px;
     height: 100%;
   }
 
-  @media screen and (min-width: 747px) and (max-width: 1249px) {
+  @media screen and (min-width: 747px) and (max-width: 1399px) {
     display: table-cell;
     justify-content: center;
-    width: 700px;
+    min-width: 800px;
   }
 `;
 
@@ -66,10 +66,17 @@ export const InfoPetTitle = styled('div')`
 export const IconWrapper = styled('svg')`
   position: absolute;
   top: 0;
-  right: -270px;
+  right: 0;
+  transition: translate(-50px, 50px);
 
   @media screen and (max-width: 746px) {
     position: absolute;
-    top: 253px;
+    top: 255px;
+    left: 220px;
   }
+`;
+
+export const Title = styled.div`
+  margin-top: 30px;
+  font-size: 24px;
 `;

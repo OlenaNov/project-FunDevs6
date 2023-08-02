@@ -26,7 +26,7 @@ const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showModalContent, setShowModalContent] = useState(false);
-console.log(showModalContent);
+  console.log(showModalContent);
   useEffect(() => {
     if (location.state?.from === '/register') {
       setIsRegistered(true);
@@ -53,37 +53,39 @@ console.log(showModalContent);
   };
 
   return (
-    <ContainerWrapper>
-      <Container>
-        <Background />
-        <FormTitle>My information:</FormTitle>
-        <UserCardWrap>
-          <UserData />
-          <Logout openModal={() => setShowModal(true)} />
-        </UserCardWrap>
-        {isRegistered && showModal && (
-        <ModalCongrats onClose={closeModalCongrats} />
-      )}
-      <PetsData></PetsData>
+    <>
+      <ContainerWrapper>
 
-        {showModal && (
-          <Modal
-            onClose={toggleModal}
-            children={() => (
-              <ModalContent
-                title="Already leaving?"
-                fnYes={() => modalYes()}
-                fnCancel={() => setShowModal(false)}
-              />
-            )}
-          />
-        )}
-      </Container>
-      <ContainerPets>
-        <PetsData></PetsData>
-      </ContainerPets>
-    </ContainerWrapper>
+        <Container>
+          <Background />
+          <FormTitle>My information:</FormTitle>
+          <UserCardWrap>
+            <UserData />
+            <Logout openModal={() => setShowModal(true)} />
+          </UserCardWrap>
+          {isRegistered && showModal && (
+            <ModalCongrats onClose={closeModalCongrats} />
+          )}
+          {/* <PetsData></PetsData> */}
 
+          {showModal && (
+            <Modal
+              onClose={toggleModal}
+              children={() => (
+                <ModalContent
+                  title="Already leaving?"
+                  fnYes={() => modalYes()}
+                  fnCancel={() => setShowModal(false)}
+                />
+              )}
+            />
+          )}
+        </Container>
+        <ContainerPets>
+          <PetsData></PetsData>
+        </ContainerPets>
+      </ContainerWrapper>
+    </>
   );
 };
 
