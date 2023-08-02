@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 import { getUser, isUserLogin } from 'redux/auth/auth-selectors';
 import { useState } from 'react';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { CSSTransition } from 'react-transition-group';
+
 import {
   MdOutlineAccessTime,
   MdMale,
@@ -95,15 +97,20 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           <NoticesModalContent item={item} onFavorite={onFavorite} />
         </NoticesModal>
       )}
-      {showDeleteModal && (
-        <NoticesModal onClose={() => setShowDeleteModal(false)}>
-          <NoticesDeleteModal
-            title={title}
-            onCloseModal={() => setShowDeleteModal(false)}
-            onDeleteNotices={() => onDelete(_id)}
-          />
-        </NoticesModal>
-      )}
+      <CSSTransition in={showDeleteModal} timeout={200} classNames="node">
+        <>
+          {showDeleteModal && (
+            <NoticesModal onClose={() => setShowDeleteModal(false)}>
+              <NoticesDeleteModal
+                title={title}
+                onCloseModal={() => setShowDeleteModal(false)}
+                onDeleteNotices={() => onDelete(_id)}
+                unmountOnExit
+              />
+            </NoticesModal>
+          )}
+        </>
+      </CSSTransition>
     </>
   );
 };

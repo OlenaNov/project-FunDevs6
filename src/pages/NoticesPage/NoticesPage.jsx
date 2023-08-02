@@ -17,6 +17,8 @@ import NoticesSelectedFilters from 'components/NoticesSelectedFilters';
 import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesNotFound from '../../components/NoticesNotFound';
 import Loader from '../../components/Loader';
+import Background from '../../components/Background/Background';
+import ScrollBtn from '../../components/ScrollBtn/ScrollBtn';
 
 import {
   NoticesContainter,
@@ -224,11 +226,13 @@ export const NoticesPage = () => {
 
   return (
     <NoticesContainter>
+      <Background />
       <Title>Find your favorite pet</Title>
       <NoticesSearch
         onFormSubmit={handleSubmit}
         onClear={handleClearSearchQuery}
       />
+      <ScrollBtn />
       <NoticesPageContainer>
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />

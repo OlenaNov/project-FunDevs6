@@ -11,7 +11,7 @@ export const DeleteModalWrapper = styled.div`
   border-radius: 40px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    adding: 60px;
+    padding: 60px;
     width: 608px;
   }
 `;
