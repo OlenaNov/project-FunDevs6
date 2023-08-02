@@ -143,12 +143,12 @@ export const NoticesPage = () => {
     setSearchParams,
   ]);
 
-  useEffect(() => {
-    if (!user?.favorite && isLogin) {
-      setIsLoading(true);
-      dispatch(refreshUser());
-    }
-  }, [user.favorite, isLogin, dispatch]);
+  // useEffect(() => {
+  //   if (!user?.favorite && isLogin) {
+  //     setIsLoading(true);
+  //     dispatch(refreshUser());
+  //   }
+  // }, [user.favorite, isLogin, dispatch]);
 
   const handleDelete = useCallback(
     async id => {
