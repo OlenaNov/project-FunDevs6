@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getPets } from '../../redux/pets/pets-operation';
+import { getPets, deletePet } from '../../redux/pets/pets-operation';
 import { isUserLogin, getToken } from '../../redux/auth/auth-selectors';
 import {
   ContainerPet,
@@ -30,6 +30,12 @@ const PetsItem = () => {
     }
   }, [dispatch, isLoggedIn, token]);
 
+  const handleDeletePet = petId => {
+    setIsLoading(true);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    dispatch(deletePet(petId)).then(() => setIsLoading(false));
+  };
+
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     dispatch(getPets(token));
@@ -43,28 +49,28 @@ const PetsItem = () => {
       ) : (
         <>
           {/* {pets && pets.length > 0 ? ( */}
-            <ContainerPet>
-              <ContainerPetWrapper>
-                <IconWrapper>
-                  <AiOutlineDelete size={24} color="#54ADFF" />
-                </IconWrapper>
-                <Img src={pets.avatarURL} />
-                <ContainerPetInfo>
-                  <InfoPet>
-                    <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Date of birth:{pets.data}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
-                  </InfoPet>
-                </ContainerPetInfo>
-              </ContainerPetWrapper>
-            </ContainerPet>
+          <ContainerPet>
+            <ContainerPetWrapper>
+              <IconWrapper onClick={() => handleDeletePet(pets.id)}>
+                <AiOutlineDelete size={24} color="#54ADFF" />
+              </IconWrapper>
+              <Img src={pets.avatarURL} />
+              <ContainerPetInfo>
+                <InfoPet>
+                  <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Date of birth:{pets.data}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
+                </InfoPet>
+              </ContainerPetInfo>
+            </ContainerPetWrapper>
+          </ContainerPet>
           {/* ) : (
             <Title>No animals to start you need to add them</Title>
           )} */}

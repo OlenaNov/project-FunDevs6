@@ -15,6 +15,19 @@ export const getPets = createAsyncThunk(
   }
 );
 
+export const deletePet = createAsyncThunk(
+  'pets/deletePet',
+  async (petId, thunkAPI) => {
+    try {
+      const url = `/api/pets/${petId}`;
+      const { data } = await axios.delete(url);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 // export const getPets = createAsyncThunk(
 //   'pets/fetchPets',
 //   async (token, thunkAPI) => {

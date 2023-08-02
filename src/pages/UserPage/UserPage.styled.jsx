@@ -50,7 +50,6 @@ export const ContainerPets = styled.div`
   justify-content: space-between;
   max-width: 100%;
   margin-top: 75px;
-  margin-right: 40px;
 
   @media screen and (max-width: 746px) {
     justify-content: center;
@@ -59,7 +58,7 @@ export const ContainerPets = styled.div`
 
   @media screen and (min-width: 747px) and (max-width: 1399px) {
     justify-content: center;
-    margin-right: 0px;
+
     margin-top: 37px;
   }
 `;
