@@ -12,7 +12,7 @@ export const AnimalCard = styled.div`
 
   &:focus,
   &:hover {
-    box-shadow: ${({ theme }) => theme.boxShadows.secondary};
+    box-shadow: ${theme.boxShadows.secondary};
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -113,12 +113,11 @@ export const LearnMore = styled.button`
     display: none;
   }
 
-  transition: color 300ms ${({ theme }) => theme.transition.main},
-    background-color 300ms ${({ theme }) => theme.transition.main};
+  transition: color 300ms ${theme.transition.main};
+  background-color 300ms ${theme.transition.main};
 
   &.active {
     color: ${theme.colors.white};
-
     background-color: ${theme.colors.blue};
   }
 
@@ -160,6 +159,7 @@ export const StyledCardButtonRight = styled.button`
   width: 40px;
   height: 40px;
   cursor: pointer;
+  transition: all 300ms ${theme.transition.main};
 
   &:hover {
     background: ${theme.colors.blue};

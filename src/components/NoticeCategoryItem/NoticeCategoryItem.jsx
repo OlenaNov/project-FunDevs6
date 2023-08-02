@@ -92,24 +92,29 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           )}
         </RightButtonsWrapper>
       </AnimalCard>
-      {showLearnMoreModal && (
+      <CSSTransition
+        in={showLearnMoreModal}
+        timeout={400}
+        classNames="node"
+        unmountOnExit
+      >
         <NoticesModal onClose={() => setShowLearnMoreModal(false)}>
           <NoticesModalContent item={item} onFavorite={onFavorite} />
         </NoticesModal>
-      )}
-      <CSSTransition in={showDeleteModal} timeout={200} classNames="node">
-        <>
-          {showDeleteModal && (
-            <NoticesModal onClose={() => setShowDeleteModal(false)}>
-              <NoticesDeleteModal
-                title={title}
-                onCloseModal={() => setShowDeleteModal(false)}
-                onDeleteNotices={() => onDelete(_id)}
-                unmountOnExit
-              />
-            </NoticesModal>
-          )}
-        </>
+      </CSSTransition>
+      <CSSTransition
+        in={showDeleteModal}
+        timeout={400}
+        classNames="node"
+        unmountOnExit
+      >
+        <NoticesModal onClose={() => setShowDeleteModal(false)}>
+          <NoticesDeleteModal
+            title={title}
+            onCloseModal={() => setShowDeleteModal(false)}
+            onDeleteNotices={() => onDelete(_id)}
+          />
+        </NoticesModal>
       </CSSTransition>
     </>
   );

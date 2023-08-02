@@ -15,10 +15,12 @@ export const NoticesContainter = styled.div`
     padding-left: 16px;
     padding-bottom: 209px;
     max-width: ${theme.breakpoints.tablet};
+    margin-top: 76px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     max-width: 1280px;
+    margin-top: 80px;
   }
 `;
 
