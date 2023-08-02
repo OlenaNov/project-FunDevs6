@@ -113,7 +113,7 @@ const NoticesModal = ({ item, onFavorite }) => {
           </NoticesBtnLabel>
           <HeartIcon />
         </NoticesBtn>
-        <NoticesContactLink href="mailto:primer@gmail.com">
+        <NoticesContactLink href={`mailto:${owner.email}`}>
           <span>Contact</span>
         </NoticesContactLink>
       </NoticesBtnWrapper>
