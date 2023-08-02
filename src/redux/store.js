@@ -29,17 +29,24 @@ const friendsPersistConfig = {
   whitelist: ['friends'],
 };
 
+const petsPersistConfig = {
+  key: 'pets',
+  storage,
+  whitelist: ['token'],
+};
+
 const persistedFriendsReducer = persistReducer(
   friendsPersistConfig,
   friendsReducer
 );
+const persistedPetsReducer = persistReducer(petsPersistConfig, petsReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     friends: persistedFriendsReducer,
     news: newsReducer,
-    pets: petsReducer,
+    pets: persistedPetsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
