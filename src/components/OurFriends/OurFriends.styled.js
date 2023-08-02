@@ -4,13 +4,13 @@ export const TitleMain = styled.h2`
   text-align: center;
   font-size: 48px;
   margin-bottom: 36px;
-  margin-top: 60px;
+  margin-top: 120px;
   font-family: Manrope-Bold;
 
   @media screen and (max-width: 747px) {
     font-size: 24px;
     margin-bottom: 24px;
-    margin-top: 40px;
+    margin-top: 100px;
   }
 `;
 
@@ -102,7 +102,7 @@ export const Img = styled.img`
   }
 `;
 
-export const Contacts = styled.p`
+export const Contacts = styled.div`
   font-size: 12px;
   font-weight: 500;
   color: #111111;

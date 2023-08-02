@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 import { getUser, isUserLogin } from 'redux/auth/auth-selectors';
 import { useState } from 'react';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { CSSTransition } from 'react-transition-group';
+
 import {
   MdOutlineAccessTime,
   MdMale,
@@ -12,6 +14,7 @@ import {
 
 import NoticesModal from 'components/NoticesModal';
 import NoticesModalContent from 'components/NoticesModalContent';
+import NoticesDeleteModal from 'components/NoticesDeleteModal';
 import {
   AnimalCard,
   AnimalImage,
@@ -29,7 +32,8 @@ import {
 import { calcPetAge, normalizeCategory } from 'utils';
 
 export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
-  const [showLearnMore, setShowLearnMore] = useState(false);
+  const [showLearnMoreModal, setShowLearnMoreModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const isLogin = useSelector(isUserLogin);
   const user = useSelector(getUser);
 
@@ -70,7 +74,9 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
           </StyledCardButtonBottom>
         </AnimalInfo>
         <StyledComent>{title}</StyledComent>
-        <LearnMore onClick={() => setShowLearnMore(true)}>Learn More</LearnMore>
+        <LearnMore onClick={() => setShowLearnMoreModal(true)}>
+          Learn More
+        </LearnMore>
         <RightButtonsWrapper>
           <StyledCardButtonRight onClick={() => onFavorite(_id)}>
             {favorite ? (
@@ -80,17 +86,36 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
             )}
           </StyledCardButtonRight>
           {isOwnPet && (
-            <DeleteBtn type="button">
+            <DeleteBtn type="button" onClick={() => setShowDeleteModal(true)}>
               <DeleteBtnIcon />
             </DeleteBtn>
           )}
         </RightButtonsWrapper>
       </AnimalCard>
-      {showLearnMore && (
-        <NoticesModal onClose={() => setShowLearnMore(false)}>
+      <CSSTransition
+        in={showLearnMoreModal}
+        timeout={400}
+        classNames="node"
+        unmountOnExit
+      >
+        <NoticesModal onClose={() => setShowLearnMoreModal(false)}>
           <NoticesModalContent item={item} onFavorite={onFavorite} />
         </NoticesModal>
-      )}
+      </CSSTransition>
+      <CSSTransition
+        in={showDeleteModal}
+        timeout={400}
+        classNames="more"
+        unmountOnExit
+      >
+        <NoticesModal onClose={() => setShowDeleteModal(false)}>
+          <NoticesDeleteModal
+            title={title}
+            onCloseModal={() => setShowDeleteModal(false)}
+            onDeleteNotices={() => onDelete(_id)}
+          />
+        </NoticesModal>
+      </CSSTransition>
     </>
   );
 };

@@ -15,6 +15,7 @@ import {
   FilterFormLabel,
   FilterFormInput,
 } from './NoticesFilters.styled';
+import { CSSTransition } from 'react-transition-group';
 
 export const NoticesFilters = ({ onFilter, filters }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -68,7 +69,12 @@ export const NoticesFilters = ({ onFilter, filters }) => {
         <FilterBtnLabel>Filter</FilterBtnLabel>
         <FilterBtnIcon />
       </FilterOpenBtn>
-      {isFilterOpen && (
+      <CSSTransition
+        in={isFilterOpen}
+        timeout={400}
+        classNames="filter"
+        unmountOnExit
+      >
         <FilterDropDownContainer>
           <DropDownContent>
             <DropDownContentText>Filters</DropDownContentText>
@@ -160,7 +166,7 @@ export const NoticesFilters = ({ onFilter, filters }) => {
             </DropDownSubMenu>
           </DropDownContent>
         </FilterDropDownContainer>
-      )}
+      </CSSTransition>
     </FilterWrapper>
   );
 };

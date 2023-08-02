@@ -60,7 +60,7 @@ export const authSlice = createSlice({
         state.isLogin = true;
       })
       .addCase(current.rejected, state => {
-        handleRejected();
+        // handleRejected();
         state.isRefreshing = false;
         state.isLoading = false;
         state.isLogin = false;
@@ -126,11 +126,13 @@ export const authSlice = createSlice({
       })
       .addCase(refreshUser.pending, state => {
         // state.isRefreshing = true;
+        state.isLoading = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLogin = true;
         state.isRefreshing = false;
+        // state.isLoading = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;

@@ -25,14 +25,12 @@ import { useRef, useState } from 'react';
 
 import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 import { updateUser } from 'redux/auth/auth-operations';
-// import { validationSchema } from 'validation';
+import { validationSchema } from 'validation';
 
 const UserForm = ({ isEditing, toggleEdit }) => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const fileInput = useRef();
-
-  // const API = `http://localhost:3000/project-FunDevs6/`;
 
   const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
 
@@ -91,7 +89,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
           city: user.city || '',
         }}
         onSubmit={handleSubmit}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
       >
         <StylizedForm autoComplete="off">
           <EditIcon>

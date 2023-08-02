@@ -17,6 +17,8 @@ import NoticesSelectedFilters from 'components/NoticesSelectedFilters';
 import NoticesAddPetBtn from '../../components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesNotFound from '../../components/NoticesNotFound';
 import Loader from '../../components/Loader';
+import Background from '../../components/Background/Background';
+import ScrollBtn from '../../components/ScrollBtn/ScrollBtn';
 
 import {
   NoticesContainter,
@@ -54,11 +56,6 @@ export const NoticesPage = () => {
   const gender = searchParams.get('gender');
   const age = searchParams.get('age');
   const page = searchParams.get('page');
-
-  if (!user?.favorite && isLogin) {
-    setIsLoading(true);
-    dispatch(refreshUser());
-  }
 
   const resetPage = useCallback(() => {
     searchParams.set('page', 1);
@@ -102,6 +99,7 @@ export const NoticesPage = () => {
   const getApiNotices = useCallback(async () => {
     const path = pathname.split('/');
     const category = path[path.length - 1];
+    setIsLoading(true);
 
     try {
       const { notices, totalHits } = await getNotices({
@@ -222,11 +220,13 @@ export const NoticesPage = () => {
 
   return (
     <NoticesContainter>
+      <Background />
       <Title>Find your favorite pet</Title>
       <NoticesSearch
         onFormSubmit={handleSubmit}
         onClear={handleClearSearchQuery}
       />
+      <ScrollBtn />
       <NoticesPageContainer>
         <NoticeFilterContainer>
           <NoticesCategoriesNav searchParams={searchParams} />

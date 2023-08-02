@@ -39,6 +39,7 @@ const NoticesModal = ({ item, onFavorite }) => {
     avatarURL,
     category,
     owner,
+    price,
   } = item;
 
   const normCategory = normalizeCategory(category);
@@ -76,6 +77,12 @@ const NoticesModal = ({ item, onFavorite }) => {
                 <NoticesTableLabel>The sex:</NoticesTableLabel>
                 <NoticesTableValue>{sex}</NoticesTableValue>
               </tr>
+              {price && (
+                <tr>
+                  <NoticesTableLabel>Price:</NoticesTableLabel>
+                  <NoticesTableValue>{price}</NoticesTableValue>
+                </tr>
+              )}
               <tr>
                 <NoticesTableLabel>Email:</NoticesTableLabel>
                 <NoticesTableValue>
@@ -106,7 +113,7 @@ const NoticesModal = ({ item, onFavorite }) => {
           </NoticesBtnLabel>
           <HeartIcon />
         </NoticesBtn>
-        <NoticesContactLink href="mailto:primer@gmail.com">
+        <NoticesContactLink href={`mailto:${owner.email}`}>
           <span>Contact</span>
         </NoticesContactLink>
       </NoticesBtnWrapper>

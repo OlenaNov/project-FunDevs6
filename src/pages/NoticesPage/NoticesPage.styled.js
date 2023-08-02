@@ -8,6 +8,7 @@ export const NoticesContainter = styled.div`
   padding-bottom: 117px;
   max-width: 320px;
   margin: 0 auto;
+  margin-top: 64px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: ${theme.space[4] * 5 + 'px'};
@@ -15,10 +16,12 @@ export const NoticesContainter = styled.div`
     padding-left: 16px;
     padding-bottom: 209px;
     max-width: ${theme.breakpoints.tablet};
+    margin-top: 76px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     max-width: 1280px;
+    margin-top: 80px;
   }
 `;
 
