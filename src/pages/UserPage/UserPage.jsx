@@ -54,18 +54,7 @@ const UserPage = () => {
 
   return (
     <>
-    <ContainerWrapper>
-      <Container>
-        <Background />
-        <FormTitle>My information:</FormTitle>
-        <UserCardWrap>
-          <UserData />
-          <Logout openModal={() => setShowModal(true)} />
-        </UserCardWrap>
-        {isRegistered && showModal && (
-        <ModalCongrats onClose={closeModalCongrats} />
-      )}
-
+      <ContainerWrapper>
         <Container>
           <Background />
           <FormTitle>My information:</FormTitle>
@@ -76,7 +65,6 @@ const UserPage = () => {
           {isRegistered && showModal && (
             <ModalCongrats onClose={closeModalCongrats} />
           )}
-          {/* <PetsData></PetsData> */}
 
           {showModal && (
             <Modal
