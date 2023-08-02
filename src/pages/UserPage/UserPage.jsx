@@ -64,7 +64,6 @@ console.log(showModalContent);
         {isRegistered && showModal && (
         <ModalCongrats onClose={closeModalCongrats} />
       )}
-      <PetsData></PetsData>
 
         {showModal && (
           <Modal
