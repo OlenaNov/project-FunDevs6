@@ -20,12 +20,12 @@ export const Container = styled.div`
   @media screen and (max-width: 746px) {
     margin-top: 40px;
     margin-bottom: 22px;
+    margin-top: -20px;
   }
 
   @media screen and (min-width: 747px) and (max-width: 1399px) {
     min-width: 700px;
     margin-left: 20px;
-    margin-top: 40px;
     margin-bottom: 22px;
   }
 
