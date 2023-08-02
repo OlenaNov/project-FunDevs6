@@ -35,56 +35,16 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   // const API = `http://localhost:3000/project-FunDevs6/`;
 
   const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
-  // const showAvatar = user.avatar ? `${API + user.avatar}` : avatarDefault2x;
 
   const [newAvatar, setNewAvatar] = useState(null);
-
-  // const handleFileChange = event => {
-  //   if (event.target.files[0]) {
-  //     // const url = URL.createObjectURL(event.target.files[0]);
-  //     // setAvatar(url);
-
-  //     const file = event.target.files[0];
-  //     const blob = new Blob([file], { type: file.type });
-  //     setAvatar(blob);
-  //   }
-  // };
-
-  // обробник подій для завантаження файлу
-
-  const arrayBufferToBase64 = buffer => {
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
-
-  const base64Avatar = arrayBufferToBase64(newAvatar);
+  const [newAvatarFile, setNewAvatarFile] = useState(null);
 
   const handleFileChange = event => {
-    if (event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        setNewAvatar(e.target.result);
-      };
-      reader.readAsArrayBuffer(event.target.files[0]);
-    }
+    const fileUploaded = event.target.files[0];
+    setNewAvatarFile(fileUploaded);
+    const currentNewAvatar = URL.createObjectURL(fileUploaded);
+    setNewAvatar(currentNewAvatar);
   };
-
-  // const handleFileChange = event => {
-  //   if (event.target.files[0]) {
-  //     setAvatar(event.target.files[0]);
-  //     console.log(avatar);
-  //   }
-  // };
-
-  // const handleFileChange = e => {
-  //   console.log(`result`, e.target.result);
-  //   setNewAvatar(e.target.files[0]);
-  // };
 
   const handleConfirmChange = () => {
     setAvatar(newAvatar);
@@ -99,42 +59,25 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     fileInput.current.click();
   };
 
-  // const [avatar, setAvatar] = useState(user.avatarURL || '');
-  // const [name, setName] = useState(user.name || '');
-  // const [email, setEmail] = useState(user.email || '');
-  // const [birthday, setBirthday] = useState(user.birthday || '');
-  // const [phone, setPhone] = useState(user.phone || '');
-  // const [city, setCity] = useState(user.city || '');
-
   const handleSubmit = values => {
     // Перевіряємо, чи є помилки валідації
 
-    console.log('123', values);
-    console.log('avatar', avatar);
+    const updateUserData = {
+      name: values.name,
+      email: values.email,
+      birthday: values.birthday,
+      phone: values.phone,
+      city: values.city,
+      avatar: newAvatarFile,
+    };
+    const file = new FormData();
+    Object.entries(updateUserData).map(field => {
+      console.log(field[0]);
+      console.log(field[1]);
+      file.append(field[0], field[1]);
+    });
 
-    let base64Avatar;
-    if (avatar instanceof ArrayBuffer) {
-      base64Avatar = arrayBufferToBase64(avatar);
-    }
-
-    console.log('base64Avatar', base64Avatar);
-    dispatch(
-      updateUser({
-        avatar: base64Avatar,
-        name: values.name,
-        email: values.email,
-        birthday: values.birthday,
-        phone: values.phone,
-        city: values.city,
-
-        // avatarURL: 'khgk',
-        // email: 'Tomas11@gmail.com',
-        // name: 'Tomas1199',
-        // phone: '+380671234567',
-        // city: 'Kharkov',
-        // birthday: '1990-11-19',
-      })
-    );
+    dispatch(updateUser(file));
   };
 
   return (
