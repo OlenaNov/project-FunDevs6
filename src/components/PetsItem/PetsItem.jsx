@@ -1,5 +1,8 @@
-import { AiOutlineDelete } from 'react-icons/ai';
-// import { getPets } from '../../redux/pets/pets-operation';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { getPets } from '../../redux/pets/pets-operation';
+import { isUserLogin, getToken } from '../../redux/auth/auth-selectors';
 import {
   ContainerPet,
   Img,
@@ -8,33 +11,51 @@ import {
   InfoPet,
   InfoPetTitle,
   IconWrapper,
+  // Title,
 } from './PetsItem.styled';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const PetsItem = () => {
+  const dispatch = useDispatch();
+  const pets = useSelector(state => state.pets.pets);
+  const isLoggedIn = useSelector(isUserLogin);
+  const token = useSelector(getToken);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      dispatch(getPets());
+    }
+  }, [dispatch, isLoggedIn, token]);
+
   return (
     <>
+      {/* {pets && pets.length > 0 ? ( */}
       <ContainerPet>
         <ContainerPetWrapper>
           <IconWrapper>
             <AiOutlineDelete size={24} color="#54ADFF" />
           </IconWrapper>
-          <Img src="https://res.cloudinary.com/dtsmejh5h/image/upload/v1690890532/pets/64c873bf6e5e1a8e529845ad_monkey.jpg.jpg" />
+          <Img src={pets.avatarURL} />
           <ContainerPetInfo>
             <InfoPet>
-              <InfoPetTitle>Name:</InfoPetTitle>
+              <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
             </InfoPet>
             <InfoPet>
-              <InfoPetTitle>Date of birth:</InfoPetTitle>
+              <InfoPetTitle>Date of birth:{pets.birthday}</InfoPetTitle>
             </InfoPet>
             <InfoPet>
-              <InfoPetTitle>Type:</InfoPetTitle>
+              <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
             </InfoPet>
             <InfoPet>
-              <InfoPetTitle>Comments:</InfoPetTitle>
+              <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
             </InfoPet>
           </ContainerPetInfo>
         </ContainerPetWrapper>
       </ContainerPet>
+      {/* ) : (
+        <Title>No animals to start you need to add them</Title>
+      )} */}
     </>
   );
 };
