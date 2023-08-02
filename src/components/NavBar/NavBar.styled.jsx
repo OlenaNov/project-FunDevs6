@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const Header = styled.header`
-  background-color: #fff;
+  background-color: transparent;
   padding: 20px;
   display: flex;
   justify-content: end;
