@@ -45,7 +45,7 @@ export const SexLabel = styled.label`
   font-size: 16px;
   line-height: calc(24 / 16);
   letter-spacing: 0.04em;
-  color: ${props => (props.checked ? '#00C3AD' : '#888888')};
+  color: ${props => (props.checked ? '#F43F5E' : '#888888')};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   will-change: transform;
