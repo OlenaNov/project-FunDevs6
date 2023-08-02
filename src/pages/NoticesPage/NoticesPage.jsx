@@ -99,6 +99,7 @@ export const NoticesPage = () => {
   const getApiNotices = useCallback(async () => {
     const path = pathname.split('/');
     const category = path[path.length - 1];
+    setIsLoading(true);
 
     try {
       const { notices, totalHits } = await getNotices({
@@ -142,13 +143,6 @@ export const NoticesPage = () => {
     searchParams,
     setSearchParams,
   ]);
-
-  // useEffect(() => {
-  //   if (!user?.favorite && isLogin) {
-  //     setIsLoading(true);
-  //     dispatch(refreshUser());
-  //   }
-  // }, [user.favorite, isLogin, dispatch]);
 
   const handleDelete = useCallback(
     async id => {
