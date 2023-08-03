@@ -66,7 +66,7 @@ export const Item = styled.li`
 export const Title = styled.a`
   font-size: ${theme.fontSizes[3]};
   font-weight: 700;
-  color: #54adff;
+  color: ${theme.colors.blue};
   text-decoration: none;
 `;
 
@@ -106,7 +106,7 @@ export const Img = styled.img`
 export const Contacts = styled.div`
   font-size: ${theme.fontSizes[0]};
   font-weight: 500;
-  color: #111111;
+  color: ${theme.colors.black};
   margin-top: 12px;
 
   @media screen and (min-width: 748px) and (max-width: 1279px) {
@@ -141,12 +141,12 @@ export const ContactsLink = styled.a`
   text-decoration: none;
   font-size: ${theme.fontSizes[0]};
   font-weight: 500;
-  color: #111111;
+  color: ${theme.colors.black};
   transition: color 150ms ease-in;
 
   &:hover,
   &:focus {
-    color: #54adff;
+    color: ${theme.colors.blue};
   }
 
   @media screen and (min-width: 748px) and (max-width: 1279px) {
@@ -156,24 +156,4 @@ export const ContactsLink = styled.a`
   @media screen and (min-width: 1280px) {
     font-size: ${theme.fontSizes[2]};
   }
-`;
-
-export const Popover = styled.div`
-  position: absolute;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 8px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-`;
-
-export const WorkDaysList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-export const WorkDay = styled.li`
-  padding: 4px 0;
 `;
