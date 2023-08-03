@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { theme } from '../../theme/theme';
 
 export const TitleMain = styled.h2`
   text-align: center;
-  font-size: 48px;
+  font-size: ${theme.fontSizes[7]};
   margin-bottom: 36px;
   margin-top: 120px;
   font-family: Manrope-Bold;
@@ -34,7 +35,7 @@ export const Item = styled.li`
   text-align: center;
   border-radius: 40px;
   padding: 16px;
-  box-shadow: 3px 8px 14px 0 rgba(136, 198, 253, 0.19);
+  box-shadow: ${({ theme }) => theme.boxShadows.main};
   background-color: #ffffff;
   width: 280px;
   height: 250px;
@@ -63,7 +64,7 @@ export const Item = styled.li`
 `;
 
 export const Title = styled.a`
-  font-size: 20px;
+  font-size: ${theme.fontSizes[3]};
   font-weight: 700;
   color: #54adff;
   text-decoration: none;
@@ -103,17 +104,17 @@ export const Img = styled.img`
 `;
 
 export const Contacts = styled.div`
-  font-size: 12px;
+  font-size: ${theme.fontSizes[0]};
   font-weight: 500;
   color: #111111;
   margin-top: 12px;
 
   @media screen and (min-width: 748px) and (max-width: 1279px) {
-    font-size: 14px;
+    font-size: ${theme.fontSizes[1]};
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 16px;
+    font-size: ${theme.fontSizes[2]};
   }
 `;
 
@@ -128,17 +129,17 @@ export const WrapperInfo = styled.div`
 
 export const ContactTitle = styled.div`
   margin: 0px;
-  font-size: 12px;
+  font-size: ${theme.fontSizes[0]};
   font-family: Manrope-Bold;
 
   @media screen and (min-width: 767px) {
-    font-size: 16px;
+    font-size: ${theme.fontSizes[2]};
   }
 `;
 
 export const ContactsLink = styled.a`
   text-decoration: none;
-  font-size: 12px;
+  font-size: ${theme.fontSizes[0]};
   font-weight: 500;
   color: #111111;
   transition: color 150ms ease-in;
@@ -149,11 +150,11 @@ export const ContactsLink = styled.a`
   }
 
   @media screen and (min-width: 748px) and (max-width: 1279px) {
-    font-size: 14px;
+    font-size: ${theme.fontSizes[1]};
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 16px;
+    font-size: ${theme.fontSizes[2]};
   }
 `;
 
