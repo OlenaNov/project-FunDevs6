@@ -6,7 +6,8 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { createSearchParams } from 'utils';
 import { getFilterValues } from 'utils';
@@ -129,7 +130,7 @@ export const NoticesPage = () => {
       setPageCount(Math.ceil(totalHits / PER_PAGE));
       setItems(notices);
     } catch (error) {
-      toast.error(error.message);
+      console.error(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -173,7 +174,7 @@ export const NoticesPage = () => {
           if (category === 'favorite') {
             await getApiNotices();
           }
-          toast.success('Removed successfully!');
+          toast.error('Removed successfully!');
         } catch (error) {
           toast.error(error.message);
         }
@@ -254,6 +255,18 @@ export const NoticesPage = () => {
           currentPage={Number(page)}
         />
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </NoticesContainter>
   );
 };

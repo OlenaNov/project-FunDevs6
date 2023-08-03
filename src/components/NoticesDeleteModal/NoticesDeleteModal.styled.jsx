@@ -121,6 +121,7 @@ export const DeleteModalApproveBtn = styled(DeleteModalCancelBtn)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 
   background-color: ${theme.colors.blue};
   color: #fff;

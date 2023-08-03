@@ -105,7 +105,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
       <CSSTransition
         in={showDeleteModal}
         timeout={400}
-        classNames="more"
+        classNames="node"
         unmountOnExit
       >
         <NoticesModal onClose={() => setShowDeleteModal(false)}>
