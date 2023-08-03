@@ -34,35 +34,9 @@ const UserForm = ({ isEditing, toggleEdit }) => {
   // const API = `http://localhost:3000/project-FunDevs6/`;
 
   const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
-  // const showAvatar = user.avatar ? `${API + user.avatar}` : avatarDefault2x;
 
   const [newAvatar, setNewAvatar] = useState(null);
   const [newAvatarFile, setNewAvatarFile] = useState(null);
-
-  // const handleFileChange = event => {
-  //   if (event.target.files[0]) {
-  //     // const url = URL.createObjectURL(event.target.files[0]);
-  //     // setAvatar(url);
-
-  //     const file = event.target.files[0];
-  //     const blob = new Blob([file], { type: file.type });
-  //     setAvatar(blob);
-  //   }
-  // };
-
-  // обробник подій для завантаження файлу
-
-  // const arrayBufferToBase64 = buffer => {
-  //   var binary = '';
-  //   var bytes = new Uint8Array(buffer);
-  //   var len = bytes.byteLength;
-  //   for (var i = 0; i < len; i++) {
-  //     binary += String.fromCharCode(bytes[i]);
-  //   }
-  //   return window.btoa(binary);
-  // };
-
-  // const base64Avatar = arrayBufferToBase64(newAvatar);
 
   const handleFileChange = event => {
     const fileUploaded = event.target.files[0];
