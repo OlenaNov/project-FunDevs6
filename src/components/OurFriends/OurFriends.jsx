@@ -13,16 +13,12 @@ import {
   ContactTitle,
   ContactsLink,
   Img,
-  // Popover,
-  // WorkDaysList,
-  // WorkDay,
 } from './OurFriends.styled';
 import Background from '../Background/Background';
 import ScrollBtn from '../ScrollBtn/ScrollBtn';
 
 const OurFriends = ({ data }) => {
   const dispatch = useDispatch();
-  // const [isPopoverVisible, setPopoverVisible] = useState(false);
   const { friends, loading, error } = useSelector(
     state => state.friends.friends
   );
@@ -50,14 +46,6 @@ const OurFriends = ({ data }) => {
     return null;
   }
 
-  // const handleMouseEnter = () => {
-  //   setPopoverVisible(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setPopoverVisible(false);
-  // };
-
   return (
     <>
       <TitleMain>Our friends</TitleMain>
@@ -66,12 +54,13 @@ const OurFriends = ({ data }) => {
         {friends
           ? friends.map(item => (
               <Item key={item.id}>
-                <Title href={item.url}>{item.title}</Title>
+                <Title href={item.url} target="_blank">
+                  {item.title}
+                </Title>
 
                 <WrapperCard>
                   <ImgThumb>
                     <Img src={item.imageUrl} alt=""></Img>
-                    {/* <Img src={item.imageUrl} alt="" /> */}
                   </ImgThumb>
 
                   <WrapperInfo>
@@ -85,34 +74,6 @@ const OurFriends = ({ data }) => {
                             item.workDays.find(day => day.isOpen).to
                           }`
                         : 'day and night'}
-                      {/* <span
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        {item.workDays &&
-                        Array.isArray(item.workDays) &&
-                        item.workDays.some(day => day.isOpen)
-                          ? item.workDays
-                              .filter(day => day.isOpen)
-                              .map(day => `${day.from}-${day.to}`)
-                              .join(', ')
-                          : 'day and night'}
-                      </span>
-                      {isPopoverVisible && (
-                        <Popover>
-                          <WorkDaysList>
-                            {item.workDays &&
-                              Array.isArray(item.workDays) &&
-                              item.workDays.map((day, index) => (
-                                <WorkDay key={index}>
-                                  {day.isOpen
-                                    ? `${day.from}-${day.to}`
-                                    : 'Closed'}
-                                </WorkDay>
-                              ))}
-                          </WorkDaysList>
-                        </Popover>
-                      )} */}
                     </Contacts>
 
                     <Contacts>
