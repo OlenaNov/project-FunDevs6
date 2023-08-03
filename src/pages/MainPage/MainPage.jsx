@@ -1,6 +1,6 @@
 import Background from 'components/Background/Background';
 import Container from 'components/Container/Container';
-import MainDefault from 'components/MainDefault';
+import Main from 'components/Main';
 // import Modal from 'components/Modal/Modal';
 // import ModalContent from 'components/ModalContent/ModalContent';
 // import { useState } from 'react';
@@ -13,9 +13,10 @@ export const MainPage = () => {
   // };
 
   return (
-    <Container>
-      <Background />
-      <MainDefault />
+<>
+<Background />
+<Container>
+      <Main />
       {/* {showModal && (
         <Modal
           onClose={toggleModal}
@@ -29,6 +30,7 @@ export const MainPage = () => {
         />
       )} */}
     </Container>
+</>
   );
 };
 

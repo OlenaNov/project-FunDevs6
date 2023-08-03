@@ -1,5 +1,4 @@
-import { Title, Wrapper } from "./MainDefault.styled";
-import Container from "components/Container/Container";
+import { Image, Title, Wrapper } from "./Main.styled";
 import ImgMobileWebp from  "../../images/main-default/pets-mobile_1x.webp";
 import ImgMobileWebp2x from  "../../images/main-default/pets-mobile_2x.webp";
 import ImgMobilePng from  "../../images/main-default/pets-mobile@1x.png";
@@ -13,14 +12,13 @@ import ImgDesktopWebp2x from  "../../images/main-default/pets-desktop_2x.webp";
 import ImgDesktopPng from  "../../images/main-default/pets-desktop@1x.png";
 import ImgDesktopPng2x from  "../../images/main-default/pets-desktop@2x.png";
 
-
 export const MainDefault = () => {
  
  return (
-   <Container>
+   <>
       <Wrapper>
        <Title>Take good care of your small pets</Title>
-       <picture>
+       <Image>
             <source
                srcSet={(ImgDesktopWebp, ImgDesktopWebp2x)}
                media="(min-width: 1200px)"
@@ -49,9 +47,9 @@ export const MainDefault = () => {
                media="(max-width: 767px)"
             />
             <img src={(ImgMobilePng)} alt="Pets" />
-         </picture>
+         </Image>
       </Wrapper>
-   </Container>
+   </>
   );
 };
 

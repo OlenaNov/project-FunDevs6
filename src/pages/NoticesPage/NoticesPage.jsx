@@ -220,8 +220,9 @@ export const NoticesPage = () => {
   const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
 
   return (
-    <NoticesContainter>
+    <>
       <Background />
+      <NoticesContainter>
       <Title>Find your favorite pet</Title>
       <NoticesSearch
         onFormSubmit={handleSubmit}
@@ -267,7 +268,7 @@ export const NoticesPage = () => {
         pauseOnHover
         theme="colored"
       />
-    </NoticesContainter>
+    </NoticesContainter></>
   );
 };
 

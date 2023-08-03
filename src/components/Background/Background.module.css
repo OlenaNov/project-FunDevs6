@@ -1,4 +1,6 @@
 .background {
+  padding-left: auto;
+  margin-right: auto;
   background-image: url('../../../src/images/background/bg-mobile@1x.png');
   background-repeat: repeat;
   /* background-position: center; */

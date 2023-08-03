@@ -28,8 +28,8 @@ export const Layout = () => {
 
   return (
     <>
+      <NavBar onOpen={() => setShowModal(true)} />
       <Main>
-        <NavBar onOpen={() => setShowModal(true)} />
         <Suspense fallback={<Loader />}>
           <Outlet />
           {showModal && 
