@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+
+import NoticesModal from 'components/NoticesModal';
+import NoticesDeleteModal from 'components/NoticesDeleteModal';
 import {
   ContainerPet,
   Img,
@@ -11,13 +16,14 @@ import {
 import { AiOutlineDelete } from 'react-icons/ai';
 
 const PetsItem = ({ pet, onDelete }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const { _id, avatarURL, name, data, type, comments } = pet;
   return (
     <>
-      {/* {pets && pets.length > 0 ? ( */}
       <ContainerPet>
         <ContainerPetWrapper>
-          <IconWrapper onClick={() => onDelete(_id)}>
+          <IconWrapper type="button" onClick={() => setShowDeleteModal(true)}>
             <AiOutlineDelete size={24} color="#54ADFF" />
           </IconWrapper>
           <Img src={avatarURL} />
@@ -36,6 +42,21 @@ const PetsItem = ({ pet, onDelete }) => {
             </InfoPet>
           </ContainerPetInfo>
         </ContainerPetWrapper>
+        <CSSTransition
+          in={showDeleteModal}
+          timeout={400}
+          classNames="node"
+          unmountOnExit
+        >
+          <NoticesModal onClose={() => setShowDeleteModal(false)}>
+            <NoticesDeleteModal
+              modalTitle="Delete this pet?"
+              title={name}
+              onCloseModal={() => setShowDeleteModal(false)}
+              onDeleteNotices={() => onDelete(_id)}
+            />
+          </NoticesModal>
+        </CSSTransition>
       </ContainerPet>
     </>
   );
