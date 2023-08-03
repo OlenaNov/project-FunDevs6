@@ -1,14 +1,14 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import UserForm from 'components/UserForm/UserForm';
 import { UserInfo } from './UserData.styled';
 
-const UserData = () => {
+const UserData = ({ toggleEdit, isEditing }) => {
   // const user = useSelector(getUser);
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
-  };
+  // const toggleEdit = () => {
+  //   setIsEditing(!isEditing);
+  // };
 
   return (
     <>

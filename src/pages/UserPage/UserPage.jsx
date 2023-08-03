@@ -52,6 +52,12 @@ const UserPage = () => {
     setShowModal(false);
   };
 
+  const [isEditing, setIsEditing] = useState(false);
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <>
       <ContainerWrapper>
@@ -59,8 +65,8 @@ const UserPage = () => {
           <Background />
           <FormTitle>My information:</FormTitle>
           <UserCardWrap>
-            <UserData />
-            <Logout openModal={() => setShowModal(true)} />
+            <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
+            {!isEditing && <Logout openModal={() => setShowModal(true)} />}
           </UserCardWrap>
           {isRegistered && showModal && (
             <ModalCongrats onClose={closeModalCongrats} />
