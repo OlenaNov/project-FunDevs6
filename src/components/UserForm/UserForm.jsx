@@ -109,6 +109,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
       avatar: newAvatarFile,
     };
     const file = new FormData();
+    // eslint-disable-next-line array-callback-return
     Object.entries(updateUserData).map(field => {
       console.log(field[0]);
       console.log(field[1]);
