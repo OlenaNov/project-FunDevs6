@@ -8,10 +8,15 @@ import {
   NoticesDeleteModalIcon,
 } from './NoticesDeleteModal.styled';
 
-const NoticesDeleteModal = ({ onCloseModal, onDeleteNotices, title }) => {
+const NoticesDeleteModal = ({
+  modalTitle,
+  onCloseModal,
+  onDeleteNotices,
+  title,
+}) => {
   return (
     <DeleteModalWrapper>
-      <DeleteModalTitle>Delete Advertisement?</DeleteModalTitle>
+      <DeleteModalTitle>{modalTitle}</DeleteModalTitle>
       <DeleteModalText>
         Are you sure you want to delete <span>"{title}"</span>? You can`t undo
         this action.
