@@ -223,52 +223,55 @@ export const NoticesPage = () => {
     <>
       <Background />
       <NoticesContainter>
-      <Title>Find your favorite pet</Title>
-      <NoticesSearch
-        onFormSubmit={handleSubmit}
-        onClear={handleClearSearchQuery}
-      />
-      <ScrollBtn />
-      <NoticesPageContainer>
-        <NoticeFilterContainer>
-          <NoticesCategoriesNav searchParams={searchParams} />
-          <NoticesPageContainerFilterAdd>
-            {filters.length > 0 && (
-              <NoticesSelectedFilters
-                filters={filters}
-                handleReset={handleFilterReset}
-              />
-            )}
-            <NoticesFilters onFilter={handleFilterChange} filters={filters} />
-            <NoticesAddPetBtn />
-          </NoticesPageContainerFilterAdd>
-        </NoticeFilterContainer>
-      </NoticesPageContainer>
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
-      )}
-      {items.length === 0 && !isLoading && <NoticesNotFound />}
-      {!isLoading && pageCount > 1 && items.length > 0 && (
-        <Pagination
-          onPageClick={handlePageClick}
-          pageCount={pageCount}
-          currentPage={Number(page)}
+        <Title>Find your favorite pet</Title>
+        <NoticesSearch
+          onFormSubmit={handleSubmit}
+          onClear={handleClearSearchQuery}
         />
-      )}
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </NoticesContainter></>
+        <ScrollBtn />
+        <NoticesPageContainer>
+          <NoticeFilterContainer>
+            <NoticesCategoriesNav searchParams={searchParams} />
+            <NoticesPageContainerFilterAdd>
+              {filters.length > 0 && (
+                <NoticesSelectedFilters
+                  filters={filters}
+                  handleReset={handleFilterReset}
+                />
+              )}
+              <NoticesFilters onFilter={handleFilterChange} filters={filters} />
+              <NoticesAddPetBtn />
+            </NoticesPageContainerFilterAdd>
+          </NoticeFilterContainer>
+        </NoticesPageContainer>
+        {isLoading && <Loader />}
+        {!isLoading && (
+          <Outlet context={{ items, handleDelete, handleFavoriteClick }} />
+        )}
+        {items.length === 0 && !isLoading && (
+          <NoticesNotFound title={'No animals were found for your request'} />
+        )}
+        {!isLoading && pageCount > 1 && items.length > 0 && (
+          <Pagination
+            onPageClick={handlePageClick}
+            pageCount={pageCount}
+            currentPage={Number(page)}
+          />
+        )}
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </NoticesContainter>
+    </>
   );
 };
 

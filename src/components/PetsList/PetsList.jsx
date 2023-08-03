@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { getPets, deletePet } from '../../redux/pets/pets-operation';
-import { isUserLogin, getToken } from '../../redux/auth/auth-selectors';
+import { isUserLogin } from '../../redux/auth/auth-selectors';
 
 import PetsItem from 'components/PetsItem/PetsItem';
 import {
@@ -13,33 +12,26 @@ import {
   ContainerMain,
 } from './PetsList.styled';
 import { AiOutlinePlus } from 'react-icons/ai';
+import NoticesNotFound from 'components/NoticesNotFound';
 
 const PetsList = () => {
   const dispatch = useDispatch();
   const pets = useSelector(state => state.pets.pets);
   const isLoggedIn = useSelector(isUserLogin);
-  const token = useSelector(getToken);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn) {
       setIsLoading(true);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      dispatch(getPets()).then(() => setIsLoading(false));
+      dispatch(getPets()).finally(() => setIsLoading(false));
     }
-  }, [dispatch, isLoggedIn, token]);
+  }, [dispatch, isLoggedIn]);
 
   const handleDeletePet = petId => {
     setIsLoading(true);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     dispatch(deletePet(petId)).then(() => setIsLoading(false));
+    dispatch(getPets());
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getPets(token));
-    }
-  }, [dispatch, isLoggedIn, token]);
 
   return (
     <>
@@ -53,10 +45,13 @@ const PetsList = () => {
             </IconWrapper>
           </AddButton>
         </Container>
-        {!isLoading &&
+        {pets.length > 0 &&
           pets.map(pet => (
             <PetsItem key={pet._id} pet={pet} onDelete={handleDeletePet} />
           ))}
+        {!isLoading && pets.length === 0 && (
+          <NoticesNotFound title={'You can add your pets here!'} />
+        )}
       </ContainerMain>
     </>
   );
