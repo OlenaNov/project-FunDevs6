@@ -110,6 +110,7 @@ export const NoticeCategoryItem = ({ item, onDelete, onFavorite }) => {
       >
         <NoticesModal onClose={() => setShowDeleteModal(false)}>
           <NoticesDeleteModal
+            modalTitle="Delete Advertisement?"
             title={title}
             onCloseModal={() => setShowDeleteModal(false)}
             onDeleteNotices={() => onDelete(_id)}

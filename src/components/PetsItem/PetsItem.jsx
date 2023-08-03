@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { getPets, deletePet } from '../../redux/pets/pets-operation';
-import { isUserLogin, getToken } from '../../redux/auth/auth-selectors';
+import { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+
+import NoticesModal from 'components/NoticesModal';
+import NoticesDeleteModal from 'components/NoticesDeleteModal';
 import {
   ContainerPet,
   Img,
@@ -15,67 +15,49 @@ import {
 } from './PetsItem.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-const PetsItem = () => {
-  const dispatch = useDispatch();
-  const pets = useSelector(state => state.pets.pets);
-  const isLoggedIn = useSelector(isUserLogin);
-  const token = useSelector(getToken);
-  const [isLoading, setIsLoading] = useState(false);
+const PetsItem = ({ pet, onDelete }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      setIsLoading(true);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      dispatch(getPets()).then(() => setIsLoading(false));
-    }
-  }, [dispatch, isLoggedIn, token]);
-
-  const handleDeletePet = petId => {
-    setIsLoading(true);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    dispatch(deletePet(petId)).then(() => setIsLoading(false));
-  };
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     dispatch(getPets(token));
-  //   }
-  // }, [dispatch, isLoggedIn, token]);
-
+  const { _id, avatarURL, name, data, type, comments } = pet;
   return (
     <>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          {/* {pets && pets.length > 0 ? ( */}
-          <ContainerPet>
-            <ContainerPetWrapper>
-              <IconWrapper onClick={() => handleDeletePet(pets.id)}>
-                <AiOutlineDelete size={24} color="#54ADFF" />
-              </IconWrapper>
-              <Img src={pets.avatarURL} />
-              <ContainerPetInfo>
-                <InfoPet>
-                  <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
-                </InfoPet>
-                <InfoPet>
-                  <InfoPetTitle>Date of birth:{pets.data}</InfoPetTitle>
-                </InfoPet>
-                <InfoPet>
-                  <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
-                </InfoPet>
-                <InfoPet>
-                  <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
-                </InfoPet>
-              </ContainerPetInfo>
-            </ContainerPetWrapper>
-          </ContainerPet>
-          {/* ) : (
-            <Title>No animals to start you need to add them</Title>
-          )} */}
-        </>
-      )}
+      <ContainerPet>
+        <ContainerPetWrapper>
+          <IconWrapper type="button" onClick={() => setShowDeleteModal(true)}>
+            <AiOutlineDelete size={24} color="#54ADFF" />
+          </IconWrapper>
+          <Img src={avatarURL} />
+          <ContainerPetInfo>
+            <InfoPet>
+              <InfoPetTitle>Name:{name}</InfoPetTitle>
+            </InfoPet>
+            <InfoPet>
+              <InfoPetTitle>Date of birth:{data}</InfoPetTitle>
+            </InfoPet>
+            <InfoPet>
+              <InfoPetTitle>Type:{type}</InfoPetTitle>
+            </InfoPet>
+            <InfoPet>
+              <InfoPetTitle>Comments: {comments}</InfoPetTitle>
+            </InfoPet>
+          </ContainerPetInfo>
+        </ContainerPetWrapper>
+        <CSSTransition
+          in={showDeleteModal}
+          timeout={400}
+          classNames="node"
+          unmountOnExit
+        >
+          <NoticesModal onClose={() => setShowDeleteModal(false)}>
+            <NoticesDeleteModal
+              modalTitle="Delete this pet?"
+              title={name}
+              onCloseModal={() => setShowDeleteModal(false)}
+              onDeleteNotices={() => onDelete(_id)}
+            />
+          </NoticesModal>
+        </CSSTransition>
+      </ContainerPet>
     </>
   );
 };
