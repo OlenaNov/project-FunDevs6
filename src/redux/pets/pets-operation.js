@@ -1,13 +1,11 @@
-import axios from 'axios';
+import instance from 'api/auth-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://back-end-yourpet.onrender.com';
 
 export const getPets = createAsyncThunk(
   'pets/fetchPets',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/pets`);
+      const { data } = await instance.get(`/pets`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -19,8 +17,8 @@ export const deletePet = createAsyncThunk(
   'pets/deletePet',
   async (petId, thunkAPI) => {
     try {
-      const url = `/api/pets/${petId}`;
-      const { data } = await axios.delete(url);
+      const url = `/pets/${petId}`;
+      const { data } = await instance.delete(url);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

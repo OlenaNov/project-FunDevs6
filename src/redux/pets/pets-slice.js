@@ -16,7 +16,7 @@ const petsSlice = createSlice({
     });
     builder.addCase(getPets.fulfilled, (state, action) => {
       state.loading = false;
-      state.friends = action.payload;
+      state.pets = action.payload.results;
     });
     builder.addCase(getPets.rejected, (state, action) => {
       state.loading = false;
