@@ -4,11 +4,9 @@ export const ContainerPet = styled('div')`
   position: relative;
   margin-top: 24px;
   border-radius: 40px;
-  min-width: 950px;
   height: 200px;
   padding: 20px;
   background: white;
-  margin-left: -260px;
   box-shadow: 3px 8px 14px 0 rgba(136, 198, 253, 0.19);
   &:focus,
   &:hover {
@@ -19,11 +17,15 @@ export const ContainerPet = styled('div')`
     display: table-cell;
     min-width: 280px;
     height: 100%;
+    margin-left: 0;
   }
 
-  @media screen and (min-width: 747px) and (max-width: 1399px) {
-    display: table-cell;
-    justify-content: center;
+  @media screen and (min-width: 747px) and (max-width: 1279px) {
+    display: flex;
+    min-width: 700px;
+    margin-left: 0;
+  }
+  @media screen and (min-width: 1280px) and (max-width: 1399px) {
     min-width: 800px;
   }
 `;
@@ -44,7 +46,6 @@ export const Img = styled('img')`
 
 export const ContainerPetWrapper = styled('div')`
   display: flex;
-  ${'' /* position: relative; */}
 
   @media screen and (max-width: 746px) {
     display: table-cell;
@@ -70,6 +71,7 @@ export const IconWrapper = styled('svg')`
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 
   @media screen and (max-width: 746px) {
     position: absolute;

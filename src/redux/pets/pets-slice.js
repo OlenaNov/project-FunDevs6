@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPets } from './pets-operation';
+import { getPets, deletePet } from './pets-operation';
 
 const petsSlice = createSlice({
   name: 'pets',
@@ -22,8 +22,18 @@ const petsSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
+    builder.addCase(deletePet.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.pets = state.pets.filter(pet => pet.id !== action.payload);
+    });
+    builder.addCase(deletePet.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
   },
 });
 
 export const petsReducer = petsSlice.reducer;
+export const { removePet } = petsSlice.actions;
 export default petsSlice;

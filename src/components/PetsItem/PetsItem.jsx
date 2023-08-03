@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getPets } from '../../redux/pets/pets-operation';
+import { getPets, deletePet } from '../../redux/pets/pets-operation';
 import { isUserLogin, getToken } from '../../redux/auth/auth-selectors';
 import {
   ContainerPet,
@@ -30,7 +30,11 @@ const PetsItem = () => {
     }
   }, [dispatch, isLoggedIn, token]);
 
-  console.log(`11111pets11111`, pets);
+  const handleDeletePet = petId => {
+    setIsLoading(true);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    dispatch(deletePet(petId)).then(() => setIsLoading(false));
+  };
 
   // useEffect(() => {
   //   if (isLoggedIn) {
@@ -47,7 +51,7 @@ const PetsItem = () => {
           {/* {pets && pets.length > 0 ? ( */}
           <ContainerPet>
             <ContainerPetWrapper>
-              <IconWrapper>
+              <IconWrapper onClick={() => handleDeletePet(pets.id)}>
                 <AiOutlineDelete size={24} color="#54ADFF" />
               </IconWrapper>
               <Img src={pets.avatarURL} />

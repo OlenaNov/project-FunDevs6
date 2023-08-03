@@ -8,7 +8,8 @@ export const Title = styled.div`
 
 export const ContainerMain = styled.div`
   display: content;
-  @media screen and (max-width: 746px) {
+  @media screen and (min-width: 1260px) {
+    margin-right: 40px;
   }
 `;
 
@@ -17,22 +18,21 @@ export const Container = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: 746px) {
-    justify-content: space-evenly;
     margin-top: 40px;
     margin-bottom: 22px;
+    margin-top: -20px;
   }
 
   @media screen and (min-width: 747px) and (max-width: 1399px) {
+    min-width: 700px;
     margin-left: 20px;
-    margin-top: 40px;
     margin-bottom: 22px;
   }
 
   @media screen and (min-width: 1400px) {
     display: flex;
     justify-content: space-between;
-    width: 950px;
-    margin-left: -260px;
+    min-width: 950px;
   }
 `;
 
@@ -48,22 +48,13 @@ export const AddButton = styled(NavLink)`
   font-weight: 500;
   font-size: ${theme.fontSizes[2]};
   line-height: 19px;
-  ${'' /* align-items: center; */}
   letter-spacing: 0.04em;
   transition: color 250ms ease-in, background-color 250ms ease-in;
   width: 130px;
   height: 40px;
-  margin-right: 30px;
 
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-  }
-
-  @media screen and (max-width: 746px) {
-    margin-right: 0px;
-  }
-  @media screen and (min-width: 747px) and (max-width: 1399px) {
-    margin-right: 0px;
   }
 `;
 

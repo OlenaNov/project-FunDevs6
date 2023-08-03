@@ -21,7 +21,7 @@ export const List = styled.ul`
   @media screen and (min-width: 748px) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
   }
   @media screen and (min-width: 1024px) {
     display: flex;
