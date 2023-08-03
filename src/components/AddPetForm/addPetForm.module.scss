@@ -1,0 +1,469 @@
+.form {
+  width: fit-content;
+  margin: 60px auto;
+  background-color: #fff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  padding: 16px 8px;
+  border-radius: 40px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.upperFormPart {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  color: #111111;
+}
+
+.stepTitleContainer {
+  margin-top: 24px;
+}
+
+.stepTitle {
+  position: relative;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  display: inline-block;
+  min-width: 80px;
+  color: #888;
+  text-align: start;
+
+  &:first-child {
+    margin-right: 11px;
+  }
+
+  &:nth-child(2) {
+    margin-right: 16px;
+  }
+}
+.stepOneTitleAfter,
+.stepTwoTitleAfter,
+.stepThreeTitleAfter {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  background-color: #cce4fb;
+  border-radius: 8px;
+  width: 80px;
+  height: 8px;
+}
+.oneSelected {
+  background-color: #54adff;
+}
+.twoSelected {
+  background-color: #54adff;
+}
+.threeSelected {
+  background-color: #54adff;
+}
+
+.oneSelectedColor {
+  color: #54adff;
+}
+.twoSelectedColor {
+  color: #54adff;
+}
+.threeSelectedColor {
+  color: #54adff;
+}
+
+.passed {
+  background-color: #00c3ad;
+}
+
+.passedColor {
+  color: #00c3ad;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.radioBtnsTitle {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  margin-bottom: 8px;
+}
+.oneStepRadioLabel {
+  padding: 8px 16px;
+  color: var(--main-acc);
+  background: var(--dark);
+  border-radius: 40px;
+  width: fit-content;
+
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    background-color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover,
+  &.active {
+    background-color: #54adff;
+    color: #fef9f9;
+  }
+}
+
+// Not supported by firefox
+.oneStepRadioLabel:has(> .oneStepRadioBtn:checked) {
+  color: #fef9f9;
+  background: #54adff;
+}
+
+.oneStepRadioLabel:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.oneStepRadioLabel:last-child {
+  margin-bottom: 91px;
+}
+
+.oneStepRadioBtn {
+  opacity: 0;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+}
+
+// ____________________________________________INPUTS_______________________________________________
+
+.input {
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid #54adff;
+  padding: 0px;
+  padding-left: 16px;
+}
+
+input:focus,
+textArea:focus {
+  border: 2px solid #54adff;
+  outline: var(--main-acc);
+}
+
+input::placeholder,
+textArea::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #888888;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+}
+.petThirdStepInputs {
+  composes: inputs;
+  margin-top: 0px;
+}
+.secStepInput {
+  composes: input;
+  margin-top: 5px;
+}
+.textInput {
+  composes: secStepInput;
+  border-radius: 20px;
+}
+
+.textArea {
+  composes: secStepInput;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  height: 92px;
+  margin-right: 0%;
+  width: 100%;
+  padding-right: 16px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.label:last-child {
+  margin-bottom: 44px;
+}
+
+.petLabel {
+  composes: label;
+  margin-top: 70px;
+  margin-bottom: 24px;
+}
+.sexRadioBtns {
+  display: flex;
+  flex-wrap: wrap;
+}
+.radioBtnsTitle {
+  flex-basis: 100%;
+}
+
+.sexRadioInput {
+  opacity: 0;
+  margin-right: 36px;
+}
+.sexIcon {
+  position: absolute;
+  z-index: 100;
+  top: 20;
+  left: 50;
+  width: 24px;
+  height: 24px;
+}
+
+.sexRadioLabel {
+  flex-basis: 50%;
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #888888;
+  margin-bottom: 16px;
+}
+
+.photoLabel {
+  display: block;
+  position: relative;
+  margin-top: 63px;
+  margin-bottom: 62px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    opacity: 0.7;
+    top: -45px;
+    left: 122px;
+    z-index: 7;
+    width: 112px;
+    height: 112px;
+    border-radius: 20px;
+    background-color: #cce4fb;
+  }
+}
+
+.petPhotoLabel {
+  display: inline-block;
+  position: relative;
+  margin-top: 83px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    opacity: 0.7;
+    top: -45px;
+    left: 122px;
+    z-index: 7;
+    width: 112px;
+    height: 112px;
+    border-radius: 20px;
+    background-color: #cce4fb;
+  }
+}
+
+.photoPlusIcon {
+  position: absolute;
+  top: -7px;
+  left: 160px;
+  width: 30px;
+  height: 30px;
+  z-index: 50;
+}
+
+.petPhotoPlusIcon {
+  position: absolute;
+  top: -5px;
+  left: 162px;
+  width: 30px;
+  height: 30px;
+  z-index: 50;
+}
+
+.photoInput {
+  opacity: 0;
+}
+
+.photoPreview {
+  position: absolute;
+  top: -45px;
+  left: 122px;
+  width: 112px;
+  height: 112px;
+  border-radius: 20px;
+  z-index: 200;
+  object-fit: cover;
+  object-position: center;
+}
+
+.petPhotoPreview {
+  composes: photoPreview;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    padding: 20px 32px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .flexContainer {
+    flex-direction: row;
+    align-items: start;
+  }
+  .title {
+    text-align: center;
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .stepTitle {
+    font-size: 16px;
+    line-height: 26px;
+    min-width: 120px;
+  }
+
+  .stepTitleContainer {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .stepTitle:first-child {
+    margin-right: 22px;
+  }
+  .stepOneTitleAfter,
+  .stepTwoTitleAfter,
+  .stepThreeTitleAfter {
+    width: 120px;
+    top: 39px;
+  }
+
+  .radios {
+    margin-top: 60px;
+  }
+  .radioBtnsTitle {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .oneStepRadioLabel:last-child {
+    margin-bottom: 137px;
+  }
+
+  input::placeholder,
+  textArea::placeholder {
+    font-size: 16px;
+  }
+
+  .input {
+    width: 394px;
+    height: 48px;
+  }
+
+  .secStepInput {
+    composes: input;
+    margin-top: 8px;
+  }
+
+  .petLabel {
+    margin-top: 102px;
+    margin-bottom: 17px;
+  }
+
+  .textArea {
+    padding-top: 12px;
+    padding-bottom: 10px;
+    height: 108px;
+    width: 100%;
+  }
+
+  .label:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .label:last-child {
+    margin-bottom: 40px;
+  }
+
+  .sexRadioLabel {
+    margin-bottom: 48px;
+  }
+
+  .photoLabel {
+    width: 200px;
+    height: 27px;
+    margin-top: 0px;
+    margin-right: 45px;
+    margin-bottom: 0px;
+
+    &::after {
+      width: 182px;
+      height: 182px;
+      left: 0px;
+      top: 35px;
+    }
+  }
+
+  .petPhotoLabel {
+    margin-top: 113px;
+  }
+  .petPhotoLabel::after {
+    left: 194px;
+    top: -72px;
+    width: 182px;
+    height: 182px;
+  }
+
+  .photoPreview {
+    left: 0px;
+    top: 35px;
+    width: 182px;
+    height: 182px;
+  }
+
+  .petPhotoPreview {
+    left: 194px;
+    top: -72px;
+    width: 182px;
+    height: 182px;
+  }
+
+  .photoPlusIcon {
+    width: 48px;
+    height: 48px;
+    top: 100px;
+    left: 67px;
+  }
+
+  .petPhotoPlusIcon {
+    width: 48px;
+    height: 48px;
+    top: -6px;
+    left: 260px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .form {
+    max-width: 700px;
+  }
+}
