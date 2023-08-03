@@ -12,7 +12,7 @@ import PetsData from 'components/PetsData/PetsData';
 
 import ModalCongrats from 'components/ModalCongrats';
 import Modal from 'components/Modal/Modal';
-import ModalContent from 'components/ModalContent/ModalContent';
+import ModalContent from 'components/ModalContentLeaving/ModalContentLeaving';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

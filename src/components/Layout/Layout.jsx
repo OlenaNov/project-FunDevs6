@@ -9,7 +9,7 @@ import { logout } from 'redux/auth/auth-operations';
 import Modal from 'components/Modal/Modal';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import ModalContent from 'components/ModalContent/ModalContent';
+import ModalContent from 'components/ModalContentLeaving/ModalContentLeaving';
 
 export const Layout = () => {
   

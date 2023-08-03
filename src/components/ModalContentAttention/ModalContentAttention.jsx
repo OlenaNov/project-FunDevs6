@@ -1,4 +1,4 @@
-import { ButtonCancel, ButtonYes, IconYes, Title, Text } from "./ModalContent.styled";
+import { ButtonCancel, ButtonYes, IconYes, Title, Text } from "./ModalContentAttention.styled";
 
 export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
  
