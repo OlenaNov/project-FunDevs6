@@ -81,9 +81,9 @@ const NewsPage = () => {
     setSearchParams(params);
   };
 
-  if (isLoading && !isError) {
-    return <Loader />;
-  }
+  // if (isLoading && !isError) {
+  //   return <Loader />;
+  // }
 
   const filteredNews = data.filter(news =>
     news.title.toLowerCase().includes(searchKeyword.toLowerCase())
@@ -95,15 +95,20 @@ const NewsPage = () => {
       <Container>
         <Title>News</Title>
         <NewsSearch onFormSubmit={onSearch} />
-        <ScrollBtn />
-        <NewsList data={filteredNews} />
-
-        {!isError && (
-          <NewsPagination
-            currentPage={Number(page)}
-            totalPagesCount={totalPages}
-            onPageChange={page => onPageChange(page)}
-          />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <NewsList data={filteredNews} />
+            <ScrollBtn />
+            {!isError && (
+              <NewsPagination
+                currentPage={Number(page)}
+                totalPagesCount={totalPages}
+                onPageChange={page => onPageChange(page)}
+              />
+            )}
+          </>
         )}
       </Container>
     </NewsWrapper>
