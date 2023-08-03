@@ -5,7 +5,7 @@ export const TitleMain = styled.h2`
   text-align: center;
   font-size: ${theme.fontSizes[7]};
   margin-bottom: 36px;
-  margin-top: 120px;
+  margin-top: 160px;
   font-family: Manrope-Bold;
 
   @media screen and (max-width: 747px) {
