@@ -66,13 +66,13 @@ const UserPage = () => {
           <FormTitle>My information:</FormTitle>
           <UserCardWrap>
             <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
-            {!isEditing && <Logout openModal={() => setShowModal(true)} />}
+            {!isEditing && <Logout openModal={modalYes} />}
           </UserCardWrap>
           {isRegistered && showModal && (
             <ModalCongrats onClose={closeModalCongrats} />
           )}
 
-          {showModal && (
+          {showModalContent && (
             <Modal
               onClose={toggleModal}
               children={() => (
