@@ -30,6 +30,8 @@ const PetsItem = () => {
     }
   }, [dispatch, isLoggedIn, token]);
 
+  console.log(`11111pets11111`, pets);
+
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     dispatch(getPets(token));
@@ -43,28 +45,28 @@ const PetsItem = () => {
       ) : (
         <>
           {/* {pets && pets.length > 0 ? ( */}
-            <ContainerPet>
-              <ContainerPetWrapper>
-                <IconWrapper>
-                  <AiOutlineDelete size={24} color="#54ADFF" />
-                </IconWrapper>
-                <Img src={pets.avatarURL} />
-                <ContainerPetInfo>
-                  <InfoPet>
-                    <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Date of birth:{pets.data}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
-                  </InfoPet>
-                  <InfoPet>
-                    <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
-                  </InfoPet>
-                </ContainerPetInfo>
-              </ContainerPetWrapper>
-            </ContainerPet>
+          <ContainerPet>
+            <ContainerPetWrapper>
+              <IconWrapper>
+                <AiOutlineDelete size={24} color="#54ADFF" />
+              </IconWrapper>
+              <Img src={pets.avatarURL} />
+              <ContainerPetInfo>
+                <InfoPet>
+                  <InfoPetTitle>Name:{pets.name}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Date of birth:{pets.data}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Type:{pets.type}</InfoPetTitle>
+                </InfoPet>
+                <InfoPet>
+                  <InfoPetTitle>Comments: {pets.comments}</InfoPetTitle>
+                </InfoPet>
+              </ContainerPetInfo>
+            </ContainerPetWrapper>
+          </ContainerPet>
           {/* ) : (
             <Title>No animals to start you need to add them</Title>
           )} */}

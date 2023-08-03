@@ -24,6 +24,8 @@ export const StylizedForm = styled(Form)`
     align-content: space-between;
     gap: 5px; */
   }
+
+  /* display: flex; */
 `;
 
 export const EditIcon = styled.div`
@@ -55,8 +57,8 @@ export const IconCheckPhoto = styled(BsCheck2)`
 `;
 
 export const UserInfoWrap = styled.div`
-  /* display: flex;
-  flex-direction: column; */
+  /* display: flex; */
+  /* flex-direction: column; */
   /* @media screen and (min-width: ${({ theme }) =>
     theme.breakpoints.tablet}) and (max-width: ${({ theme }) =>
     theme.breakpoints.desktop}) {
@@ -103,18 +105,19 @@ export const EditInpuButton = styled.div`
 
 export const ButtonSave = styled.button`
   @media screen and (max-width: 767px) {
-    padding: 6px 0;
     font-size: 14px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     padding: 5px 0;
+    max-height: 34px;
     width: 255px;
     font-size: 16px;
+    margin-left: 90px;
   }
   /* max-width: 255px; */
   width: 100%;
   gap: 8px;
-  padding: 11px 0;
+  padding: 6px 0;
   margin-top: 10px;
   color: #ffffff;
   background-color: #54adff;
@@ -206,7 +209,7 @@ export const EditPhotoWrap = styled.div`
 `;
 
 export const AvatarSection = styled.div`
-  height: 245px;
+  /* height: 245px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,11 +219,23 @@ export const AvatarSection = styled.div`
 `;
 
 export const FormSection = styled.div`
-  @media screen and (max-width: 767px) {
-  }
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+
+    :last-child {
+      gap: 0;
+    }
+
+    font-weight: 14px;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 10px;
+  }
+  @media screen and (min-width: 1280px) {
+    /* gap: 10px; */
+  }
 `;
 
 export const ErrorMessageStyled = styled.div`
