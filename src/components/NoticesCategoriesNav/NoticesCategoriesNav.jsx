@@ -8,26 +8,26 @@ import { useLocation } from 'react-router-dom';
 
 export const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(isUserLogin);
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const path = pathname.split('/');
 
   return (
     <>
       <StyledNavLinkWrapper>
         <StyledNavLink
-          to={`/notices/sell`}
+          to={{ pathname: `/notices/sell`, search }}
           active={(path[path.length - 1] === 'sell').toString()}
         >
           sell
         </StyledNavLink>
         <StyledNavLink
-          to={`/notices/lost-found`}
+          to={{ pathname: `/notices/lost-found`, search }}
           active={(path[path.length - 1] === 'lost-found').toString()}
         >
           lost/found
         </StyledNavLink>
         <StyledNavLink
-          to={`/notices/for-free`}
+          to={{ pathname: `/notices/for-free`, search }}
           active={(path[path.length - 1] === 'for-free').toString()}
         >
           in good hands
@@ -35,13 +35,13 @@ export const NoticesCategoriesNav = () => {
         {isLoggedIn && (
           <>
             <StyledNavLink
-              to={`/notices/favorite`}
+              to={{ pathname: `/notices/favorite`, search }}
               active={(path[path.length - 1] === 'favorite').toString()}
             >
               favorite ads
             </StyledNavLink>
             <StyledNavLink
-              to={`/notices/my-ads`}
+              to={{ pathname: `/notices/my-ads`, search }}
               active={(path[path.length - 1] === 'my-ads').toString()}
             >
               my ads

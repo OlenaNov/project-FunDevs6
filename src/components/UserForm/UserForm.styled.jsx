@@ -163,6 +163,10 @@ export const Label = styled.label`
     border: 1px solid ${theme.colors.blue};
     border-radius: 20px;
   }
+
+  & input {
+    padding: 4px 12px 4px 12px;
+  }
 `;
 
 export const Avatar = styled.img`

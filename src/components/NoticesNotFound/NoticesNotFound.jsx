@@ -4,13 +4,11 @@ import {
   NoticesNotFoundTitle,
 } from './NoticesNotFound.styled';
 
-const NoticesNotFound = () => {
+const NoticesNotFound = ({ title }) => {
   return (
     <>
-      <NoticesNotFoundTitle>
-        No animals were found for your request
-      </NoticesNotFoundTitle>
-      <NoticesNotFoundImage src={notFoundImg} alt="pet not found" />;
+      <NoticesNotFoundTitle>{title}</NoticesNotFoundTitle>
+      <NoticesNotFoundImage src={notFoundImg} alt="pet not found" />
     </>
   );
 };

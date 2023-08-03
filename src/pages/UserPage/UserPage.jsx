@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/auth-operations';
+import { CSSTransition } from 'react-transition-group';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showModalContent, setShowModalContent] = useState(false);
-  console.log(showModalContent);
+
   useEffect(() => {
     if (location.state?.from === '/register') {
       setIsRegistered(true);
@@ -60,19 +61,29 @@ const UserPage = () => {
 
   return (
     <>
-      <ContainerWrapper>
-        <Container>
-          <Background />
-          <FormTitle>My information:</FormTitle>
+      <Background />
+      <Container>
+        <ContainerWrapper>
           <UserCardWrap>
+            <FormTitle>My information:</FormTitle>
             <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
             {!isEditing && <Logout openModal={modalYes} />}
           </UserCardWrap>
+
+          <ContainerPets>
+            <PetsData />
+          </ContainerPets>
+
           {isRegistered && showModal && (
             <ModalCongrats onClose={closeModalCongrats} />
           )}
 
-          {showModalContent && (
+          <CSSTransition
+            in={showModalContent}
+            timeout={400}
+            classNames="node"
+            unmountOnExit
+          >
             <Modal
               onClose={toggleModal}
               children={() => (
@@ -83,12 +94,9 @@ const UserPage = () => {
                 />
               )}
             />
-          )}
-        </Container>
-        <ContainerPets>
-          <PetsData></PetsData>
-        </ContainerPets>
-      </ContainerWrapper>
+          </CSSTransition>
+        </ContainerWrapper>
+      </Container>
     </>
   );
 };

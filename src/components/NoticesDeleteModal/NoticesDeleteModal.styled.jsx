@@ -102,6 +102,10 @@ export const DeleteModalCancelBtn = styled.div`
   }
 
   & span {
+    @media screen and (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+    }
     position: relative;
     z-index: 5;
     font-weight: 700;

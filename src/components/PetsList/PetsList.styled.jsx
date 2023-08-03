@@ -3,13 +3,27 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../theme/theme';
 
 export const Title = styled.div`
-  font-size: ${theme.fontSizes[5]};
+  font-size: 20px;
+
+  @media screen and (max-width: 767px) {
+    margin-right: 70px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes[5]};
+  }
 `;
 
 export const ContainerMain = styled.div`
-  display: content;
+  width: 100%;
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   @media screen and (min-width: 1260px) {
-    margin-right: 40px;
+    // margin-right: 40px;
   }
 `;
 
@@ -17,14 +31,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 746px) {
+  @media screen and (max-width: 767px) {
     margin-top: 40px;
     margin-bottom: 22px;
-    margin-top: -20px;
   }
 
-  @media screen and (min-width: 747px) and (max-width: 1399px) {
-    min-width: 700px;
+  @media screen and (min-width: 747px) {
     margin-left: 20px;
     margin-bottom: 22px;
   }
@@ -32,7 +44,6 @@ export const Container = styled.div`
   @media screen and (min-width: 1400px) {
     display: flex;
     justify-content: space-between;
-    min-width: 950px;
   }
 `;
 
