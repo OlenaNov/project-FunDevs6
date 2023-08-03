@@ -46,12 +46,12 @@ const serverRequestHandler = async (data, fileInputRef) => {
       return;
     }
   } else {
-    await sendRequest('/yourPets', {
+    await sendRequest('/pets', {
       comments,
       type,
       name,
-      birthDate: birth,
-      petsAvatar: fileInputRef.current.files[0],
+      date: birth,
+      avatarURL: fileInputRef.current.files[0],
     });
     return;
   }
