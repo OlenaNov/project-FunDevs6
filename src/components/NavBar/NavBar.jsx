@@ -91,14 +91,20 @@ export const NavBar = ({ onOpen }) => {
             <Nav>
               <NavList>
                 <NavItem onClick={handleCloseClick}>
-                  <NavLink to="/news">News</NavLink>
+                  <NavLink to="/news" activeClassName="active">
+                    News
+                  </NavLink>
                 </NavItem>
                 <NavItem onClick={handleCloseClick}>
-                  <NavLink to="/notices/sell">Find pet</NavLink>
+                  <NavLink to="/notices/sell" activeClassName="active">
+                    Find pet
+                  </NavLink>
                 </NavItem>
 
                 <NavItem onClick={handleCloseClick}>
-                  <NavLink to="/friends">Our friends</NavLink>
+                  <NavLink to="/friends" activeClassName="active">
+                    Our friends
+                  </NavLink>
                 </NavItem>
               </NavList>
             </Nav>
@@ -122,7 +128,7 @@ export const NavBar = ({ onOpen }) => {
             </Link>
           </UserContainer>
         ) : (
-          <DesktopAuth />
+          <DesktopAuth handleCloseClick={handleCloseClick} />
         )}
 
         <OpenBtn open={!isOpen} onClick={handleOpenClick}>

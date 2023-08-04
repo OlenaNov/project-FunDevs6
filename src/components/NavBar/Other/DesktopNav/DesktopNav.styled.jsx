@@ -48,4 +48,8 @@ export const NavLinkDesktop = styled(Link)`
   &:hover {
     color: #ffc107;
   }
+
+  &.active {
+    color: ${props => props.theme.colors.yellow};
+  }
 `;
