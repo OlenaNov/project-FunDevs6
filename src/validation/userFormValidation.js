@@ -11,16 +11,13 @@ export const validationSchema = Yup.object().shape({
     'Image too large, max 3mb',
     value => !value || (value && value.size <= 3000000)
   ),
-  name: Yup.string().required('Name is required field'),
+  name: Yup.string(),
   email: Yup.string()
-    .required('Email  is required field')
+    .required('Email is required field')
     .matches(emailRegExp, 'Invalid email address'),
   birthday: Yup.date()
-    .required('Enter a date of birth')
     .min(new Date(1900, 0, 1))
     .max(new Date(), "You can't be born in the future!"),
-  phone: Yup.string()
-    .required('Phone is required field')
-    .matches(phoneRegExp, 'Invalid phone number'),
-  city: Yup.string().required('City is required field'),
+  phone: Yup.string().matches(phoneRegExp, 'Invalid phone number'),
+  city: Yup.string(),
 });

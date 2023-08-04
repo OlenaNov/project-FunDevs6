@@ -5,6 +5,7 @@ import {
   UserCardWrap,
   ContainerWrapper,
   ContainerPets,
+  ContainerUser,
 } from './UserPage.styled';
 import Background from 'components/Background/Background';
 import Container from 'components/Container/Container';
@@ -15,9 +16,11 @@ import Modal from 'components/Modal/Modal';
 import ModalContent from 'components/ModalContentLeaving/ModalContentLeaving';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { current, logout } from 'redux/auth/auth-operations';
 import { CSSTransition } from 'react-transition-group';
+import { ToastContainer } from 'react-toastify';
+import Loader from 'components/Loader/Loader';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -27,6 +30,7 @@ const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showModalContent, setShowModalContent] = useState(false);
+  const isLoading = useSelector(state => state.auth.isLoading);
 
   useEffect(() => {
     if (location.state?.from === '/register') {
@@ -59,16 +63,28 @@ const UserPage = () => {
     setIsEditing(!isEditing);
   };
 
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
   return (
     <>
       <Background />
       <Container>
         <ContainerWrapper>
-          <UserCardWrap>
+          <ContainerUser>
             <FormTitle>My information:</FormTitle>
-            <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
-            {!isEditing && <Logout openModal={modalYes} />}
-          </UserCardWrap>
+            <UserCardWrap>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
+                  {!isEditing && <Logout openModal={modalYes} />}
+                </>
+              )}
+            </UserCardWrap>
+          </ContainerUser>
 
           <ContainerPets>
             <PetsData />
@@ -97,6 +113,7 @@ const UserPage = () => {
           </CSSTransition>
         </ContainerWrapper>
       </Container>
+      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </>
   );
 };
