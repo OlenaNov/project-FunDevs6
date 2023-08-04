@@ -58,14 +58,7 @@ export const updateUser = createAsyncThunk(
       return rejectWithValue(response);
     }
   }
-  // {
-  //   condition: (_, { getState }) => {
-  //     const { auth } = getState();
-  //     if (!auth.token) {
-  //       return false;
-  //     }
-  //   },
-  // }
+  
 );
 
 export const updateUserAvatar = createAsyncThunk(
@@ -127,28 +120,6 @@ export const fetchDeleteFromFavorite = createAsyncThunk(
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
-  // async (_, { rejectWithValue, getState }) => {
-  //   const { auth } = getState();
-  //   const persistedToken = auth.token;
-
-  //   if (persistedToken === null) {
-  //     return rejectWithValue('Unable to fetch user');
-  //   }
-
-  //   try {
-  //     const res = await api.getCurrent(persistedToken);
-  //     return res.data;
-  //   } catch (error) {
-  //     const { response } = error;
-  //     if (response.status === 401) {
-  //       toast.error(response.data.message);
-  //       return rejectWithValue(response.data.message);
-  //     } else {
-  //       toast.error(error.message);
-  //       return rejectWithValue(error.message);
-  //     }
-  //   }
-  // }
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();

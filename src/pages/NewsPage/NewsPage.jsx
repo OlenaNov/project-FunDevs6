@@ -83,10 +83,6 @@ const NewsPage = () => {
     setSearchParams(params);
   };
 
-  // if (isLoading && !isError) {
-  //   return <Loader />;
-  // }
-
   const filteredNews = data.filter(news =>
     news.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );

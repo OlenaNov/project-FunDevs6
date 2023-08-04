@@ -39,9 +39,6 @@ const UserPage = () => {
     }
   }, [location.state?.from]);
 
-  // const modalYes = () => {
-  //   dispatch(logout());
-  // };
 
   const modalYes = () => {
     setShowModalContent(true);
