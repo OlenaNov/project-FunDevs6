@@ -1,13 +1,12 @@
 import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from 'components/Container/Container';
-// import Loader from 'components/Loader';
 import ScrollBtn from 'components/ScrollBtn/ScrollBtn';
 import NewsPagination from 'components/NewsPagination/NewsPagination';
 import Background from 'components/Background/Background';
 
 import { Title, NewsWrapper, Wrapper } from './NewsPage.styled';
-// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,17 +17,15 @@ import { fetchNews, fetchNewsByQuery2 } from 'redux/news/news-operation';
 import {
   selectAllNews,
   selectHints,
-  // selectNewsError,
   selectNewsLoading,
 } from 'redux/news/news-selectors';
 import { setNews } from 'redux/news/news-actions';
-// import { Wrapper } from 'components/Loader/Loader.styled';
+
 
 const NewsPage = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectAllNews);
   const { totalHints, hints } = useSelector(selectHints);
-  // const isError = useSelector(selectNewsError);
   const isLoading = useSelector(selectNewsLoading);
   const [totalPages, setTotalPages] = useState(null);
   const [searchKeyword] = useState('');
@@ -93,10 +90,7 @@ const NewsPage = () => {
       <Container>
         <Title>News</Title>
         <NewsSearch onFormSubmit={onSearch}></NewsSearch>
-        {/* {isLoading ? (
-          <Loader />
-        ) : (
-          <> */}
+      
             <NewsList data={filteredNews} />
             <ScrollBtn />
 
@@ -109,8 +103,7 @@ const NewsPage = () => {
                 />
               </Wrapper>
             )}
-          {/* </>
-        )} */}
+      
       </Container>
     </NewsWrapper>
   );

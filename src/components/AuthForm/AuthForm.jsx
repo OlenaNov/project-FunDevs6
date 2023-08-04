@@ -13,6 +13,9 @@ import { GoEyeClosed } from 'react-icons/go';
 import { GoEye } from 'react-icons/go';
 import { RxCross2 } from 'react-icons/rx';
 import { BsCheck } from 'react-icons/bs';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import css from './AuthForm.module.css';
 
@@ -47,7 +50,16 @@ const AuthForm = ({ isRegister, onSubmit }) => {
         ...(isRegister && { name: '' }),
       }}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          await onSubmit(values, { setSubmitting });
+          if (!isRegister) {
+            
+          }
+        } catch (error) {
+          toast.error('Login failed. Please check your email and password.'); // Показуємо повідомлення про неуспішний вхід
+        }
+      }}
     >
       {({ isSubmitting, errors, touched, setFieldValue }) => (
         <Form
