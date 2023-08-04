@@ -1,5 +1,4 @@
-// import cloudinary from 'cloudinary';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import {
   Avatar,
   AvatarSection,
@@ -18,6 +17,7 @@ import {
   Label,
   StylizedForm,
   UserInfoWrap,
+  FieldStyled,
 } from './UserForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
@@ -25,14 +25,14 @@ import { useRef, useState } from 'react';
 
 import avatarDefault2x from '../../images/profile_img/Photo_default_2x.jpg';
 import { updateUser } from 'redux/auth/auth-operations';
-// import { validationSchema } from 'validation';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { validationSchema } from 'validation';
 
 const UserForm = ({ isEditing, toggleEdit }) => {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const fileInput = useRef();
-  // const API = `http://localhost:3000/project-FunDevs6/`;
-
   const [avatar, setAvatar] = useState(user.avatar || avatarDefault2x);
 
   const [newAvatar, setNewAvatar] = useState(null);
@@ -40,9 +40,12 @@ const UserForm = ({ isEditing, toggleEdit }) => {
 
   const handleFileChange = event => {
     const fileUploaded = event.target.files[0];
-    setNewAvatarFile(fileUploaded);
-    const currentNewAvatar = URL.createObjectURL(fileUploaded);
-    setNewAvatar(currentNewAvatar);
+    if (fileUploaded && fileUploaded.size <= 3000000) {
+      setNewAvatarFile(fileUploaded);
+      const currentNewAvatar = URL.createObjectURL(fileUploaded);
+      setNewAvatar(currentNewAvatar);
+    }
+    toast.error('Your photo is large');
   };
 
   function formatDate(dateStr) {
@@ -71,7 +74,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     fileInput.current.click();
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async (values, { setSubmitting, validateForm }) => {
     // Перевіряємо, чи є помилки валідації
 
     const updateUserData = {
@@ -85,13 +88,52 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     const file = new FormData();
     // eslint-disable-next-line array-callback-return
     Object.entries(updateUserData).map(field => {
-      console.log(field[0]);
-      console.log(field[1]);
+      // console.log(field[0]);
+      // console.log(field[1]);
       file.append(field[0], field[1]);
     });
 
-    dispatch(updateUser(file));
+    try {
+      await dispatch(updateUser(file));
+      toast.success('Data updated successfully!👌');
+    } catch (error) {
+      toast.error('Something went wrong while updating the data.🙁');
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+  // const handleSubmit = async (values, { setSubmitting, validateForm }) => {
+  //   const errors = await validateForm(values);
+  //   for (const error in errors) {
+  //     toast.error(errors[error]);
+  //   }
+
+  //   const updateUserData = {
+  //     name: values.name,
+  //     email: values.email,
+  //     birthday: values.birthday,
+  //     phone: values.phone,
+  //     city: values.city,
+  //     avatar: newAvatarFile,
+  //   };
+
+  //   const file = new FormData();
+  //   Object.entries(updateUserData).forEach(([key, value]) => {
+  //     file.append(key, value);
+  //   });
+
+  //   if (!Object.keys(errors).length) {
+  //     try {
+  //       await dispatch(updateUser(file));
+  //       toast.success('Дані успішно оновлені!');
+  //     } catch (error) {
+  //       toast.error('Сталася помилка під час оновлення даних');
+  //     }
+  //   }
+
+  //   setSubmitting(false);
+  // };
 
   return (
     <div>
@@ -103,82 +145,110 @@ const UserForm = ({ isEditing, toggleEdit }) => {
           phone: user.phone || '',
           city: user.city || '',
         }}
+        enableReinitialize
         onSubmit={handleSubmit}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
       >
-        <StylizedForm autoComplete="off">
-          <EditIcon>
-            <EditInpuButton type="button" onClick={toggleEdit}>
-              {isEditing ? <Icon /> : <IconEdit />}
-            </EditInpuButton>
-          </EditIcon>
+        {({ errors }) => (
+          <StylizedForm autoComplete="off">
+            <EditIcon>
+              <EditInpuButton type="button" onClick={toggleEdit}>
+                {isEditing ? <Icon /> : <IconEdit />}
+              </EditInpuButton>
+            </EditIcon>
 
-          <UserInfoWrap>
-            <AvatarSection>
-              <Avatar src={newAvatar || avatar} alt="User avatar" />
-              {isEditing && (
-                <EditPhotoWrap>
-                  {/* <EditInpuButton type="button" onClick={handleEditPhoto}>
+            <UserInfoWrap>
+              <AvatarSection>
+                <Avatar src={newAvatar || avatar} alt="User avatar" />
+                {isEditing && (
+                  <EditPhotoWrap>
+                    {/* <EditInpuButton type="button" onClick={handleEditPhoto}>
                     Edit Photo
                   </EditInpuButton> */}
-                  {!newAvatar ? (
-                    <EditPhotoButton type="button" onClick={handleEditPhoto}>
-                      <IconEditPhoto /> <span>Edit Photo</span>
-                    </EditPhotoButton>
-                  ) : (
-                    <IconConfirmBox>
-                      <IconCheckPhoto
-                        type="button"
-                        onClick={handleConfirmChange}
-                      ></IconCheckPhoto>
-                      <span>Confirm</span>
-                      <IconCheckPhotoNo
-                        type="button"
-                        onClick={handleCancelChange}
-                      ></IconCheckPhotoNo>
-                    </IconConfirmBox>
-                  )}
-                  <input
-                    type="file"
-                    ref={fileInput}
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                  />
-                </EditPhotoWrap>
-              )}
-            </AvatarSection>
+                    {!newAvatar ? (
+                      <EditPhotoButton type="button" onClick={handleEditPhoto}>
+                        <IconEditPhoto /> <span>Edit Photo</span>
+                      </EditPhotoButton>
+                    ) : (
+                      <IconConfirmBox>
+                        <IconCheckPhoto
+                          type="button"
+                          onClick={handleConfirmChange}
+                        ></IconCheckPhoto>
+                        <span>Confirm</span>
+                        <IconCheckPhotoNo
+                          type="button"
+                          onClick={handleCancelChange}
+                        ></IconCheckPhotoNo>
+                      </IconConfirmBox>
+                    )}
+                    <input
+                      type="file"
+                      ref={fileInput}
+                      style={{ display: 'none' }}
+                      onChange={handleFileChange}
+                    />
+                  </EditPhotoWrap>
+                )}
+              </AvatarSection>
 
-            <FormSection>
-              <Label htmlFor="name">
-                <span>Name:</span>
-                <Field
-                  type="text"
-                  name="name"
-                  disabled={!isEditing}
-                  placeholder="Your name"
-                />
-                {/* <ErrorMessage name="name" component={ErrorMessageStyled} /> */}
-              </Label>
-              <Label htmlFor="email">
-                <span>Email:</span>
-                <Field type="text" name="email" disabled={!isEditing} />
-              </Label>
-              <Label htmlFor="birthday">
-                <span>Birthday:</span>
-                <Field type="text" name="birthday" disabled={!isEditing} />
-              </Label>
-              <Label htmlFor="birthday">
-                <span>Phone:</span>
-                <Field type="text" name="phone" disabled={!isEditing} />
-              </Label>
-              <Label htmlFor="city">
-                <span>City:</span>
-                <Field type="text" name="city" disabled={!isEditing} />
-              </Label>
-              {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
-            </FormSection>
-          </UserInfoWrap>
-        </StylizedForm>
+              <FormSection>
+                <Label htmlFor="name">
+                  <span>Name:</span>
+                  <FieldStyled
+                    type="text"
+                    name="name"
+                    disabled={!isEditing}
+                    placeholder="Your name"
+                  />
+                  {/* <ErrorMessage name="name" component={ErrorMessageStyled} /> */}
+                </Label>
+                <Label htmlFor="email">
+                  <span>Email:</span>
+                  <FieldStyled
+                    type="text"
+                    name="email"
+                    disabled={!isEditing}
+                    placeholder="Your mail"
+                  />
+                </Label>
+                <Label htmlFor="birthday">
+                  <span>Birthday:</span>
+                  <FieldStyled
+                    type="text"
+                    name="birthday"
+                    disabled={!isEditing}
+                    placeholder="YYYY-MM-DD"
+                  />
+                </Label>
+                <Label htmlFor="phone">
+                  <span>Phone:</span>
+                  <FieldStyled
+                    type="text"
+                    name="phone"
+                    disabled={!isEditing}
+                    placeholder="+380"
+                  />
+                </Label>
+                <Label htmlFor="city">
+                  <span>City:</span>
+                  <FieldStyled
+                    type="text"
+                    name="city"
+                    disabled={!isEditing}
+                    placeholder="London"
+                  />
+                </Label>
+                {/* {errors.name && toast.error(errors.name)}
+                {errors.email && toast.error(errors.email)}
+                {errors.birthday && toast.error(errors.birthday)}
+                {errors.phone && toast.error(errors.phone)}
+                {errors.city && toast.error(errors.city)} */}
+                {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
+              </FormSection>
+            </UserInfoWrap>
+          </StylizedForm>
+        )}
       </Formik>
     </div>
   );

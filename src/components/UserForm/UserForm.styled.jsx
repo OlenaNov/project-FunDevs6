@@ -1,4 +1,4 @@
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 // import { RxCross1 } from 'react-icons/rx';
 import { ImCross } from 'react-icons/im';
@@ -163,6 +163,10 @@ export const Label = styled.label`
     border: 1px solid ${theme.colors.blue};
     border-radius: 20px;
   }
+`;
+
+export const FieldStyled = styled(Field)`
+  padding: 4px 12px;
 `;
 
 export const Avatar = styled.img`
