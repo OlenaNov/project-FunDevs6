@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
+import { theme } from '../../theme/theme';
 
 export const Wrapper = styled.div`
-  padding: 60px 20px 0;
-  width: 100%;
-  height: 100%;
+  padding-top: 60px;
+  min-height: 100vh;
+  position: relative;
 
-  @media screen and (min-width: 1280px) {
-    position: relative;
+  @media screen and (max-width: 767px) {
+    max-width: 320px;
   }
 `;
 
@@ -17,6 +18,10 @@ export const Title = styled.h1`
   font-weight: 700;
   line-height: 1.38;
   z-index: 5;
+
+  @media scree and (max-width: 767px) {
+    text-align: center;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 68px;
@@ -49,13 +54,25 @@ export const Image = styled.picture`
 
 export const HeroOneImg = styled.img`
   position: absolute;
-  right: -40px;
-  top: -87px;
-  width: 50%;
+  width: 100%;
+  top: 111px;
+  right: -58px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 100%;
+    top: 165px;
+    right: -100px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    right: -40px;
+    top: -2px;
+    width: 50%;
+  }
+
   animation-name: spin1;
   animation-duration: 1000ms;
   animation-timing-function: linear;
-  //   animation-iteration-count: infinite;
 
   @keyframes spin1 {
     0% {
@@ -73,9 +90,21 @@ export const HeroOneImg = styled.img`
 export const HeroTwoImg = styled.img`
   z-index: -1;
   position: absolute;
-  right: 265px;
-  top: 150px;
-  width: 40%;
+  right: 89px;
+  top: 245px;
+  width: 90%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    right: 235px;
+    top: 361px;
+    width: 90%;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    right: 248px;
+    top: 258px;
+    width: 45%;
+  }
 
   animation-name: spin2;
   animation-duration: 1000ms;
@@ -97,9 +126,21 @@ export const HeroTwoImg = styled.img`
 export const HeroThreeImg = styled.img`
   z-index: -1;
   position: absolute;
-  right: -51px;
-  top: 338px;
-  width: 30%;
+  right: -89px;
+  top: 325px;
+  width: 79%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    right: -30px;
+    top: 705px;
+    width: 60%;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    right: -25px;
+    top: 442px;
+    width: 30%;
+  }
 
   animation-name: spin3;
   animation-duration: 1000ms;
