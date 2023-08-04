@@ -1,7 +1,7 @@
 import { ButtonLogin, ButtonRegistration, Title, Text, ButtonWrapper } from "./ModalContentAttention.styled";
 import { ReactComponent as SvgPow } from '../../images/logo/logo-paw.svg';
 
-export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
+const ModalContentAttention = ({ fnYes, fnCancel, title, message }) => {
  
  return (
     <>
@@ -22,4 +22,4 @@ export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
     );
 };
 
-export default ModalContent;
+export default ModalContentAttention;
