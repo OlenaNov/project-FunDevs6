@@ -38,6 +38,11 @@ const UserPage = () => {
     }
   }, [location.state?.from]);
 
+  const modalYesLogout = () => {
+    setShowModalContent(true);
+    // Логіка виходу буде виконуватися всередині компонента Logout
+  };
+
   const modalYes = () => {
     setShowModalContent(true);
     dispatch(logout());
@@ -75,7 +80,7 @@ const UserPage = () => {
               ) : (
                 <>
                   <UserData toggleEdit={toggleEdit} isEditing={isEditing} />
-                  {!isEditing && <Logout openModal={modalYes} />}
+                  {!isEditing && <Logout openModal={modalYesLogout} />}
                 </>
               )}
             </UserCardWrap>
@@ -96,12 +101,12 @@ const UserPage = () => {
             unmountOnExit
           >
             <Modal
-              onClose={toggleModal}
+              onClose={() => setShowModalContent(false)} // Викликаємо функцію, яка встановлює showModalContent в false
               children={() => (
                 <ModalContent
                   title="Already leaving?"
                   fnYes={() => modalYes()}
-                  fnCancel={() => setShowModal(false)}
+                  fnCancel={() => setShowModalContent(false)} // Тут також встановлюємо showModalContent в false
                 />
               )}
             />

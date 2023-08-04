@@ -1,8 +1,6 @@
 import { IconExit, LogOutBtn } from './Logout.styled';
 
 const Logout = ({ openModal }) => {
-
-
   const handleLogout = () => {
     openModal();
   };
