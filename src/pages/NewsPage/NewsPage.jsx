@@ -7,7 +7,6 @@ import NewsPagination from 'components/NewsPagination/NewsPagination';
 import Background from 'components/Background/Background';
 
 import { Title, NewsWrapper } from './NewsPage.styled';
-// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -80,10 +79,6 @@ const NewsPage = () => {
       : { page: currentPage };
     setSearchParams(params);
   };
-
-  // if (isLoading && !isError) {
-  //   return <Loader />;
-  // }
 
   const filteredNews = data.filter(news =>
     news.title.toLowerCase().includes(searchKeyword.toLowerCase())
