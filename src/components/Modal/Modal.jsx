@@ -32,7 +32,7 @@ export default function Modal({ onClose, children }) {
                 <ButtonClose
                     type="button"
                     onClick={() => onClose()}>
-                    <IconClose />
+                    <IconClose style={{ width: "21px" }}/>
                 </ButtonClose>
                 {children()}
                 </ModalWrapper>
