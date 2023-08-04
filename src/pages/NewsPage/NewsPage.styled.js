@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../theme/theme';
 
 export const Title = styled.h1`
   text-align: center;
@@ -27,6 +28,12 @@ export const NewsWrapper = styled.div`
 
   flex: 1 1 auto;
   align-content: stretch;
+
+  padding-bottom: 117px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-bottom: 209px;
+  }
 `;
 
 export const Wrapper = styled.div`

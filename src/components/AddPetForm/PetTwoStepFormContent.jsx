@@ -1,7 +1,6 @@
 import styles from './addPetForm.module.scss';
 import React, { useState } from 'react';
 
-// external libraries
 import clsx from 'clsx';
 
 const PetTwoStepFormContent = ({ data, setData }) => {

@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import NoticesModal from 'components/NoticesModal';
 import NoticesDeleteModal from 'components/NoticesDeleteModal';
+
 import {
   ContainerPet,
   Img,
@@ -14,11 +15,14 @@ import {
   // Title,
 } from './PetsItem.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { normilizeBirthdate } from 'utils';
 
 const PetsItem = ({ pet, onDelete }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const { _id, avatarURL, name, data, type, comments } = pet;
+  const { _id, avatarURL, name, date, type, comments } = pet;
+
+  const normBirthdate = normilizeBirthdate(date);
   return (
     <>
       <ContainerPet>
@@ -32,7 +36,7 @@ const PetsItem = ({ pet, onDelete }) => {
               <InfoPetTitle>Name:{name}</InfoPetTitle>
             </InfoPet>
             <InfoPet>
-              <InfoPetTitle>Date of birth:{data}</InfoPetTitle>
+              <InfoPetTitle>Date of birth:{normBirthdate}</InfoPetTitle>
             </InfoPet>
             <InfoPet>
               <InfoPetTitle>Type:{type}</InfoPetTitle>
