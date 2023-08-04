@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { CiLogout } from 'react-icons/ci';
 
 export const Title = styled.h2`
-margin-bottom: 14px;
+margin-bottom: 44px;
 color: #111;
 text-align: center;
 font-family: Manrope;
@@ -10,24 +10,32 @@ font-size: 24px;
 font-weight: 700;
 line-height: normal;
 letter-spacing: 0.96px;
+
+@media screen and (min-width: 768px) {
+margin-bottom: 48px;
+    
+font-size: 36px;
+letter-spacing: 1.44px;
+};
 `;
 
-export const Text = styled.p`
-margin-bottom: 44px;
-color: #000;
-text-align: center;
-font-family: Manrope;
-font-size: 14px;
-font-weight: 500;
-line-height: normal;
-letter-spacing: -0.14px;
+export const ButtonWrapper = styled.div`
+display: flex;
+flex-direction: column;
+gap: 12px;
+
+@media screen and (min-width: 768px) {
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+};
+
 `;
 
 export const ButtonCancel = styled.button`
 display: flex;
 margin-bottom: 8px;
 max-width: 256px;
-height: 40px;
 padding: 8px 20px;
 justify-content: center;
 align-items: center;
@@ -36,6 +44,7 @@ flex-shrink: 0;
 
 border-radius: 40px;
 border: 2px solid #54ADFF;
+background-color: inherit;
 
 color: #54ADFF;
 font-family: Manrope;
@@ -43,6 +52,11 @@ font-size: 16px;
 font-weight: 700;
 line-height: normal;
 letter-spacing: 0.64px;
+
+@media screen and (min-width: 768px) {
+    width: 165px;
+    padding: 12px 20px;
+    };
 `;
 
 
@@ -64,6 +78,11 @@ font-size: 16px;
 font-weight: 700;
 line-height: normal;
 letter-spacing: 0.64px;
+
+@media screen and (min-width: 768px) {
+    width: 165px;
+    padding: 8px 20px;
+    };
 `;
 
 
