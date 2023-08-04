@@ -2,28 +2,26 @@ import { styled } from "styled-components";
 import { CiLogout } from 'react-icons/ci';
 
 export const Title = styled.h2`
-margin-bottom: 14px;
 color: #111;
 text-align: center;
 font-family: Manrope;
 font-size: 24px;
-font-weight: 700;
+font-weight: 500;
 line-height: normal;
 letter-spacing: 0.96px;
 `;
 
 export const Text = styled.p`
-margin-bottom: 44px;
-color: #000;
+color: #111;
 text-align: center;
 font-family: Manrope;
 font-size: 14px;
 font-weight: 500;
-line-height: normal;
-letter-spacing: -0.14px;
+line-height: 1.28;
+letter-spacing: 0.56px;
 `;
 
-export const ButtonCancel = styled.button`
+export const ButtonLogin = styled.button`
 display: flex;
 margin-bottom: 8px;
 max-width: 256px;
