@@ -10,20 +10,19 @@ export const Backdrop = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: background: rgba(97, 97, 97, 0.60);
+    backdrop-filter: blur(4px);
     z-index: 1200;
 `;
 
 export const ModalWrapper = styled.div`
 position: relative;
-max-width: calc(100vw - 100px);
-max-height: calc(100vh - 100px);
 
 display: flex;
 flex-direction: column;
 justify-content: center;
 padding: 60px 20px;
-width: 280px;
+max-width: 280px;
 height: 302px;
 flex-shrink: 0;
 border-radius: 20px;

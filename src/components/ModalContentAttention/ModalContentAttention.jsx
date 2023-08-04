@@ -1,4 +1,5 @@
-import { ButtonCancel, ButtonYes, IconYes, Title, Text } from "./ModalContentAttention.styled";
+import { ButtonLogin, ButtonRegistration, Title, Text } from "./ModalContentAttention.styled";
+import { ReactComponent as SvgPow } from '../../images/logo/logo-paw.svg';
 
 export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
  
@@ -6,16 +7,15 @@ export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
     <>
      <Title>{title}</Title >
      {message && <Text>{message}</Text>}
-     <ButtonCancel
+     <ButtonLogin
         type="button"
         onClick={fnCancel}
-     >Cancel</ButtonCancel>
-     <ButtonYes
+     >Log IN<SvgPow /></ButtonLogin>
+     <ButtonRegistration
         type="button"
         onClick={fnYes}
-     >Yes
-     <IconYes />
-     </ButtonYes>
+     >Registration
+     </ButtonRegistration>
     </>
     );
 };
