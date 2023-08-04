@@ -49,11 +49,11 @@ export const Image = styled.picture`
 
 export const HeroOneImg = styled.img`
   position: absolute;
-  right: 0;
-  top: -40px;
-  width: 40%;
+  right: -40px;
+  top: -87px;
+  width: 50%;
   animation-name: spin1;
-  animation-duration: 1500ms;
+  animation-duration: 1000ms;
   animation-timing-function: linear;
   //   animation-iteration-count: infinite;
 
@@ -78,7 +78,7 @@ export const HeroTwoImg = styled.img`
   width: 40%;
 
   animation-name: spin2;
-  animation-duration: 1500ms;
+  animation-duration: 1000ms;
   animation-timing-function: linear;
 
   @keyframes spin2 {
@@ -97,12 +97,12 @@ export const HeroTwoImg = styled.img`
 export const HeroThreeImg = styled.img`
   z-index: -1;
   position: absolute;
-  right: -100px;
+  right: -51px;
   top: 338px;
-  width: 40%;
+  width: 30%;
 
   animation-name: spin3;
-  animation-duration: 1500ms;
+  animation-duration: 1000ms;
   animation-timing-function: linear;
 
   @keyframes spin3 {
