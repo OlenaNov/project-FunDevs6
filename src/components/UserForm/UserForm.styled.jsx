@@ -1,4 +1,4 @@
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 // import { RxCross1 } from 'react-icons/rx';
 import { ImCross } from 'react-icons/im';
@@ -159,14 +159,22 @@ export const Label = styled.label`
 
   :not(:first-child) {
     height: 32px;
-    width: 255px;
+    width: 190px;
     border: 1px solid ${theme.colors.blue};
     border-radius: 20px;
-  }
+
+    @media screen and (min-width: 768px) {
+      width: 255px;
+    }
 
   & input {
     padding: 4px 12px 4px 12px;
   }
+`;
+
+export const FieldStyled = styled(Field)`
+  padding: 4px 12px;
+  width: 190px;
 `;
 
 export const Avatar = styled.img`

@@ -13,8 +13,10 @@ export const FormTitle = styled.h2`
   }
 `;
 
+export const ContainerUser = styled.div``;
+
 export const UserCardWrap = styled.div`
-  padding: 20px;
+  padding: 20px 8px;
   position: relative;
   /* padding-top: ${({ theme }) => theme.space[2] * 5 + 'px'};
   padding-right: ${({ theme }) => theme.space[2] * 2 + 'px'};

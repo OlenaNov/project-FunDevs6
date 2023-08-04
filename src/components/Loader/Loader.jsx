@@ -3,7 +3,7 @@ import { Wrapper } from './Loader.styled';
 const Loader = () => {
   return (
     <Wrapper>
-<svg class="lds-bluecat" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      {/* <svg class="lds-bluecat" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
   <g transform="rotate(90.8425 50 50)">
     <animateTransform attributeName="transform" type="rotate" values="360 50 50;0 50 50" keyTimes="0;1" dur="1s" repeatCount="indefinite" calcMode="spline" keySplines="0.5 0 0.5 1" begin="-0.1s"></animateTransform>
     <circle cx="50" cy="50" r="39.891" stroke="#FFC107" stroke-width="14.4" fill="none" stroke-dasharray="0 300">
@@ -43,7 +43,7 @@ const Loader = () => {
     <path fill="#000000" d="M85.5,36.3c0.2,0.6-0.1,1.2-0.7,1.5c-0.6,0.2-1.3,0-1.5-0.6C83,36.7,83.4,36,84,35.8C84.6,35.5,85.3,35.7,85.5,36.3z"></path>
 
   </g>
-</svg>
+</svg> */}
     </Wrapper>
   );
 };
