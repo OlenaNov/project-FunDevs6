@@ -49,9 +49,9 @@ const UserPage = () => {
     navigate('/');
   };
 
-  const toggleModal = () => {
-    setShowModal(s => !s);
-  };
+  // const toggleModal = () => {
+  //   setShowModal(s => !s);
+  // };
 
   const closeModalCongrats = () => {
     setShowModal(false);

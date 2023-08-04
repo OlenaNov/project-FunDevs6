@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CSSTransition } from 'react-transition-group';
 
 import { createSearchParams } from 'utils';
 import { getFilterValues } from 'utils';
@@ -54,6 +55,7 @@ export const NoticesPage = () => {
   const { pathname } = useLocation();
   const prevPathname = useRef(pathname);
   const navigate = useNavigate();
+  const [showAttentionModal, setShowModalAttention] = useState(false);
 
   const query = searchParams.get('query');
   const gender = searchParams.get('gender');
@@ -128,8 +130,7 @@ export const NoticesPage = () => {
         setIsLoading(false);
         return;
       }
-
-      setPageCount(Math.ceil(totalHits / PER_PAGE));
+setPageCount(Math.ceil(totalHits / PER_PAGE));
       setItems(notices);
     } catch (error) {
       console.error(error.message);
@@ -163,7 +164,8 @@ export const NoticesPage = () => {
   const handleFavoriteClick = useCallback(
     async id => {
       if (!isLogin) {
-        return navigate('/login');
+        // return navigate('/login');
+        setShowModalAttention(true);
       }
 
       const path = pathname.split('/');
@@ -191,7 +193,7 @@ export const NoticesPage = () => {
         toast.error(error.message);
       }
     },
-    [isLogin, pathname, user.favorite, navigate, dispatch, getApiNotices]
+    [isLogin, pathname, user.favorite, dispatch, getApiNotices]
   );
 
   useEffect(() => {
@@ -221,13 +223,12 @@ export const NoticesPage = () => {
 
   const filters = useMemo(() => getFilterValues(searchParams), [searchParams]);
 
-  const [ showModalAttention, setShowModalAttention] = useState(true);
+  // const [showModalAttention, setShowModalAttention] = useState(true);
 
-  const toggleModalAttention = () => {
-    setShowModalAttention(s => !s);
-  };
-
-  return (
+  // const toggleModalAttention = () => {
+  //   setShowModalAttention(s => !s);
+  // };
+return (
     <>
       <Background />
       <NoticesContainter>
@@ -248,7 +249,9 @@ export const NoticesPage = () => {
                 />
               )}
               <NoticesFilters onFilter={handleFilterChange} filters={filters} />
-              <NoticesAddPetBtn />
+              <NoticesAddPetBtn
+                onAttention={() => setShowModalAttention(true)}
+              />
             </NoticesPageContainerFilterAdd>
           </NoticeFilterContainer>
         </NoticesPageContainer>
@@ -266,6 +269,24 @@ export const NoticesPage = () => {
             currentPage={Number(page)}
           />
         )}
+        <CSSTransition
+          in={showAttentionModal}
+          timeout={500}
+          classNames="filter"
+          unmountOnExit
+        >
+          <Modal
+            onClose={() => setShowModalAttention(false)}
+            children={() => (
+              <ModalContentAttention
+                title="Attention"
+                message="We would like to remind you that certain functionality is available only to authorized users.If you have an account, please log in with your credentials. If you do not already have an account, you must register to access these features."
+                fnYes={() => navigate('/register')}
+                fnCancel={() => navigate('/login')}
+              />
+            )}
+          />
+        </CSSTransition>
         <ToastContainer
           position="top-center"
           autoClose={2000}
@@ -278,19 +299,6 @@ export const NoticesPage = () => {
           pauseOnHover
           theme="colored"
         />
-        {showModalAttention && (
-        <Modal
-          onClose={toggleModalAttention}
-          children={() => (
-            <ModalContentAttention
-              title="Attention"
-              message="We would like to remind you that certain functionality is available only to authorized users.If you have an account, please log in with your credentials. If you do not already have an account, you must register to access these features."
-              fnYes={() => console.log('Yes')}
-              fnCancel={() => console.log('Cancel')}
-            />
-          )}
-        />
-      )}
       </NoticesContainter>
     </>
   );

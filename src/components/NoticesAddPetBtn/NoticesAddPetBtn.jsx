@@ -8,11 +8,11 @@ import {
   IconWrapperMobill,
 } from './NoticesAddPetBtn.styled';
 import { AiOutlinePlus } from 'react-icons/ai';
-import Notiflix from 'notiflix';
 
-export const NoticesAddPetBtn = () => {
+export const NoticesAddPetBtn = ({ onAttention }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const isLoggedIn = useSelector(isUserLogin);
+  const [path, setPath] = useState('/add-pet');
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,14 +28,18 @@ export const NoticesAddPetBtn = () => {
 
   const handleAddPetClick = () => {
     if (!isLoggedIn) {
-      Notiflix.Notify.warning('Please sign in or register to add a pet.');
+      onAttention();
       return;
     }
   };
 
+  useEffect(() => {
+    isLoggedIn ? setPath('/add-pet') : setPath('');
+  }, [isLoggedIn]);
+
   return (
     <StyledNavLinkWrapper>
-      <StyledNavLink to="/add-pet" onClick={handleAddPetClick}>
+      <StyledNavLink to={path} onClick={handleAddPetClick}>
         {isMobile ? (
           <IconWrapperMobill>
             <IconWrapper>
