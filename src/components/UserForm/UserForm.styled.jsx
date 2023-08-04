@@ -57,26 +57,27 @@ export const IconCheckPhoto = styled(BsCheck2)`
 `;
 
 export const UserInfoWrap = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* @media screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.tablet}) and (max-width: ${({ theme }) =>
-    theme.breakpoints.desktop}) {
-    width: 182px;
-    display: flex;
-    flex-direction: row-reverse;
-  } */
+  display: flex;
+  flex-direction: column;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media screen and (max-width: 768px) {
+    gap: ${({ isEditing }) => (!isEditing ? '59px' : '21px')};
+  }
+
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakpoints.tablet}) and (max-width: 1279px) {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     justify-content: center;
     align-content: center;
+    gap: 71px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: ${({ isEditing }) => !isEditing && '63px'};
   }
 `;
 
@@ -118,7 +119,7 @@ export const ButtonSave = styled.button`
   width: 100%;
   gap: 8px;
   padding: 6px 0;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   color: #ffffff;
   background-color: #54adff;
   border-radius: 40px;
@@ -167,8 +168,9 @@ export const Label = styled.label`
       width: 255px;
     }
 
-  & input {
-    padding: 4px 12px 4px 12px;
+    & input {
+      padding: 4px 12px 4px 12px;
+    }
   }
 `;
 
@@ -227,7 +229,11 @@ export const AvatarSection = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-bottom: 14px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: ${({ isEditing }) => isEditing && '25px'};
+  }
+  /* margin-bottom: 14px; */
 `;
 
 export const FormSection = styled.div`

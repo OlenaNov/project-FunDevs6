@@ -19,7 +19,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { current, logout } from 'redux/auth/auth-operations';
 import { CSSTransition } from 'react-transition-group';
-import { ToastContainer } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
 
 const UserPage = () => {
@@ -38,7 +37,6 @@ const UserPage = () => {
       setShowModal(true);
     }
   }, [location.state?.from]);
-
 
   const modalYes = () => {
     setShowModalContent(true);
@@ -110,7 +108,6 @@ const UserPage = () => {
           </CSSTransition>
         </ContainerWrapper>
       </Container>
-      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </>
   );
 };
