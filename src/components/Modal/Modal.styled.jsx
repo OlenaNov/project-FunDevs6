@@ -10,24 +10,33 @@ export const Backdrop = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: background: rgba(97, 97, 97, 0.60);
+    backdrop-filter: blur(4px);
     z-index: 1200;
 `;
 
 export const ModalWrapper = styled.div`
 position: relative;
-max-width: calc(100vw - 100px);
-max-height: calc(100vh - 100px);
 
 display: flex;
 flex-direction: column;
 justify-content: center;
 padding: 60px 20px;
 width: 280px;
-height: 302px;
 flex-shrink: 0;
 border-radius: 20px;
 background: #FFF;
+
+box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
+@media screen and (min-width: 768px) {
+width: 608px;
+border-radius: 40px;
+};
+    
+@media screen and (min-width: 1280px) {
+padding: 60px 40px;
+};
 `;
 
 
@@ -38,6 +47,11 @@ right: 12px;
 border: none;
 background-color: #fff;
 flex-shrink: 0;
+
+@media screen and (min-width: 768px) {
+top: 24px;
+right: 24px;
+};
 `;
 
 export const IconClose = styled(MdOutlineClose)`
