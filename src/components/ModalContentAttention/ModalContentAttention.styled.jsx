@@ -17,10 +17,7 @@ margin-bottom: 40px;
 font-size: 36px;
 letter-spacing: 1.44px;
 };
-    
-@media screen and (min-width: 1280px) {
 
-};
 `;
 
 export const Text = styled.p`
@@ -40,10 +37,7 @@ font-size: 20px;
 line-height: 1.4;
 letter-spacing: 0.8px;
 };
-    
-@media screen and (min-width: 1280px) {
 
-};
 `;
 
 
@@ -57,10 +51,7 @@ gap: 12px;
     flex-direction: row;
     gap: 20px;
 };
-    
-@media screen and (min-width: 1280px) {
 
-};
 `;
 
 export const ButtonLogin = styled.button`
@@ -86,10 +77,7 @@ letter-spacing: 0.64px;
 width: 165px;
 padding: 8px 20px;
 };
-    
-@media screen and (min-width: 1280px) {
 
-};
 `;
 
 
@@ -103,6 +91,7 @@ gap: 10px;
 
 border-radius: 40px;
 border: 2px solid #FFC107;
+background-color: inherit;
 
 color: #FFC107;
 font-family: Manrope;
@@ -115,8 +104,5 @@ letter-spacing: 0.64px;
 width: 142px;
 padding: 8px 20px;
 };
-    
-@media screen and (min-width: 1280px) {
 
-};
 `;

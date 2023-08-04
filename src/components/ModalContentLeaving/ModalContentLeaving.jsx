@@ -1,12 +1,12 @@
-import { ButtonCancel, ButtonYes, IconYes, Title, Text } from "./ModalContentLeaving.styled";
+import { ButtonCancel, ButtonWrapper, ButtonYes, IconYes, Title } from "./ModalContentLeaving.styled";
 
-export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
+export const ModalContent = ({ fnYes, fnCancel, title }) => {
  
  return (
     <>
      <Title>{title}</Title >
-     {message && <Text>{message}</Text>}
-     <ButtonCancel
+      <ButtonWrapper>
+      <ButtonCancel
         type="button"
         onClick={fnCancel}
      >Cancel</ButtonCancel>
@@ -16,6 +16,7 @@ export const ModalContent = ({ fnYes, fnCancel, title, message }) => {
      >Yes
      <IconYes />
      </ButtonYes>
+      </ButtonWrapper>
     </>
     );
 };

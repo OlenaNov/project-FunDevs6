@@ -1,23 +1,23 @@
 import Background from 'components/Background/Background';
 import Container from 'components/Container/Container';
 import Main from 'components/Main';
-import Modal from 'components/Modal/Modal';
-import ModalContentAttention from 'components/ModalContentAttention/ModalContentAttention';
-import { useState } from 'react';
+// import Modal from 'components/Modal/Modal';
+// import ModalContentAttention from 'components/ModalContentAttention/ModalContentAttention';
+// import { useState } from 'react';
 
 export const MainPage = () => {
-  const [ showModalAttention, setShowModalAttention] = useState(true);
+  // const [ showModalAttention, setShowModalAttention] = useState(true);
 
-  const toggleModalAttention = () => {
-    setShowModalAttention(s => !s);
-  };
+  // const toggleModalAttention = () => {
+  //   setShowModalAttention(s => !s);
+  // };
 
   return (
 <>
 <Background />
 <Container>
       <Main />
-      {showModalAttention && (
+      {/* {showModalAttention && (
         <Modal
           onClose={toggleModalAttention}
           children={() => (
@@ -29,7 +29,7 @@ export const MainPage = () => {
             />
           )}
         />
-      )}
+      )} */}
     </Container>
 </>
   );
