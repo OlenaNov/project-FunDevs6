@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
 export const Title = styled.h2`
-margin-bottom: 20px;
 
+margin-bottom: 20px;
 color: #111;
 text-align: center;
 font-family: Manrope;
@@ -25,7 +25,6 @@ letter-spacing: 1.44px;
 
 export const Text = styled.p`
 margin-bottom: 40px;
-
 color: #111;
 text-align: center;
 font-family: Manrope;
