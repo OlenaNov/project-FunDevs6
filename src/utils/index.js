@@ -4,6 +4,7 @@ import { getNotices } from './getNotices';
 import { calcPetAge } from './calcPetAge';
 import { normalizeCategory } from './normalizeCategory';
 import { normilizeBirthdate } from './normilizeBirthdate';
+import { createSearchParamsNews } from './createSearchParamsNews';
 
 export {
   createSearchParams,
@@ -12,4 +13,5 @@ export {
   calcPetAge,
   normalizeCategory,
   normilizeBirthdate,
+  createSearchParamsNews,
 };

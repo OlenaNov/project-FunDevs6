@@ -62,6 +62,12 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     return `${year}-${month}-${day}`;
   }
 
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = ('0' + (today.getMonth() + 1)).slice(-2);
+  const currentDay = ('0' + today.getDate()).slice(-2);
+  const maxDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
   const handleConfirmChange = () => {
     setAvatar(newAvatar);
     setNewAvatar(null);
@@ -97,6 +103,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
     try {
       await dispatch(updateUser(file));
       toast.success('Data updated successfully!👌');
+      return;
     } catch (error) {
       toast.error('Something went wrong while updating the data.🙁');
     } finally {
@@ -118,7 +125,7 @@ const UserForm = ({ isEditing, toggleEdit }) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        {({ errors }) => (
+        {({ errors, touched }) => (
           <StylizedForm autoComplete="off">
             <EditIcon>
               <EditInpuButton type="button" onClick={toggleEdit}>
@@ -126,8 +133,8 @@ const UserForm = ({ isEditing, toggleEdit }) => {
               </EditInpuButton>
             </EditIcon>
 
-            <UserInfoWrap>
-              <AvatarSection>
+            <UserInfoWrap isEditing={isEditing}>
+              <AvatarSection isEditing={isEditing}>
                 <Avatar src={newAvatar || avatar} alt="User avatar" />
                 {isEditing && (
                   <EditPhotoWrap>
@@ -181,8 +188,9 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                 <Label htmlFor="birthday">
                   <span>Birthday:</span>
                   <FieldStyled
-                    type="text"
+                    type="date"
                     name="birthday"
+                    max={maxDate}
                     disabled={!isEditing}
                     placeholder="YYYY-MM-DD"
                   />
@@ -205,11 +213,13 @@ const UserForm = ({ isEditing, toggleEdit }) => {
                     placeholder="London"
                   />
                 </Label>
-                {/* {errors.name && toast.error(errors.name)}
-                {errors.email && toast.error(errors.email)}
-                {errors.birthday && toast.error(errors.birthday)}
-                {errors.phone && toast.error(errors.phone)}
-                {errors.city && toast.error(errors.city)} */}
+                {touched.name && errors.name && toast.error(errors.name)}
+                {touched.email && errors.email && toast.error(errors.email)}
+                {touched.birthday &&
+                  errors.birthday &&
+                  toast.error(errors.birthday)}
+                {touched.phone && errors.phone && toast.error(errors.phone)}
+                {touched.city && errors.city && toast.error(errors.city)}
                 {isEditing ? <ButtonSave type="submit">Save</ButtonSave> : null}
               </FormSection>
             </UserInfoWrap>

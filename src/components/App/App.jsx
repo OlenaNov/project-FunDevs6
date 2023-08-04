@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Layout from 'components/Layout';
 import PublicRoute from 'routes/PublicRoute/PublicRoute';
@@ -80,6 +81,18 @@ const App = () => {
               <Route path="*" element={<NotFoundPage to="/not-found" />} />
             </Route>
           </Routes>
+          <ToastContainer // Додано ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </Suspense>
       )}
     </>
