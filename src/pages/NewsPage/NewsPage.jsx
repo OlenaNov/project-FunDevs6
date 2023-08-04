@@ -1,12 +1,13 @@
 import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from 'components/Container/Container';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 import ScrollBtn from 'components/ScrollBtn/ScrollBtn';
 import NewsPagination from 'components/NewsPagination/NewsPagination';
 import Background from 'components/Background/Background';
 
-import { Title, NewsWrapper } from './NewsPage.styled';
+import { Title, NewsWrapper, Wrapper } from './NewsPage.styled';
+// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,16 +18,17 @@ import { fetchNews, fetchNewsByQuery2 } from 'redux/news/news-operation';
 import {
   selectAllNews,
   selectHints,
-  selectNewsError,
+  // selectNewsError,
   selectNewsLoading,
 } from 'redux/news/news-selectors';
 import { setNews } from 'redux/news/news-actions';
+// import { Wrapper } from 'components/Loader/Loader.styled';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectAllNews);
   const { totalHints, hints } = useSelector(selectHints);
-  const isError = useSelector(selectNewsError);
+  // const isError = useSelector(selectNewsError);
   const isLoading = useSelector(selectNewsLoading);
   const [totalPages, setTotalPages] = useState(null);
   const [searchKeyword] = useState('');
@@ -67,7 +69,7 @@ const NewsPage = () => {
     }
   };
 
-  const onPageChange = currentPage => {
+  const onPageChange = (currentPage) => {
     if (page === currentPage) {
       return;
     }
@@ -77,6 +79,7 @@ const NewsPage = () => {
     var params = searchQuery
       ? { query: searchQuery, page: currentPage }
       : { page: currentPage };
+
     setSearchParams(params);
   };
 
@@ -89,22 +92,25 @@ const NewsPage = () => {
       <Background />
       <Container>
         <Title>News</Title>
-        <NewsSearch onFormSubmit={onSearch} />
-        {isLoading ? (
+        <NewsSearch onFormSubmit={onSearch}></NewsSearch>
+        {/* {isLoading ? (
           <Loader />
         ) : (
-          <>
+          <> */}
             <NewsList data={filteredNews} />
             <ScrollBtn />
-            {!isError && (
-              <NewsPagination
-                currentPage={Number(page)}
-                totalPagesCount={totalPages}
-                onPageChange={page => onPageChange(page)}
-              />
+
+            {!isLoading && totalPages > 1 && (
+              <Wrapper>
+                <NewsPagination
+                  currentPage={Number(page)}
+                  totalPagesCount={totalPages}
+                  onPageChange={page => onPageChange(page)}
+                />
+              </Wrapper>
             )}
-          </>
-        )}
+          {/* </>
+        )} */}
       </Container>
     </NewsWrapper>
   );
