@@ -8,6 +8,7 @@ import Background from 'components/Background/Background';
 
 import { Title, NewsWrapper } from './NewsPage.styled';
 
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
