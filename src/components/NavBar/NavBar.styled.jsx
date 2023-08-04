@@ -90,6 +90,10 @@ export const NavLink = styled(Link)`
   &:hover {
     color: #ffc107;
   }
+
+  &.active {
+  color: #ffc107;
+  }
 `;
 
 export const CloseBtn = styled.button`

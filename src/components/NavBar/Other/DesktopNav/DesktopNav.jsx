@@ -10,13 +10,19 @@ export const DesktopNav = () => {
     <NavDesktop>
       <NavListDesktop>
         <NavItemDesktop>
-          <NavLinkDesktop to="/news">News</NavLinkDesktop>
+          <NavLinkDesktop to="/news" activeClassName="active">
+            News
+          </NavLinkDesktop>
         </NavItemDesktop>
         <NavItemDesktop>
-          <NavLinkDesktop to="notices">Find pet</NavLinkDesktop>
+          <NavLinkDesktop to="notices" activeClassName="active">
+            Find pet
+          </NavLinkDesktop>
         </NavItemDesktop>
         <NavItemDesktop>
-          <NavLinkDesktop to="/friends">Our friends</NavLinkDesktop>
+          <NavLinkDesktop to="/friends" activeClassName="active">
+            Our friends
+          </NavLinkDesktop>
         </NavItemDesktop>
       </NavListDesktop>
     </NavDesktop>
