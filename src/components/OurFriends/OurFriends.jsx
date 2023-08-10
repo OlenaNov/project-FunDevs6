@@ -79,7 +79,7 @@ const OurFriends = ({ data }) => {
                     <Contacts>
                       <ContactTitle>Address:</ContactTitle>
                       {item.addressUrl ? (
-                        <ContactsLink href={item.addressUrl}>
+                        <ContactsLink href={item.addressUrl} target="_blank">
                           {item.address}
                         </ContactsLink>
                       ) : (
