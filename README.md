@@ -1,6 +1,8 @@
 # Backend 
 
+Backend GitHub page 
 [Backend GitHub page](https://github.com/OrestShylan/back-end-yourpet/tree/main). 
+SwaggerUI
 [SwaggerUI](https://back-end-yourpet.onrender.com/api-docs/#/). 
 
 # React homework template
